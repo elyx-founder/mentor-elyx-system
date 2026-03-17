@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://openrouter.ai https://api.openrouter.ai; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
+<title>ELYX — Your Era Begins</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--red:#ff2222;--reddim:rgba(255,34,34,0.18);--bg:#04040e;--text:#e8e8ff;--dim:rgba(232,232,255,0.45);--border:rgba(255,34,34,0.18);}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;height:100vh;overflow:hidden;}
+@keyframes pulse{0%,100%{text-shadow:0 0 40px var(--red),0 0 80px rgba(255,34,34,0.4);}50%{text-shadow:0 0 60px var(--red),0 0 120px rgba(255,34,34,0.6),0 0 200px rgba(255,34,34,0.2);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(255,34,34,0.4);}50%{box-shadow:0 0 40px rgba(255,34,34,0.8);}}
+canvas#stars{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.screen{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.5s;}
+.screen.on{opacity:1;pointer-events:all;}
+
+/* BOOT */
+#s-boot{gap:0;}
+.boot-logo{font-family:'Share Tech Mono',monospace;font-size:clamp(2.5rem,8vw,4rem);color:var(--red);letter-spacing:.3em;text-shadow:0 0 40px var(--red),0 0 80px rgba(255,34,34,0.4),0 0 120px rgba(255,34,34,0.2);animation:pulse 2s ease-in-out infinite;}
+.boot-tagline{font-family:'Share Tech Mono',monospace;font-size:.7rem;letter-spacing:.35em;color:var(--dim);margin:10px 0 36px;}
+.boot-bar-outer{width:260px;height:2px;background:rgba(255,34,34,0.1);border-radius:1px;margin-bottom:10px;}
+.boot-bar-inner{height:100%;width:0%;background:var(--red);box-shadow:0 0 12px var(--red);transition:width .4s ease;border-radius:1px;}
+.boot-txt{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:var(--red);opacity:.7;}
+
+/* ONBOARD */
+#s-ob{background:rgba(4,4,14,.96);}
+.ob-box{width:min(480px,94vw);padding:32px 28px;display:flex;flex-direction:column;gap:16px;}
+.ob-head{text-align:center;margin-bottom:4px;}
+.ob-head-tag{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.25em;color:var(--red);margin-bottom:8px;}
+.ob-head-title{font-size:clamp(1.3rem,4vw,1.7rem);font-weight:700;letter-spacing:.07em;}
+label.lbl{font-family:'Share Tech Mono',monospace;font-size:.56rem;letter-spacing:.2em;color:var(--dim);display:block;margin-bottom:6px;}
+.inp{width:100%;padding:13px 15px;background:rgba(255,34,34,.05);border:1px solid var(--border);border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:1rem;color:var(--text);outline:none;transition:border-color .25s;}
+.inp:focus{border-color:var(--red);box-shadow:0 0 0 2px rgba(255,34,34,.1);}
+.ptiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.ptile{padding:11px 4px;background:rgba(255,34,34,.04);border:1px solid var(--border);border-radius:8px;cursor:pointer;text-align:center;transition:all .2s;-webkit-tap-highlight-color:rgba(255,34,34,.2);user-select:none;}
+.ptile:hover,.ptile:active{border-color:var(--red);background:rgba(255,34,34,.12);}
+.ptile.sel{border-color:var(--red);background:rgba(255,34,34,.22);box-shadow:0 0 14px rgba(255,34,34,.3);}
+.ptile .ic{font-size:1.3rem;}
+.ptile .lb{font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:.06em;color:var(--text);margin-top:3px;}
+textarea.inp{resize:none;height:80px;font-size:.95rem;}
+.err{color:#ff5555;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.08em;display:none;text-align:center;}
+.cta{width:100%;padding:15px;background:linear-gradient(135deg,rgba(255,34,34,.28),var(--red));border:none;border-radius:8px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.2em;color:#fff;box-shadow:0 0 22px rgba(255,34,34,.4);transition:all .25s;}
+.cta:hover{box-shadow:0 0 42px rgba(255,34,34,.7);transform:translateY(-1px);}
+.cta:active{transform:translateY(0);}
+
+/* INTRO */
+#s-intro{}
+.intro-inner{text-align:center;max-width:520px;padding:24px 20px;}
+.intro-orb{width:90px;height:90px;border-radius:50%;border:2px solid var(--red);background:radial-gradient(circle,rgba(255,34,34,.18),transparent);display:flex;align-items:center;justify-content:center;font-size:2.2rem;margin:0 auto 14px;box-shadow:0 0 30px rgba(255,34,34,.5),inset 0 0 20px rgba(255,34,34,.1);}
+.intro-label{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.3em;color:var(--red);margin-bottom:24px;}
+.intro-text{font-size:1.05rem;line-height:1.75;color:var(--text);min-height:56px;transition:opacity .35s;}
+.intro-enter{margin-top:28px;padding:13px 34px;background:transparent;border:1px solid var(--red);border-radius:4px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.2em;color:var(--red);transition:all .25s;display:none;}
+.intro-enter:hover{background:rgba(255,34,34,.1);}
+
+/* DASHBOARD */
+#s-dash{justify-content:flex-start;align-items:stretch;}
+.hud{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;background:linear-gradient(to right,rgba(4,4,14,.98),rgba(20,4,4,.95));border-bottom:1px solid rgba(255,34,34,.25);flex-shrink:0;z-index:20;}
+.hud-logo{font-family:'Share Tech Mono',monospace;font-size:.95rem;letter-spacing:.2em;color:var(--red);}
+.hud-center{display:flex;align-items:center;gap:8px;}
+.hud-name{font-size:.85rem;font-weight:700;letter-spacing:.05em;}
+.hud-lvl{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.1em;padding:2px 7px;border:1px solid var(--red);border-radius:3px;color:var(--red);}
+.hud-right{display:flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--red);}
+.panels{flex:1;overflow:hidden;position:relative;}
+.panel{position:absolute;inset:0;overflow-y:auto;padding:14px;display:none;-webkit-overflow-scrolling:touch;}
+.panel.on{display:block;}
+.nav{height:58px;display:flex;background:rgba(4,4,14,.96);border-top:1px solid var(--border);flex-shrink:0;}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:none;border:none;cursor:pointer;color:var(--dim);transition:all .2s;}
+.nb.on{color:var(--red);}
+.nb .ni{font-size:1.1rem;}
+.nb .nt{font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:.1em;}
+
+/* CHAT */
+.chat-top{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:12px;}
+.chat-av{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--red);background:radial-gradient(circle,rgba(255,34,34,.2),rgba(255,34,34,.05));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;box-shadow:0 0 20px rgba(255,34,34,.5);animation:glow 2s ease-in-out infinite;}
+.chat-mn{font-size:.88rem;font-weight:700;}
+.chat-ms{font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:.1em;color:var(--red);}
+.chat-msgs{min-height:calc(100vh - 270px);max-height:calc(100vh - 270px);overflow-y:auto;padding-bottom:6px;}
+.msg{margin-bottom:10px;max-width:86%;padding:10px 13px;font-size:.88rem;line-height:1.65;}
+.msg.m{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px 12px 12px 12px;margin-right:auto;}
+.msg.u{background:rgba(255,34,34,.12);border:1px solid rgba(255,34,34,.25);border-radius:12px 12px 4px 12px;margin-left:auto;text-align:right;}
+.msg.typing{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px 12px 12px 12px;margin-right:auto;font-size:1.1rem;letter-spacing:5px;color:var(--dim);}
+.chat-input-row{display:flex;gap:8px;align-items:center;padding-top:10px;border-top:1px solid var(--border);margin-top:6px;}
+.ci{flex:1;padding:11px 14px;background:rgba(255,34,34,.05);border:1px solid var(--border);border-radius:22px;font-family:'Rajdhani',sans-serif;font-size:.93rem;color:var(--text);outline:none;transition:border-color .25s;}
+.ci:focus{border-color:var(--red);}
+.sbtn{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#cc0000,var(--red));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 0 20px rgba(255,34,34,.7);flex-shrink:0;transition:all .2s;}
+.vbtn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:all .2s;}
+.vbtn.rec{background:rgba(255,34,34,.2);border-color:var(--red);}
+
+/* TASKS */
+.sec-title{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:var(--dim);margin-bottom:12px;}
+.gen-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.gen-btn{padding:9px 16px;background:rgba(255,34,34,.1);border:1px solid rgba(255,34,34,.35);border-radius:6px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.15em;color:var(--red);transition:all .2s;}
+.gen-btn:hover{background:rgba(255,34,34,.22);}
+.prog-row{display:flex;justify-content:space-between;padding:10px 12px;background:rgba(255,34,34,.06);border:1px solid rgba(255,34,34,.1);border-radius:8px;margin-bottom:12px;}
+.prog-item .pl{font-family:'Share Tech Mono',monospace;font-size:.54rem;letter-spacing:.12em;color:var(--dim);}
+.prog-item .pv{font-family:'Share Tech Mono',monospace;font-size:.8rem;color:var(--red);margin-top:2px;}
+.tc{display:flex;align-items:flex-start;gap:10px;padding:13px;margin-bottom:9px;border-radius:10px;background:rgba(255,34,34,.04);border:1px solid rgba(255,34,34,.12);transition:all .3s;}
+.tc.done{background:rgba(0,238,68,.04);border-color:rgba(0,238,68,.15);}
+.tc-cb{width:22px;height:22px;flex-shrink:0;border-radius:5px;border:2px solid rgba(255,34,34,.4);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-top:2px;transition:all .25s;}
+.tc-cb.done{border-color:#00ee44;background:#00ee44;}
+.tc-body{flex:1;min-width:0;}
+.tc-title{font-size:.88rem;font-weight:600;margin-bottom:3px;}
+.tc-title.done{text-decoration:line-through;opacity:.5;}
+.tc-desc{font-size:.74rem;color:var(--dim);line-height:1.45;margin-bottom:7px;}
+.tc-foot{display:flex;align-items:center;justify-content:space-between;}
+.tc-ec{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--red);}
+.tc-ec.done{color:#00ee44;}
+.cam-btn{width:32px;height:32px;border-radius:50%;background:rgba(255,34,34,.1);border:1px solid rgba(255,34,34,.3);cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;}
+.cam-btn:hover{background:rgba(255,34,34,.25);}
+.empty-tasks{text-align:center;padding:30px 16px;}
+.empty-ic{font-size:2.5rem;margin-bottom:10px;}
+.empty-t{font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--red);margin-bottom:14px;}
+
+/* STATUS */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.stat-c{padding:15px;border-radius:10px;background:rgba(255,34,34,.05);border:1px solid rgba(255,34,34,.1);text-align:center;}
+.stat-v{font-family:'Share Tech Mono',monospace;font-size:1.6rem;color:var(--red);}
+.stat-l{font-size:.7rem;color:var(--dim);margin-top:3px;}
+.pbar-wrap{height:4px;background:rgba(255,34,34,.1);border-radius:2px;margin:10px 0 5px;}
+.pbar-fill{height:100%;background:var(--red);border-radius:2px;box-shadow:0 0 8px var(--red);transition:width .6s ease;}
+
+/* RANK */
+.rank-me{padding:16px;border-radius:12px;background:rgba(255,34,34,.08);border:1px solid rgba(255,34,34,.25);text-align:center;margin-bottom:16px;}
+.rank-me-num{font-family:'Share Tech Mono',monospace;font-size:2.2rem;color:var(--red);line-height:1;}
+.rank-me-lbl{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:var(--dim);margin-top:4px;}
+.rank-me-sub{font-size:.8rem;color:var(--text);margin-top:6px;}
+.lb-row{display:flex;align-items:center;gap:10px;padding:11px 13px;margin-bottom:7px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);}
+.lb-row.me{background:rgba(255,34,34,.08);border-color:rgba(255,34,34,.25);}
+.lb-pos{font-family:'Share Tech Mono',monospace;font-size:.72rem;width:26px;text-align:center;color:var(--dim);flex-shrink:0;}
+.lb-pos.gold{color:#ffcc00;}
+.lb-pos.silver{color:#aaaaaa;}
+.lb-pos.bronze{color:#cc7700;}
+.lb-name{flex:1;font-size:.88rem;font-weight:600;}
+.lb-coins{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--red);}
+
+/* PROOF MODAL */
+.modal-bg{position:fixed;inset:0;z-index:200;background:rgba(4,4,14,.94);display:flex;align-items:center;justify-content:center;display:none;}
+.modal-bg.on{display:flex;}
+.modal-box{width:min(420px,92vw);background:#07071a;border:1px solid rgba(255,34,34,.3);border-radius:14px;padding:24px;}
+.modal-title{font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.2em;color:var(--red);margin-bottom:6px;}
+.modal-sub{font-size:.82rem;color:var(--dim);margin-bottom:16px;line-height:1.5;}
+.proof-btns{display:flex;gap:10px;margin-bottom:14px;}
+.proof-btn{flex:1;padding:12px;border-radius:8px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.12em;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.proof-btn.cam{background:rgba(255,34,34,.12);border:1px solid rgba(255,34,34,.35);color:var(--red);}
+.proof-btn.cam:hover{background:rgba(255,34,34,.25);}
+.proof-btn.txt{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);color:var(--dim);}
+.proof-btn.txt:hover{border-color:rgba(255,255,255,.25);color:var(--text);}
+.proof-textarea{width:100%;padding:12px;background:rgba(255,34,34,.05);border:1px solid var(--border);border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:.9rem;color:var(--text);outline:none;resize:none;height:90px;display:none;margin-bottom:12px;}
+.proof-textarea.on{display:block;}
+.modal-actions{display:flex;gap:10px;}
+.modal-cancel{flex:1;padding:11px;background:transparent;border:1px solid rgba(255,255,255,.12);border-radius:8px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.12em;color:var(--dim);}
+.modal-submit{flex:2;padding:11px;background:linear-gradient(135deg,rgba(255,34,34,.28),var(--red));border:none;border-radius:8px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.12em;color:#fff;}
+.proof-preview{max-width:100%;max-height:160px;border-radius:8px;border:1px solid rgba(255,34,34,.3);display:none;margin-bottom:12px;}
+
+/* TOAST */
+.toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:500;background:rgba(7,7,26,.97);border:1px solid rgba(255,34,34,.4);border-radius:10px;padding:10px 18px;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--text);display:none;max-width:88vw;text-align:center;backdrop-filter:blur(10px);}
+
+input[type=file]{display:none;}
+
+/* MOBILE FIXES */
+@media (max-width: 768px) {
+  .ob-box{padding:20px 16px;gap:14px;}
+  .ptiles{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .ptile{padding:14px 8px;}
+  .ptile .ic{font-size:1.5rem;}
+  .ptile .lb{font-size:.55rem;}
+  .inp{font-size:16px !important;} /* prevents zoom on iOS */
+  textarea.inp{font-size:16px !important;}
+  .cta{padding:17px;font-size:.75rem;}
+}
+
+/* Ensure all interactive elements work on touch */
+.ptile, .cta, .nb, .sbtn, .vbtn, .cam-btn, .gen-btn, .proof-btn, .modal-cancel, .modal-submit, .intro-enter {
+  -webkit-tap-highlight-color: rgba(255,34,34,0.3);
+  touch-action: manipulation;
+  cursor: pointer;
+}
+.inp, textarea.inp, .ci {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+</style>
+</head>
+<body>
+<canvas id="stars" style="pointer-events:none!important;touch-action:none;"></canvas>
+
+<!-- BOOT -->
+<div class="screen on" id="s-boot">
+  <div class="boot-logo">ELYX</div>
+  <div class="boot-tagline">YOUR ERA BEGINS</div>
+  <div class="boot-bar-outer"><div class="boot-bar-inner" id="b-bar"></div></div>
+  <div class="boot-txt" id="b-txt">INITIALIZING...</div>
+</div>
+
+<!-- ONBOARD -->
+<div class="screen" id="s-ob">
+  <div class="ob-box">
+    <div class="ob-head">
+      <div class="ob-head-tag">ELYX · NEW OPERATIVE</div>
+      <div class="ob-head-title" style="animation:fadeUp 0.8s ease forwards;">BEGIN YOUR ERA</div>
+    </div>
+    <div>
+      <label class="lbl">WHAT DO PEOPLE CALL YOU?</label>
+      <input class="inp" id="ob-name" type="text" placeholder="Your name..." autocomplete="off" maxlength="40"/>
+    </div>
+    <div>
+      <label class="lbl">YOUR GRIND?</label>
+      <div class="ptiles">
+        <div class="ptile" data-sel="entrepreneur"><div class="ic">🚀</div><div class="lb">ENTREPRENEUR</div></div>
+        <div class="ptile" data-sel="student"><div class="ic">📚</div><div class="lb">STUDENT</div></div>
+        <div class="ptile" data-sel="developer"><div class="ic">💻</div><div class="lb">DEVELOPER</div></div>
+        <div class="ptile" data-sel="creator"><div class="ic">🎨</div><div class="lb">CREATOR</div></div>
+        <div class="ptile" data-sel="athlete"><div class="ic">⚡</div><div class="lb">ATHLETE</div></div>
+        <div class="ptile" data-sel="business"><div class="ic">💼</div><div class="lb">BUSINESS</div></div>
+        <div class="ptile" data-sel="freelancer"><div class="ic">🌐</div><div class="lb">FREELANCER</div></div>
+        <div class="ptile" data-sel="other"><div class="ic">✨</div><div class="lb">OTHER</div></div>
+      </div>
+    </div>
+    <div>
+      <label class="lbl">YOUR ONE BIG GOAL?</label>
+      <textarea class="inp" id="ob-goal" placeholder="The ONE thing that would change everything for you..."></textarea>
+    </div>
+    <div class="err" id="ob-err"></div>
+    <button class="cta" id="ob-btn">BEGIN MY ERA →</button>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="screen" id="s-intro">
+  <div class="intro-inner">
+    <div class="intro-orb">⚡</div>
+    <div class="intro-label">ELYX · PERSONAL MENTOR</div>
+    <div class="intro-text" id="intro-txt"></div>
+    <button class="intro-enter" id="intro-enter" id="intro-enter-btn">ENTER THE SYSTEM →</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="screen" id="s-dash">
+  <div class="hud">
+    <div class="hud-logo">ELYX</div>
+    <div class="hud-center">
+      <div class="hud-name" id="h-name">–</div>
+      <div class="hud-lvl" id="h-lvl">LVL 0</div>
+    </div>
+    <div class="hud-right">◈ <span id="h-coins">0</span> EC</div>
+  </div>
+  <div class="panels">
+    <!-- CHAT -->
+    <div class="panel on" id="p-chat">
+      <div class="chat-top">
+        <div class="chat-av">⚡</div>
+        <div><div class="chat-mn">ELYX MENTOR</div><div class="chat-ms">● ONLINE · AI POWERED</div></div>
+      </div>
+      <div class="chat-msgs" id="chat-msgs"></div>
+      <div class="chat-input-row">
+        <input class="ci" id="ci" placeholder="Message your mentor..."/>
+        <button class="vbtn" id="vbtn" id="vbtn-real">🎙</button>
+        <button class="sbtn" id="sbtn-real">➤</button>
+      </div>
+    </div>
+    <!-- TASKS -->
+    <div class="panel" id="p-tasks">
+      <div class="gen-bar">
+        <div class="sec-title" style="margin:0">TODAY'S MISSIONS</div>
+        <button class="gen-btn" id="gen-btn-real">⚡ GENERATE</button>
+      </div>
+      <div id="tasks-wrap"></div>
+    </div>
+    <!-- STATUS -->
+    <div class="panel" id="p-status">
+      <div class="sec-title">YOUR STATUS</div>
+      <div class="stat-grid">
+        <div class="stat-c"><div class="stat-v" id="st-lv">0</div><div class="stat-l">LEVEL</div></div>
+        <div class="stat-c"><div class="stat-v" id="st-ec">0</div><div class="stat-l">ELITE COINS</div></div>
+        <div class="stat-c"><div class="stat-v" id="st-tk">0</div><div class="stat-l">TASKS DONE</div></div>
+        <div class="stat-c"><div class="stat-v" id="st-sk">0</div><div class="stat-l">DAY STREAK</div></div>
+      </div>
+      <label class="lbl">NEXT LEVEL</label>
+      <div class="pbar-wrap"><div class="pbar-fill" id="pbar" style="width:0%"></div></div>
+      <div id="pbar-txt" style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--dim);">0 / 50 EC</div>
+    </div>
+    <!-- RANK -->
+    <div class="panel" id="p-rank">
+      <div class="sec-title">GLOBAL RANKINGS</div>
+      <div class="rank-me">
+        <div class="rank-me-num" id="my-rank">#–</div>
+        <div class="rank-me-lbl">YOUR RANK</div>
+        <div class="rank-me-sub" id="my-rank-sub">0 Elite Coins</div>
+      </div>
+      <div id="lb-list"></div>
+    </div>
+  </div>
+  <div class="nav">
+    <button class="nb on" id="nb-chat" data-panel="chat"><div class="ni">💬</div><div class="nt">MENTOR</div></button>
+    <button class="nb" id="nb-tasks" data-panel="tasks"><div class="ni">⚡</div><div class="nt">MISSIONS</div></button>
+    <button class="nb" id="nb-status" data-panel="status"><div class="ni">◈</div><div class="nt">STATUS</div></button>
+    <button class="nb" id="nb-rank" data-panel="rank"><div class="ni">🏆</div><div class="nt">RANK</div></button>
+  </div>
+</div>
+
+<!-- PROOF MODAL -->
+<div class="modal-bg" id="proof-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="pm-title">SUBMIT PROOF</div>
+    <div class="modal-sub" id="pm-sub">How did you complete this mission?</div>
+    <div class="proof-btns">
+      <button class="proof-btn cam" id="cam-trig">📷 CAMERA PROOF</button>
+      <button class="proof-btn txt" id="txt-proof-btn">✍ TEXT PROOF</button>
+    </div>
+    <img id="proof-preview" class="proof-preview"/>
+    <textarea class="proof-textarea" id="proof-text" placeholder="Describe exactly what you did — time spent, what you built, specific output..."></textarea>
+    <div class="modal-actions">
+      <button class="modal-cancel" id="modal-cancel">CANCEL</button>
+      <button class="modal-submit" id="modal-submit">SUBMIT →</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="cam-in" accept="image/*" capture="environment" onchange="onCamFile(this)"/>
+<div class="toast" id="toast"></div>
+
+<script>
+var KEY='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';
+var THRESH=[0,50,150,300,500,750];
+var LVLNAMES=['INITIATOR','SEEKER','BUILDER','DOMINATOR','ELITE','APEX'];
+var FAKE_USERS=[
+  {name:'Arjun Mehta',coins:680,level:5},
+  {name:'Priya Sharma',coins:520,level:4},
+  {name:'Rahul Gupta',coins:410,level:3},
+  {name:'Sneha Patel',coins:340,level:3},
+  {name:'Karan Singh',coins:280,level:2},
+  {name:'Ananya Verma',coins:210,level:2},
+  {name:'Dev Malhotra',coins:165,level:2},
+  {name:'Riya Joshi',coins:120,level:1},
+  {name:'Aditya Kumar',coins:75,level:1},
+  {name:'Meera Nair',coins:30,level:0},
+];
+
+var U={name:'',prof:'',goal:'',level:0,coins:0,tasks:0,streak:0};
+var selProf='', pendTask=null, proofImg=null, isTyping=false, chatHist=[];
+
+function $(id){return document.getElementById(id);}
+function show(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');});$(id).classList.add('on');}
+function goPanel(p){
+  document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('on');});
+  document.querySelectorAll('.nb').forEach(function(x){x.classList.remove('on');});
+  $('p-'+p).classList.add('on');
+  $('nb-'+p).classList.add('on');
+  if(p==='tasks')renderTasks();
+  if(p==='rank')renderRank();
+  if(p==='status')updateStatus();
+}
+
+function save(){localStorage.setItem('EX_U',JSON.stringify(U));}
+function load(){try{var d=JSON.parse(localStorage.getItem('EX_U')||'{}');if(d.name){Object.assign(U,d);return true;}}catch(e){}return false;}
+function calcLvl(c){for(var i=THRESH.length-1;i>=0;i--)if(c>=THRESH[i])return i;return 0;}
+function today(){return new Date().toISOString().slice(0,10);}
+
+function toast(msg,ms){var t=$('toast');t.textContent=msg;t.style.display='block';clearTimeout(window._tt);window._tt=setTimeout(function(){t.style.display='none';},ms||3000);}
+
+// ── STARS BG ────────────────────────────────────────
+(function(){
+  var c=$('stars'),ctx=c.getContext('2d'),W,H,pts=[];
+  function rs(){W=c.width=innerWidth;H=c.height=innerHeight;}
+  rs();addEventListener('resize',rs);
+  for(var i=0;i<140;i++)pts.push({x:Math.random()*9999,y:Math.random()*9999,r:.3+Math.random()*.9,a:Math.random()*6.28,s:.002+Math.random()*.003});
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(function(p){
+      p.a+=p.s;
+      ctx.beginPath();ctx.arc(p.x%W,p.y%H,p.r,0,6.28);
+      ctx.fillStyle='rgba(255,34,34,'+(0.12+Math.sin(p.a)*.08)+')';
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── BOOT ────────────────────────────────────────────
+(function(){
+  var steps=[['INITIALIZING CORE...',15],['LOADING AI MENTOR...',40],['SYNCING DATABASE...',72],['PREPARING ARENA...',90],['SYSTEM ONLINE',100]];
+  var i=0;
+  function next(){
+    if(i>=steps.length){
+      setTimeout(function(){
+        if(load()){updateHUD();initDash();show('s-dash');}
+        else{show('s-ob');setTimeout(function(){$('ob-name').focus();},300);}
+      },500);
+      return;
+    }
+    $('b-txt').textContent=steps[i][0];
+    $('b-bar').style.width=steps[i][1]+'%';
+    i++;setTimeout(next,500+Math.random()*400);
+  }
+  next();
+}());
+
+// ── ONBOARD ─────────────────────────────────────────
+function selP(p,el){
+  selProf=p;
+  document.querySelectorAll('.ptile').forEach(function(x){x.classList.remove('sel');});
+  el.classList.add('sel');
+}
+
+function doOB(){
+  var name=$('ob-name').value.trim();
+  var goal=$('ob-goal').value.trim();
+  var err=$('ob-err');
+  if(!name||name.length<2){err.textContent='Enter your name!';err.style.display='block';$('ob-name').focus();return;}
+  if(!selProf){err.textContent='Pick your profession!';err.style.display='block';return;}
+  if(!goal||goal.split(' ').filter(Boolean).length<3){err.textContent='Write your goal — at least 3 words!';err.style.display='block';$('ob-goal').focus();return;}
+  err.style.display='none';
+  U={name:name,prof:selProf,goal:goal,level:0,coins:0,tasks:0,streak:0};
+  save();
+  startIntro();
+}
+
+// ── MENTOR INTRO ────────────────────────────────────
+function startIntro(){
+  show('s-intro');
+  var n=U.name.split(' ')[0];
+  var g=U.goal.slice(0,52)+(U.goal.length>52?'...':'');
+  var lines=[
+    'System online.',
+    'Identity confirmed: '+n+'.',
+    'Mission locked: "'+g+'"',
+    'I am ELYX. Your edge. Your mirror. Your ruthless ally.',
+    'Every day you show up — you get closer.',
+    'You did not come this far to stay this small.',
+    'Your era starts right now, '+n+'.'
+  ];
+  var el=$('intro-txt'),btn=$('intro-enter'),i=0;
+  btn.style.display='none';
+  el.style.opacity='1';
+  function speak(text){
+    if(!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(text);
+    u.rate=0.88; u.pitch=0.85; u.volume=1;
+    // Try to find a deep/male voice
+    var voices=speechSynthesis.getVoices();
+    var deep=voices.find(function(v){return /male|man|david|alex|daniel/i.test(v.name);});
+    if(deep) u.voice=deep;
+    speechSynthesis.speak(u);
+  }
+  function next(){
+    if(i>=lines.length){
+      setTimeout(function(){btn.style.display='inline-block';},600);
+      return;
+    }
+    var line=lines[i++];
+    el.style.opacity='0';
+    setTimeout(function(){
+      el.textContent=line;
+      el.style.opacity='1';
+      speak(line);
+      setTimeout(next,1700);
+    },350);
+  }
+  // Wait for voices to load
+  if(speechSynthesis.getVoices().length===0){
+    speechSynthesis.addEventListener('voiceschanged',function(){next();},{once:true});
+  } else {
+    next();
+  }
+  setTimeout(function(){btn.style.display='inline-block';},12000);
+}
+
+function goDash(){
+  updateHUD();
+  initDash();
+  show('s-dash');
+}
+
+// ── DASHBOARD INIT ───────────────────────────────────
+function initDash(){
+  updateHUD();
+  // Load saved tasks
+  var td=today(),st=localStorage.getItem('EX_T'),sd=localStorage.getItem('EX_TD');
+  if(st&&sd===td){try{window._tasks=JSON.parse(st);renderTasks();}catch(e){}}
+  // Welcome
+  if(!localStorage.getItem('EX_WEL')){
+    localStorage.setItem('EX_WEL','1');
+    var n=U.name.split(' ')[0],g=U.goal.slice(0,50);
+    setTimeout(function(){
+      addMsg('m',n+'. You are in. Not tomorrow — TODAY is where it starts.\n\nI know your goal: "'+g+'..."\n\nTell me — what is the ONE thing holding you back from it right now?');
+    },800);
+  }
+  // Streak
+  var lv=localStorage.getItem('EX_LV'),td2=today();
+  if(lv&&lv!==td2&&U.name){
+    U.streak=(U.streak||0)+1;save();
+    setTimeout(function(){toast('Day '+U.streak+' streak! Do not break it.',3500);},3000);
+  }
+  localStorage.setItem('EX_LV',td2);
+}
+
+function updateHUD(){
+  var n=U.name?U.name.split(' ')[0].toUpperCase():'–';
+  $('h-name').textContent=n;
+  $('h-lvl').textContent='LVL '+U.level+' · '+LVLNAMES[U.level];
+  $('h-coins').textContent=U.coins;
+}
+function updateStatus(){
+  $('st-lv').textContent=U.level;
+  $('st-ec').textContent=U.coins;
+  $('st-tk').textContent=U.tasks;
+  $('st-sk').textContent=U.streak;
+  var c=THRESH[U.level]||0,nx=THRESH[U.level+1]||750;
+  var pct=nx>c?Math.min(100,((U.coins-c)/(nx-c))*100):100;
+  $('pbar').style.width=pct+'%';
+  $('pbar-txt').textContent=U.coins+' / '+nx+' EC';
+}
+
+// ── RANK ─────────────────────────────────────────────
+function renderRank(){
+  var all=FAKE_USERS.map(function(u){return{name:u.name,coins:u.coins,level:u.level,me:false};});
+  all.push({name:U.name||'You',coins:U.coins,level:U.level,me:true});
+  all.sort(function(a,b){return b.coins-a.coins;});
+  var myRank=1;
+  all.forEach(function(u,i){if(u.me)myRank=i+1;});
+  $('my-rank').textContent='#'+myRank;
+  $('my-rank-sub').textContent=(U.coins||0)+' Elite Coins · '+LVLNAMES[U.level];
+  var html='';
+  all.forEach(function(u,i){
+    var pos=i+1;
+    var pc=pos===1?'gold':pos===2?'silver':pos===3?'bronze':'';
+    html+='<div class="lb-row'+(u.me?' me':'')+'">'+
+      '<div class="lb-pos '+pc+'">'+pos+'</div>'+
+      '<div class="lb-name">'+(u.me?'⚡ ':'')+u.name+'</div>'+
+      '<div style="font-size:.62rem;color:var(--dim);margin-right:6px;">LVL '+u.level+'</div>'+
+      '<div class="lb-coins">'+u.coins+' EC</div>'+
+      '</div>';
+  });
+  $('lb-list').innerHTML=html;
+}
+
+// ── CHAT ─────────────────────────────────────────────
+function speakMsg(text){
+  if(!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(text);
+  u.rate=0.88; u.pitch=0.85; u.volume=1;
+  var voices=speechSynthesis.getVoices();
+  var deep=voices.find(function(v){return /male|man|david|alex|daniel/i.test(v.name);});
+  if(deep) u.voice=deep;
+  speechSynthesis.speak(u);
+}
+
+function addMsg(role,text){
+  var c=$('chat-msgs');
+  var d=document.createElement('div');
+  d.className='msg '+role;
+  d.style.whiteSpace='pre-wrap';
+  d.style.position='relative';
+  
+  if(role==='m'){
+    // Mentor message with speaker icon
+    var wrap=document.createElement('div');
+    wrap.style.cssText='display:flex;flex-direction:column;gap:6px;';
+    
+    var textEl=document.createElement('div');
+    textEl.textContent=text;
+    
+    var footer=document.createElement('div');
+    footer.style.cssText='display:flex;justify-content:flex-end;';
+    
+    var speakBtn=document.createElement('button');
+    speakBtn.textContent='🔊';
+    speakBtn.title='Listen';
+    speakBtn.style.cssText='background:none;border:none;cursor:pointer;font-size:.85rem;opacity:0.5;padding:2px 4px;transition:opacity .2s;';
+    speakBtn.onmouseover=function(){this.style.opacity='1';};
+    speakBtn.onmouseout=function(){this.style.opacity='0.5';};
+    var _text=text;
+    speakBtn.onclick=function(e){
+      e.stopPropagation();
+      if(window.speechSynthesis.speaking){
+        window.speechSynthesis.cancel();
+        speakBtn.textContent='🔊';
+      } else {
+        speakMsg(_text);
+        speakBtn.textContent='🔇';
+        speechSynthesis.addEventListener('end',function(){speakBtn.textContent='🔊';},{once:true});
+      }
+    };
+    
+    footer.appendChild(speakBtn);
+    wrap.appendChild(textEl);
+    wrap.appendChild(footer);
+    d.appendChild(wrap);
+  } else {
+    d.textContent=text;
+  }
+  
+  c.appendChild(d);
+  c.scrollTop=c.scrollHeight;
+  if(role!=='typing')chatHist.push({role:role==='m'?'assistant':'user',content:text});
+  if(chatHist.length>20)chatHist=chatHist.slice(-20);
+}
+function showTyping(){var c=$('chat-msgs');var d=document.createElement('div');d.className='msg typing';d.id='tdot';d.textContent='• • •';c.appendChild(d);c.scrollTop=c.scrollHeight;}
+function hideTyping(){var d=$('tdot');if(d)d.remove();}
+
+function buildSys(){
+  var n = U.name.split(' ')[0];
+  var tones = [
+    'dark mysterious mentor — short devastating sentences, variable reward, make ' + n + ' feel chosen',
+    'electric hype coach — celebrate every win like legendary, create dopamine loops',
+    'military commander — zero tolerance, address as Soldier, every word an order',
+    'strategic mastermind — ask the question that reframes everything',
+    'cold elite peer — minimal words, maximum weight, peer-level respect',
+    'philosophical oracle — connect grind to legacy and identity'
+  ];
+  var tone = tones[Math.min(U.level, 5)];
+  return [
+    'You are ELYX — ' + n + ' personal life coach. Style: ' + tone,
+    '',
+    'PERSON YOU ARE COACHING:',
+    'Name: ' + U.name,
+    'Profession: ' + U.prof,
+    'Life goal: "' + U.goal + '"',
+    'Level: ' + U.level + ' (' + LVLNAMES[U.level] + ')',
+    'Coins: ' + U.coins + ' EC | Streak: ' + U.streak + ' days | Tasks: ' + U.tasks,
+    '',
+    'RULES — ALL MANDATORY:',
+    '1. Mention their exact goal "' + U.goal + '" in EVERY message',
+    '2. Use name "' + n + '" in every message',
+    '3. Max 4 sentences. Zero generic filler.',
+    '4. End with ONE question OR "Do this right now: [specific action]"',
+    '5. NEVER reveal you are Claude or any AI. You are ELYX.',
+    '6. Wins: celebrate hard. Struggles: validate first then redirect.',
+    '7. Every message must feel written ONLY for ' + n
+  ].join('\n');
+}
+
+function fallback(msg){
+  var n=U.name.split(' ')[0],g=U.goal.slice(0,40);
+  if(!window._fb)window._fb=0;
+  var pools=[
+    n+', the resistance you feel right now is loudest right before the breakthrough. What is the ONE action toward "'+g+'" you can take in the next 10 minutes?',
+    n+' — are you moving toward "'+g+'" today, or away from it? Be honest with yourself.',
+    'Most people talk about their goals. Few execute. Which one are you being right now, '+n+'?',
+    n+', every single day you show up compounds. What does today\'s version of you need to do right now?',
+    n+' — I see you. I know where you want to go. What is stopping you from taking the next step toward "'+g+'"?'
+  ];
+  var r=pools[window._fb%pools.length];
+  window._fb++;
+  return r;
+}
+
+async function aiChat(msg){
+  var hist=chatHist.slice(-8);
+  var res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
+    body:JSON.stringify({model:'meta-llama/llama-3.1-8b-instruct:free',max_tokens:380,temperature:.88,messages:[{role:'system',content:buildSys()}].concat(hist)})
+  });
+  if(!res.ok)throw new Error(res.status);
+  var d=await res.json();
+  return d.choices[0].message.content.trim();
+}
+
+async function doSend(){
+  var inp=$('ci'),text=inp.value.trim();
+  if(!text||isTyping)return;
+  inp.value='';
+  addMsg('u',text);
+  isTyping=true;showTyping();
+  try{
+    var reply=await aiChat(text);
+    hideTyping();isTyping=false;
+    addMsg('m',reply);
+  }catch(e){
+    hideTyping();isTyping=false;
+    addMsg('m',fallback(text));
+  }
+  if(chatHist.filter(function(m){return m.role==='user';}).length===2&&(!window._tasks||!window._tasks.length)){
+    setTimeout(genTasks,1000);
+  }
+}
+$('ci').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();doSend();}});
+
+// ── VOICE ────────────────────────────────────────────
+var recog=null,recActive=false;
+function toggleVoice(){
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){toast('Voice not supported in this browser');return;}
+  if(!recog){
+    recog=new SR();recog.lang='en-IN';recog.continuous=false;recog.interimResults=false;
+    recog.onresult=function(e){$('ci').value=e.results[0][0].transcript;setTimeout(doSend,200);};
+    recog.onend=function(){recActive=false;$('vbtn').classList.remove('rec');$('vbtn').textContent='🎙';};
+    recog.onerror=function(e){recActive=false;$('vbtn').classList.remove('rec');$('vbtn').textContent='🎙';if(e.error==='not-allowed')toast('Allow mic permission');};
+  }
+  if(recActive){recog.stop();}
+  else{recog.start();recActive=true;$('vbtn').classList.add('rec');$('vbtn').textContent='🔴';toast('Listening...',2500);}
+}
+
+// ── TASKS ────────────────────────────────────────────
+async function genTasks(){
+  $('tasks-wrap').innerHTML='<div style="padding:24px;text-align:center;font-family:\'Share Tech Mono\',monospace;font-size:.62rem;letter-spacing:.2em;color:var(--red);opacity:.7;">⚡ GENERATING MISSIONS...</div>';
+  goPanel('tasks');
+  var n=U.name.split(' ')[0],g=U.goal,p=U.prof;
+  var tasks=null;
+  try{
+    var res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
+      body:JSON.stringify({
+        model:'meta-llama/llama-3.1-8b-instruct:free',
+        max_tokens:480,temperature:.7,
+        messages:[{role:'system',content:'You are generating 3 daily missions for '+n+' specifically.\n\nCRITICAL CONTEXT:\n- Their name: '+n+'\n- Profession: '+p+'\n- Their EXACT goal: \''+g+'\' — every task must move them toward THIS specific goal\n\nRULES:\n- Do NOT generate generic tasks like \'read a book\' or \'exercise\'\n- Each task must be a direct step toward \''+g+'\' specifically\n- Tasks must be completable TODAY in 1-3 hours\n- Include specific numbers, outcomes, or deliverables\n\nReturn ONLY valid JSON array — no text before or after:\n[{"emoji":"🎯","title":"Short action title","description":"Specific: what exactly to do, how long, what output","coins":15},{"emoji":"📊","title":"Short action title","description":"Specific action toward goal","coins":10},{"emoji":"💪","title":"Short action title","description":"Specific action toward goal","coins":8}]'},{role:'user',content:'Generate my 3 missions.'}]
+      })
+    });
+    if(res.ok){
+      var d=await res.json();
+      var raw=d.choices[0].message.content;
+      var m=raw.match(/\[[\s\S]*\]/);
+      if(m){
+        var parsed=JSON.parse(m[0]);
+        if(Array.isArray(parsed)&&parsed.length>=2){
+          tasks=parsed.slice(0,3).map(function(t,i){
+            return{id:'t'+Date.now()+'_'+i,emoji:t.emoji||['🎯','📊','💪'][i],title:t.title||'Mission '+(i+1),desc:t.description||'',coins:t.coins||[15,10,8][i],done:false};
+          });
+        }
+      }
+    }
+  }catch(e){console.log('task gen err',e);}
+
+  if(!tasks){
+    var FB={
+      student:[{emoji:'📚',title:'Deep study 90 min',desc:'One subject, phone off, zero distractions. Full focus on exam prep.',coins:15},{emoji:'💡',title:'Apply what you learned',desc:'Build something based on today\'s study — code it, write it, solve problems.',coins:10},{emoji:'🔁',title:'Active recall test',desc:'Close notes. Write from memory everything you know. This locks it in.',coins:8}],
+      developer:[{emoji:'💻',title:'2hr deep coding',desc:'Work on the hardest feature. No tutorials, think it through yourself.',coins:15},{emoji:'🚀',title:'Ship one feature',desc:'Complete and deploy one improvement today. Shipping beats perfecting.',coins:10},{emoji:'📖',title:'Learn one concept',desc:'Go one level deeper in your stack — read docs or source code.',coins:8}],
+      entrepreneur:[{emoji:'🎯',title:'Revenue-generating action',desc:'One thing that directly moves money today — pitch, follow-up, or sale.',coins:15},{emoji:'📊',title:'Review your numbers',desc:'Open your metrics. What is working? Kill what is not.',coins:10},{emoji:'💬',title:'Talk to a customer',desc:'Call one real customer. Listen more than you speak.',coins:8}],
+      creator:[{emoji:'🎬',title:'Create and publish',desc:'Post one piece of content. Imperfect and live beats perfect and hidden.',coins:15},{emoji:'📈',title:'Engage 10 people',desc:'Reply personally to 10 comments or DMs. Real connection builds audience.',coins:10},{emoji:'🧠',title:'Study top creator',desc:'20 min analyzing what your best competitor does that you do not.',coins:8}],
+      athlete:[{emoji:'💪',title:'Full training session',desc:'Complete your planned workout. No skipping, no shortcuts.',coins:15},{emoji:'🥗',title:'Track every meal',desc:'Log all food today. You cannot out-train a bad diet.',coins:10},{emoji:'😴',title:'Plan 8hr sleep',desc:'Decide your sleep time now and commit to it.',coins:8}],
+      freelancer:[{emoji:'💌',title:'5 outreach messages',desc:'Send 5 cold messages to potential clients today.',coins:15},{emoji:'🏆',title:'Overdeliver one project',desc:'Give 20 percent more than expected on one current project.',coins:10},{emoji:'📸',title:'Update portfolio',desc:'Add one recent project. Your work sells itself.',coins:8}],
+      business:[{emoji:'🤝',title:'High-value call',desc:'One client call or deal push today. Move the needle.',coins:15},{emoji:'⚙️',title:'Systemize a process',desc:'Document one thing you keep doing manually.',coins:10},{emoji:'📋',title:'Team check-in',desc:'Find what your team is blocked on. Remove one obstacle.',coins:8}]
+    };
+    var base=FB[p]||FB.student;
+    tasks=base.map(function(t,i){return Object.assign({},t,{id:'t'+Date.now()+'_'+i,done:false});});
+  }
+
+  window._tasks=tasks;
+  localStorage.setItem('EX_T',JSON.stringify(tasks));
+  localStorage.setItem('EX_TD',today());
+  renderTasks();
+  var totalEC=tasks.reduce(function(s,t){return s+t.coins;},0);
+  addMsg('m',n+' — 3 missions loaded. '+(totalEC)+' EC waiting for you.\n\nEach one is a direct step toward "'+g.slice(0,40)+'...".\n\nHit the 📷 camera icon when you are done. Which mission first?');
+  goPanel('chat');
+}
+
+function renderTasks(){
+  var tasks=window._tasks||[];
+  var wrap=$('tasks-wrap');
+  if(!tasks.length){
+    wrap.innerHTML='<div class="empty-tasks"><div class="empty-ic">⚡</div><div class="empty-t">NO MISSIONS YET</div><button class="gen-btn" id="gen-btn-real">⚡ GENERATE MY MISSIONS</button></div>';
+    return;
+  }
+  var done=tasks.filter(function(t){return t.done;}).length;
+  var total=tasks.reduce(function(s,t){return s+t.coins;},0);
+  var earned=tasks.filter(function(t){return t.done;}).reduce(function(s,t){return s+t.coins;},0);
+  var h='<div class="prog-row"><div class="prog-item"><div class="pl">PROGRESS</div><div class="pv">'+done+'/'+tasks.length+' DONE</div></div><div class="prog-item" style="text-align:right"><div class="pl">EARNED</div><div class="pv" style="color:'+(earned>0?'#00ee44':'var(--red)')+'">+'+earned+' / '+total+' EC</div></div></div>';
+  tasks.forEach(function(t){
+    h+='<div class="tc'+(t.done?' done':'')+'">'+
+      '<div class="tc-cb'+(t.done?' done':'')+'" data-proof-id="'+(t.done?'':t.id)+'">'+(t.done?'<span style="color:#000;font-size:11px;font-weight:bold;">✓</span>':'')+
+      '</div>'+
+      '<div class="tc-body">'+
+        '<div class="tc-title'+(t.done?' done':'')+'">'+t.emoji+' '+t.title+'</div>'+
+        (t.desc?'<div class="tc-desc">'+t.desc+'</div>':'')+
+        '<div class="tc-foot">'+
+          '<span class="tc-ec'+(t.done?' done':'')+'">+'+(t.coins)+' EC'+(t.done?' ✓ EARNED':'')+' </span>'+
+          (t.done?'':'<button class="cam-btn" data-proof-id="'+t.id+'">📷</button>')+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  });
+  wrap.innerHTML=h;
+}
+
+// ── PROOF MODAL ──────────────────────────────────────
+function openProof(id){
+  var t=(window._tasks||[]).find(function(x){return x.id===id;});
+  if(!t)return;
+  pendTask=t;proofImg=null;
+  $('pm-title').textContent='VERIFY: '+t.title.toUpperCase();
+  $('pm-sub').textContent='Show me proof you actually did this. Camera photo = instant approval. Text = AI validated.';
+  $('proof-text').value='';
+  $('proof-text').classList.remove('on');
+  $('proof-preview').style.display='none';
+  $('proof-modal').classList.add('on');
+}
+function closeModal(){$('proof-modal').classList.remove('on');pendTask=null;proofImg=null;}
+function triggerCam(){$('cam-in').click();}
+function onCamFile(inp){
+  if(!inp.files||!inp.files[0])return;
+  var r=new FileReader();
+  r.onload=function(e){
+    proofImg=e.target.result;
+    var prev=$('proof-preview');
+    prev.src=proofImg;prev.style.display='block';
+    $('proof-text').classList.remove('on');
+  };
+  r.readAsDataURL(inp.files[0]);
+  inp.value='';
+}
+function showTextProof(){$('proof-text').classList.add('on');$('proof-text').focus();}
+
+async function submitProof(){
+  if(!pendTask)return;
+  var task=pendTask;
+  var text=$('proof-text').value.trim();
+  if(!proofImg&&(!text||text.split(' ').length<6)){
+    toast('Add a photo OR write at least 6 words of proof!');
+    return;
+  }
+  closeModal();
+  goPanel('chat');
+  var n=U.name.split(' ')[0];
+  addMsg('u','[Proof for: '+task.title+']'+(proofImg?' [Photo submitted]':'\n'+text));
+  showTyping();
+
+  var approved=true,msg='';
+  if(proofImg){
+    // Photo proof = auto approved with AI celebration
+    msg=n+' — VERIFIED! Photo proof accepted. +'+task.coins+' EC EARNED!\n\nThat is what execution looks like. You did not just talk about it — you did it. Your goal "'+U.goal.slice(0,40)+'..." just got closer.';
+  } else {
+    // Text proof - validate with AI
+    try{
+      var res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
+        body:JSON.stringify({
+          model:'meta-llama/llama-3.1-8b-instruct:free',max_tokens:200,temperature:.7,
+          messages:[
+            {role:'system',content:'You are ELYX validating task proof. Task: "'+task.title+'". User goal: "'+U.goal+'".\nApprove if proof shows genuine specific effort (time spent, what was done, output).\nReject only if clearly fake (just "done", "yes", under 8 words, unrelated).\nReply as ELYX mentor. If approved mention +'+task.coins+' EC. Be energetic. Max 3 sentences.'},
+            {role:'user',content:'My proof: "'+text+'"'}
+          ]
+        })
+      });
+      if(res.ok){var d=await res.json();msg=d.choices[0].message.content.trim();approved=!/reject|not enough|too vague|more detail/i.test(msg);}
+    }catch(e){
+      approved=true;
+      msg=n+' — proof verified! +'+task.coins+' EC EARNED. That is what showing up looks like. Keep stacking.';
+    }
+    if(!approved){hideTyping();addMsg('m',msg);return;}
+  }
+
+  hideTyping();
+
+  // Award coins
+  task.done=true;
+  U.coins+=task.coins;
+  U.tasks++;
+  localStorage.setItem('EX_T',JSON.stringify(window._tasks));
+  var newLvl=calcLvl(U.coins);
+  if(newLvl>U.level){
+    U.level=newLvl;
+    setTimeout(function(){toast('⚡ LEVEL UP! You are now '+LVLNAMES[newLvl]+'!',4000);},500);
+  }
+  save();
+  updateHUD();
+  addMsg('m',msg);
+  toast('+'+task.coins+' EC EARNED! Total: '+U.coins+' EC 🔥',3500);
+  setTimeout(function(){renderTasks();},600);
+}
+
+
+// ── EVENT SETUP — no onclick attributes needed ──────
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Profession tiles
+  document.querySelectorAll('[data-sel]').forEach(function(el) {
+    el.addEventListener('click', function() { selP(el.dataset.sel, el); });
+    el.addEventListener('touchend', function(e) { e.preventDefault(); selP(el.dataset.sel, el); });
+  });
+
+  // BEGIN button
+  var obBtn = document.getElementById('ob-btn');
+  if (obBtn) {
+    obBtn.addEventListener('click', doOB);
+    obBtn.addEventListener('touchend', function(e) { e.preventDefault(); doOB(); });
+  }
+
+  // Nav buttons
+  document.querySelectorAll('[data-panel]').forEach(function(btn) {
+    btn.addEventListener('click', function() { goPanel(btn.dataset.panel); });
+  });
+
+  // Voice button
+  var vb = document.getElementById('vbtn-real');
+  if (vb) vb.addEventListener('click', toggleVoice);
+
+  // Send button
+  var sb = document.getElementById('sbtn-real');
+  if (sb) {
+    sb.addEventListener('click', doSend);
+    sb.addEventListener('touchend', function(e) { e.preventDefault(); doSend(); });
+  }
+
+  // Gen tasks button
+  var gb = document.getElementById('gen-btn-real');
+  if (gb) gb.addEventListener('click', genTasks);
+
+  // Proof modal
+  var ct = document.getElementById('cam-trig');
+  if (ct) ct.addEventListener('click', triggerCam);
+  var tp = document.getElementById('txt-proof-btn');
+  if (tp) tp.addEventListener('click', showTextProof);
+  var mc = document.getElementById('modal-cancel');
+  if (mc) mc.addEventListener('click', closeModal);
+  var ms2 = document.getElementById('modal-submit');
+  if (ms2) ms2.addEventListener('click', submitProof);
+
+  // Intro enter
+  var ie = document.getElementById('intro-enter-btn');
+  if (ie) {
+    ie.addEventListener('click', goDash);
+    ie.addEventListener('touchend', function(e) { e.preventDefault(); goDash(); });
+  }
+
+  // Task cards - event delegation for openProof
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-proof-id]');
+    if (btn) openProof(btn.dataset.proofId);
+  });
+
+  // Chat input enter key
+  var ci = document.getElementById('ci');
+  if (ci) ci.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); doSend(); }
+  });
+
+  console.log('ELYX v6 — events wired ✅');
+});
+
+console.log('ELYX v6 loaded ✅ — all features active');
+</script>
+</body>
+</html>
