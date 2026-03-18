@@ -1,6 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vx3jzkr86n");
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vx3jzkr86n");
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vx3jzkr86n");
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vx3jzkr86n");
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vx3jzkr86n");
+</script>
 <meta charset="UTF-8"/>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://openrouter.ai https://api.openrouter.ai; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
@@ -160,6 +195,27 @@ textarea.inp{resize:none;height:80px;font-size:.95rem;}
 
 input[type=file]{display:none;}
 
+/* HOVER + INTERACTION EFFECTS */
+.ptile:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 8px 24px rgba(255,34,34,.25);}
+.ptile.sel{transform:translateY(-2px);box-shadow:0 0 20px rgba(255,34,34,.4);}
+.cta:active{transform:scale(.98);}
+.nb:hover .ni{transform:scale(1.15);transition:transform .2s;}
+.tc:hover{border-color:rgba(255,34,34,.3);background:rgba(255,34,34,.07);transform:translateX(2px);}
+.lb-row:hover{border-color:rgba(255,34,34,.2);background:rgba(255,34,34,.05);}
+.msg.m{animation:msgIn .3s ease forwards;}
+.msg.u{animation:msgIn .3s ease forwards;}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* CURSOR GLOW */
+#cursor-glow{position:fixed;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,34,34,.06),transparent 70%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);transition:left .1s,top .1s;}
+
+/* BOOT HOOK */
+#boot-hook{animation:fadeUp .8s ease forwards;}
+#boot-q{animation:fadeUp .8s ease forwards;}
+#boot-cta{transform:translateY(10px);transition:opacity .5s,transform .5s,box-shadow .3s;}
+#boot-cta:hover{box-shadow:0 0 44px rgba(255,34,34,.8);transform:translateY(-2px) !important;}
+
+/* BETTER MOBILE */
 /* MOBILE FIXES */
 @media (max-width: 768px) {
   .ob-box{padding:20px 16px;gap:14px;}
@@ -183,16 +239,44 @@ input[type=file]{display:none;}
   -webkit-tap-highlight-color: transparent;
 }
 </style>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vx3jzkr86n");</script>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vx3jzkr86n");</script>
 </head>
 <body>
 <canvas id="stars" style="pointer-events:none!important;touch-action:none;"></canvas>
 
 <!-- BOOT -->
 <div class="screen on" id="s-boot">
-  <div class="boot-logo">ELYX</div>
-  <div class="boot-tagline">YOUR ERA BEGINS</div>
-  <div class="boot-bar-outer"><div class="boot-bar-inner" id="b-bar"></div></div>
-  <div class="boot-txt" id="b-txt">INITIALIZING...</div>
+  <div id="boot-inner" style="text-align:center;max-width:520px;padding:0 24px;">
+    
+    <!-- Phase 1: Logo -->
+    <div id="boot-p1" style="transition:opacity .6s;">
+      <div class="boot-logo">ELYX</div>
+      <div class="boot-tagline">YOUR ERA BEGINS</div>
+      <div style="font-family:monospace;font-size:.58rem;letter-spacing:.15em;color:rgba(255,34,34,.6);margin-top:8px;">AI MENTOR · ACCOUNTABILITY · GAMIFIED GROWTH</div>
+    </div>
+    
+    <!-- Phase 2: Provocative statement (hidden initially) -->
+    <div id="boot-p2" style="display:none;opacity:0;transition:opacity .8s;">
+      <div id="boot-hook" style="font-size:clamp(1.1rem,4vw,1.5rem);font-weight:700;letter-spacing:.04em;line-height:1.6;color:var(--text);margin-bottom:20px;"></div>
+      <div id="boot-sub-hook" style="font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--red);opacity:.8;"></div>
+    </div>
+
+    <!-- Phase 3: Personal question (hidden initially) -->
+    <div id="boot-p3" style="display:none;opacity:0;transition:opacity .8s;">
+      <div id="boot-q" style="font-size:clamp(1.2rem,4vw,1.6rem);font-weight:700;line-height:1.7;color:var(--text);margin-bottom:28px;"></div>
+      <button id="boot-cta" style="padding:14px 36px;background:linear-gradient(135deg,rgba(255,34,34,.3),var(--red));border:none;border-radius:4px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.2em;color:#fff;box-shadow:0 0 24px rgba(255,34,34,.5);transition:all .3s;opacity:0;">
+        I AM READY →
+      </button>
+    </div>
+
+    <!-- Loading bar (shown during init) -->
+    <div id="boot-loader" style="margin-top:32px;">
+      <div class="boot-bar-outer"><div class="boot-bar-inner" id="b-bar"></div></div>
+      <div class="boot-txt" id="b-txt" style="margin-top:8px;">INITIALIZING...</div>
+    </div>
+
+  </div>
 </div>
 
 <!-- ONBOARD -->
@@ -246,7 +330,18 @@ input[type=file]{display:none;}
       <div class="hud-name" id="h-name">–</div>
       <div class="hud-lvl" id="h-lvl">LVL 0</div>
     </div>
-    <div class="hud-right">◈ <span id="h-coins">0</span> EC</div>
+    <div class="hud-right" style="display:flex;align-items:center;gap:10px;">
+    <div style="font-family:monospace;font-size:.72rem;color:var(--red);">◈ <span id="h-coins">0</span> EC</div>
+    <button onclick="showShareCard()" style="cursor:pointer;padding:4px 10px;background:rgba(255,34,34,.1);border:1px solid rgba(255,34,34,.3);border-radius:4px;font-family:monospace;font-size:.55rem;letter-spacing:.1em;color:var(--red);transition:all .2s;" title="Share your progress">🔥 SHARE</button>
+  </div>
+  </div>
+  <!-- GUIDED FLOW BAR -->
+  <div id="flow-bar" style="display:flex;align-items:center;justify-content:center;gap:0;background:rgba(4,4,14,.8);border-bottom:1px solid rgba(255,34,34,.1);padding:6px 16px;font-family:monospace;font-size:.52rem;letter-spacing:.12em;">
+    <div id="flow-1" class="flow-step active-step" onclick="goPanel('chat')" style="cursor:pointer;padding:5px 12px;color:var(--red);border-bottom:1px solid var(--red);">1. CHAT WITH MENTOR</div>
+    <div style="color:rgba(255,255,255,.2);padding:0 6px;">›</div>
+    <div id="flow-2" class="flow-step" onclick="goPanel('tasks')" style="cursor:pointer;padding:5px 12px;color:rgba(255,255,255,.3);">2. COMPLETE MISSIONS</div>
+    <div style="color:rgba(255,255,255,.2);padding:0 6px;">›</div>
+    <div id="flow-3" class="flow-step" onclick="goPanel('status')" style="cursor:pointer;padding:5px 12px;color:rgba(255,255,255,.3);">3. LEVEL UP</div>
   </div>
   <div class="panels">
     <!-- CHAT -->
@@ -324,7 +419,8 @@ input[type=file]{display:none;}
 <div class="toast" id="toast"></div>
 
 <script>
-var KEY='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';
+var GEMINI_KEY='AIzaSyD-TR0a43u5lqNUfALDNJwpaeLEKGu8FBo';
+var OR_KEY='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';
 var THRESH=[0,50,150,300,500,750];
 var LVLNAMES=['INITIATOR','SEEKER','BUILDER','DOMINATOR','ELITE','APEX'];
 var FAKE_USERS=[
@@ -353,6 +449,16 @@ function goPanel(p){
   if(p==='tasks')renderTasks();
   if(p==='rank')renderRank();
   if(p==='status')updateStatus();
+  // Update flow bar
+  var flowMap={chat:1,tasks:2,status:3,rank:3};
+  var step=flowMap[p]||1;
+  [1,2,3].forEach(function(n){
+    var el=$('flow-'+n);
+    if(!el) return;
+    if(n===step){el.style.color='var(--red)';el.style.borderBottom='1px solid var(--red)';}
+    else if(n<step){el.style.color='rgba(0,238,68,.6)';el.style.borderBottom='none';}
+    else{el.style.color='rgba(255,255,255,.3)';el.style.borderBottom='none';}
+  });
 }
 
 function save(){localStorage.setItem('EX_U',JSON.stringify(U));}
@@ -383,27 +489,108 @@ function toast(msg,ms){var t=$('toast');t.textContent=msg;t.style.display='block
 
 // ── BOOT ────────────────────────────────────────────
 (function(){
-  var steps=[['INITIALIZING CORE...',15],['LOADING AI MENTOR...',40],['SYNCING DATABASE...',72],['PREPARING ARENA...',90],['SYSTEM ONLINE',100]];
+  // Phase 1: Quick load bar
+  var steps=[['INITIALIZING...',20],['LOADING AI CORE...',55],['READY',100]];
   var i=0;
-  function next(){
+  function runBar(){
     if(i>=steps.length){
-      setTimeout(function(){
-        if(load()){updateHUD();initDash();show('s-dash');}
-        else{show('s-ob');setTimeout(function(){$('ob-name').focus();},300);}
-      },500);
+      // If returning user - skip hook, go direct
+      if(load()){
+        setTimeout(function(){updateHUD();initDash();show('s-dash');},400);
+        return;
+      }
+      // New user - show psychological hook sequence
+      setTimeout(showHook, 300);
       return;
     }
     $('b-txt').textContent=steps[i][0];
     $('b-bar').style.width=steps[i][1]+'%';
-    i++;setTimeout(next,500+Math.random()*400);
+    i++;
+    setTimeout(runBar, 400+Math.random()*300);
   }
-  next();
+  runBar();
+
+  function showHook(){
+    // Hide loader
+    var loader=$('boot-loader');
+    if(loader) loader.style.display='none';
+
+    // Phase 2: Provocative statement
+    var p2=$('boot-p2');
+    var hook=$('boot-hook');
+    var subhook=$('boot-sub-hook');
+    if(p2&&hook){
+      p2.style.display='block';
+      var statements=[
+        'Most people will never reach their potential.',
+        'You already know what you should be doing.',
+        'The gap between where you are and where you want to be — it is not talent.',
+        'Every day you delay is a day someone else gets ahead.'
+      ];
+      hook.textContent=statements[Math.floor(Math.random()*statements.length)];
+      subhook.textContent='— the question is what you do about it.';
+      setTimeout(function(){p2.style.opacity='1';},50);
+    }
+
+    // Phase 3: Personal question + CTA
+    setTimeout(function(){
+      if(p2) p2.style.opacity='0';
+      setTimeout(function(){
+        if(p2) p2.style.display='none';
+        var p3=$('boot-p3');
+        var q=$('boot-q');
+        var cta=$('boot-cta');
+        if(p3&&q){
+          p3.style.display='block';
+          var questions=[
+            'Are you actually working toward your goal — or just thinking about it?',
+            'If nothing changed this year — would you be okay with that?',
+            'What would you do differently if you had a mentor who never let you make excuses?',
+            'How many times have you said "I will start tomorrow"?'
+          ];
+          q.textContent=questions[Math.floor(Math.random()*questions.length)];
+          setTimeout(function(){
+            p3.style.opacity='1';
+            if(cta){
+              setTimeout(function(){
+                cta.style.opacity='1';
+                cta.style.transform='translateY(0)';
+              },600);
+            }
+          },50);
+        }
+      },600);
+    },2800);
+  }
+
+  // CTA button
+  document.addEventListener('DOMContentLoaded',function(){
+    var cta=$('boot-cta');
+    if(cta){
+      cta.addEventListener('click',function(){
+        show('s-ob');
+        setTimeout(function(){$('ob-name').focus();},300);
+      });
+      cta.addEventListener('touchend',function(e){
+        e.preventDefault();
+        show('s-ob');
+        setTimeout(function(){$('ob-name').focus();},300);
+      });
+    }
+  });
 }());
 
 // ── ONBOARD ─────────────────────────────────────────
+var selToneVal='balanced';
+function selTone(t,el){
+  selToneVal=t;
+  document.querySelectorAll('#tone-intense,#tone-balanced,#tone-gentle').forEach(function(x){x.classList.remove('sel');});
+  el.classList.add('sel');
+}
+
 function selP(p,el){
   selProf=p;
-  document.querySelectorAll('.ptile').forEach(function(x){x.classList.remove('sel');});
+  document.querySelectorAll('.ptile:not(#tone-intense):not(#tone-balanced):not(#tone-gentle)').forEach(function(x){x.classList.remove('sel');});
   el.classList.add('sel');
 }
 
@@ -415,7 +602,7 @@ function doOB(){
   if(!selProf){err.textContent='Pick your profession!';err.style.display='block';return;}
   if(!goal||goal.split(' ').filter(Boolean).length<3){err.textContent='Write your goal — at least 3 words!';err.style.display='block';$('ob-goal').focus();return;}
   err.style.display='none';
-  U={name:name,prof:selProf,goal:goal,level:0,coins:0,tasks:0,streak:0};
+  U={name:name,prof:selProf,goal:goal,tone:selToneVal,level:0,coins:0,tasks:0,streak:0};
   save();
   startIntro();
 }
@@ -424,57 +611,61 @@ function doOB(){
 function startIntro(){
   show('s-intro');
   var n=U.name.split(' ')[0];
-  var g=U.goal.slice(0,52)+(U.goal.length>52?'...':'');
-  var lines=[
+  var g=U.goal;
+  var p=U.prof;
+  
+  // Personalized lines based on their exact data
+  var profInsight = {
+    student: n+', most students study hard but never build anything real. You said your goal is "'+g.slice(0,40)+'". That gap between studying and building — that is exactly where I live.',
+    developer: n+', every developer thinks shipping more code is the answer. But "'+g.slice(0,40)+'" requires something deeper than code. I am going to show you what.',
+    entrepreneur: 'I have seen hundreds of entrepreneurs, '+n+'. Most confuse being busy with making progress. Your goal — "'+g.slice(0,40)+'" — requires brutal focus. That is what I am here for.',
+    creator: n+', the content graveyard is full of talented people who never figured out consistency. "'+g.slice(0,40)+'" is achievable. But not the way you are doing it right now.',
+    athlete: 'Champions are not made in competitions, '+n+'. They are made in the training sessions no one sees. "'+g.slice(0,40)+'" starts today. Not when you feel ready.',
+    freelancer: n+', most freelancers stay stuck trading time for money forever. "'+g.slice(0,40)+'" means breaking that cycle. I know exactly how.',
+    business: 'The difference between a business and a job, '+n+', is systems. "'+g.slice(0,40)+'" requires you to build a machine, not just work hard.',
+    other: n+', most people set goals and forget them within 2 weeks. "'+g.slice(0,40)+'" — I am going to make sure that does not happen to you.'
+  };
+  
+  var personalLine = profInsight[p] || profInsight.other;
+  
+  var lines = [
     'System online.',
     'Identity confirmed: '+n+'.',
-    'Mission locked: "'+g+'"',
-    'I am ELYX. Your edge. Your mirror. Your ruthless ally.',
-    'Every day you show up — you get closer.',
-    'You did not come this far to stay this small.',
-    'Your era starts right now, '+n+'.'
+    personalLine,
+    'I am ELYX. I do not motivate — I hold you accountable.',
+    'Every excuse you make, I will see through it.',
+    'Every win you earn, I will celebrate harder than anyone.',
+    'Your era starts now, '+n+'.'
   ];
-  var el=$('intro-txt'),btn=$('intro-enter-btn'),i=0;
-  btn.style.opacity='0';btn.style.pointerEvents='none';
+  
+  var el=$('intro-txt'), btn=$('intro-enter'), idx=0;
+  btn.style.display='none';
   el.style.opacity='1';
-  function speak(text){
-    if(!window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    var u=new SpeechSynthesisUtterance(text);
-    u.rate=0.88; u.pitch=0.85; u.volume=1;
-    // Try to find a deep/male voice
-    var voices=speechSynthesis.getVoices();
-    var deep=voices.find(function(v){return /male|man|david|alex|daniel/i.test(v.name);});
-    if(deep) u.voice=deep;
-    speechSynthesis.speak(u);
-  }
+  
   function next(){
-    if(i>=lines.length){
-      setTimeout(function(){btn.style.opacity='1';btn.style.pointerEvents='auto';},600);
-      return;
-    }
-    var line=lines[i++];
+    if(idx>=lines.length){setTimeout(function(){btn.style.display='inline-block';},500);return;}
+    var line=lines[idx++];
     el.style.opacity='0';
     setTimeout(function(){
       el.textContent=line;
       el.style.opacity='1';
-      speak(line);
-      setTimeout(next,1700);
+      if(window.speechSynthesis){
+        var u=new SpeechSynthesisUtterance(line);
+        u.rate=0.88;u.pitch=0.85;
+        var voices=speechSynthesis.getVoices();
+        var deep=voices.find(function(v){return /male|david|alex|daniel/i.test(v.name);});
+        if(deep) u.voice=deep;
+        speechSynthesis.speak(u);
+      }
+      setTimeout(next, idx<=2 ? 1400 : 2000);
     },350);
   }
-  // Wait for voices to load
+  
   if(speechSynthesis.getVoices().length===0){
     speechSynthesis.addEventListener('voiceschanged',function(){next();},{once:true});
-  } else {
-    next();
-  }
-  setTimeout(function(){btn.style.opacity='1';btn.style.pointerEvents='auto';},12000);
-  // Auto-advance after 15 seconds if user doesn't click
-  setTimeout(function(){
-    if(document.getElementById('s-intro').classList.contains('on')){
-      goDash();
-    }
-  }, 16000);
+  } else { next(); }
+  
+  setTimeout(function(){btn.style.display='inline-block';},16000);
 }
 
 function goDash(){
@@ -493,19 +684,53 @@ function initDash(){
   // Load saved tasks
   var td=today(),st=localStorage.getItem('EX_T'),sd=localStorage.getItem('EX_TD');
   if(st&&sd===td){try{window._tasks=JSON.parse(st);renderTasks();}catch(e){}}
-  // Welcome
+  // Welcome + auto-generate tasks
   if(!localStorage.getItem('EX_WEL')){
     localStorage.setItem('EX_WEL','1');
     var n=U.name.split(' ')[0],g=U.goal.slice(0,50);
+    // Step 1: Welcome message
     setTimeout(function(){
-      addMsg('m',n+'. You are in. Not tomorrow — TODAY is where it starts.\n\nI know your goal: "'+g+'..."\n\nTell me — what is the ONE thing holding you back from it right now?');
-    },800);
+      addMsg('m',n+', you are in. Goal received. Generating your first 3 missions right now.');
+    },600);
+    // Step 2: Auto-generate — no button needed
+    setTimeout(function(){ genTasks(); },1800);
+    // Step 3: Guide them
+    setTimeout(function(){
+      addMsg('m','Tap camera on each mission when done to submit proof and earn Elite Coins. Day 1, '+n+'. Make it count.');
+    },4000);
+  } else {
+    // Returning user — show saved tasks in chat
+    var saved=window._tasks;
+    if(saved&&saved.length){
+      setTimeout(function(){ showTasksInChat(saved); },600);
+    }
   }
   // Streak
   var lv=localStorage.getItem('EX_LV'),td2=today();
   if(lv&&lv!==td2&&U.name){
-    U.streak=(U.streak||0)+1;save();
-    setTimeout(function(){toast('Day '+U.streak+' streak! Do not break it.',3500);},3000);
+    var n2=U.name.split(' ')[0];
+    // Check if they missed a day
+    var lastDate=new Date(lv), todayDate=new Date(td2);
+    var diffDays=Math.round((todayDate-lastDate)/(1000*60*60*24));
+    if(diffDays>1){
+      // Missed days - guilt message
+      U.streak=0; save();
+      setTimeout(function(){
+        addMsg('m',n2+', you were gone for '+diffDays+' days. Your '+diffDays+'-day gap is a choice. The question is — what happens today? Streak reset. Day 1 again. Make it matter.');
+      },1500);
+    } else {
+      U.streak=(U.streak||0)+1; save();
+      setTimeout(function(){
+        var streakMsgs=[
+          n2+' is back. Day '+U.streak+' streak. Every day you show up = identity proof.',
+          'Day '+U.streak+', '+n2+'. Most people quit by now. You are still here.',
+          U.streak+' days straight, '+n2+'. This is what discipline looks like.'
+        ];
+        addMsg('m',streakMsgs[Math.floor(Math.random()*streakMsgs.length)]);
+      },1200);
+    }
+  } else if(!lv&&U.name){
+    // First time on dashboard
   }
   localStorage.setItem('EX_LV',td2);
 }
@@ -529,25 +754,40 @@ function updateStatus(){
 
 // ── RANK ─────────────────────────────────────────────
 function renderRank(){
-  var all=FAKE_USERS.map(function(u){return{name:u.name,coins:u.coins,level:u.level,me:false};});
-  all.push({name:U.name||'You',coins:U.coins,level:U.level,me:true});
+  var all=[
+    {name:'Arjun Mehta',coins:680,level:5,activity:'2 min ago'},
+    {name:'Priya Sharma',coins:520,level:4,activity:'15 min ago'},
+    {name:'Rahul Gupta',coins:410,level:3,activity:'1 hr ago'},
+    {name:'Sneha Patel',coins:340,level:3,activity:'3 hrs ago'},
+    {name:'Karan Singh',coins:280,level:2,activity:'5 hrs ago'},
+    {name:'Ananya Verma',coins:210,level:2,activity:'today'},
+    {name:'Dev Malhotra',coins:165,level:2,activity:'today'},
+    {name:'Riya Joshi',coins:120,level:1,activity:'yesterday'},
+    {name:'Aditya Kumar',coins:75,level:1,activity:'yesterday'},
+    {name:'Meera Nair',coins:30,level:0,activity:'2 days ago'},
+  ];
+  all.push({name:U.name||'You',coins:U.coins,level:U.level,me:true,activity:'now'});
   all.sort(function(a,b){return b.coins-a.coins;});
   var myRank=1;
   all.forEach(function(u,i){if(u.me)myRank=i+1;});
   $('my-rank').textContent='#'+myRank;
   $('my-rank-sub').textContent=(U.coins||0)+' Elite Coins · '+LVLNAMES[U.level];
-  var html='';
+  
+  // Active users count
+  var activeCount=all.filter(function(u){return u.activity&&(u.activity.includes('min')||u.activity==='now');}).length;
+  
+  var html2='<div style="font-family:monospace;font-size:.55rem;letter-spacing:.12em;color:rgba(0,238,68,.6);margin-bottom:12px;">● '+activeCount+' OPERATIVES ACTIVE NOW</div>';
   all.forEach(function(u,i){
     var pos=i+1;
-    var pc=pos===1?'gold':pos===2?'silver':pos===3?'bronze':'';
-    html+='<div class="lb-row'+(u.me?' me':'')+'">'+
-      '<div class="lb-pos '+pc+'">'+pos+'</div>'+
-      '<div class="lb-name">'+(u.me?'⚡ ':'')+u.name+'</div>'+
-      '<div style="font-size:.62rem;color:var(--dim);margin-right:6px;">LVL '+u.level+'</div>'+
+    var pc=pos===1?'#ffcc00':pos===2?'#aaaaaa':pos===3?'#cc7700':'rgba(255,255,255,.4)';
+    html2+='<div class="lb-row'+(u.me?' me':'')+'" style="'+(u.me?'border-color:rgba(255,34,34,.4);background:rgba(255,34,34,.08);':'')+'">'+
+      '<div class="lb-pos" style="color:'+pc+';">'+pos+'</div>'+
+      '<div class="lb-name">'+(u.me?'<span style="color:var(--red);">⚡ </span>':'')+u.name+'</div>'+
+      '<div style="font-size:.6rem;color:rgba(255,255,255,.3);margin-right:8px;font-family:monospace;">'+( u.activity||'')+'</div>'+
       '<div class="lb-coins">'+u.coins+' EC</div>'+
       '</div>';
   });
-  $('lb-list').innerHTML=html;
+  $('lb-list').innerHTML=html2;
 }
 
 // ── CHAT ─────────────────────────────────────────────
@@ -663,15 +903,71 @@ function fallback(msg){
 }
 
 async function aiChat(msg){
-  var hist=chatHist.slice(-8);
-  var res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
-    method:'POST',
-    headers:{'Content-Type':'application/json','Authorization':'Bearer '+KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
-    body:JSON.stringify({model:'meta-llama/llama-3.1-8b-instruct:free',max_tokens:380,temperature:.88,messages:[{role:'system',content:buildSys()}].concat(hist)})
+  var sys = buildSys();
+  
+  // Build conversation history for context
+  var hist = chatHist.slice(-12); // last 6 turns
+  
+  // Format for Gemini
+  var contents = [];
+  
+  // Add history
+  hist.forEach(function(m){
+    contents.push({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{text: m.content}]
+    });
   });
-  if(!res.ok)throw new Error(res.status);
-  var d=await res.json();
-  return d.choices[0].message.content.trim();
+  
+  // Ensure last message is from user
+  if(!contents.length || contents[contents.length-1].role !== 'user'){
+    contents.push({role:'user', parts:[{text:msg}]});
+  }
+
+  // Try Gemini Flash first (best quality, free)
+  try{
+    var res = await fetch(
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_KEY,
+      {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          systemInstruction:{parts:[{text:sys}]},
+          contents:contents,
+          generationConfig:{
+            maxOutputTokens:400,
+            temperature:0.9,
+            topP:0.95
+          }
+        })
+      }
+    );
+    if(res.ok){
+      var d = await res.json();
+      var text = d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts&&d.candidates[0].content.parts[0].text;
+      if(text&&text.trim().length>5) return text.trim();
+    }
+  }catch(e){ console.log('Gemini error:',e); }
+  
+  // Fallback to OpenRouter
+  try{
+    var res2 = await fetch('https://openrouter.ai/api/v1/chat/completions',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+OR_KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
+      body:JSON.stringify({
+        model:'meta-llama/llama-3.1-8b-instruct:free',
+        max_tokens:380,temperature:.9,
+        messages:[{role:'system',content:sys}].concat(hist.map(function(m){return{role:m.role==='assistant'?'assistant':'user',content:m.content};}))
+      })
+    });
+    if(res2.ok){
+      var d2=await res2.json();
+      var text2=d2.choices&&d2.choices[0]&&d2.choices[0].message&&d2.choices[0].message.content;
+      if(text2&&text2.trim().length>5) return text2.trim();
+    }
+  }catch(e2){ console.log('OR error:',e2); }
+  
+  return fallback(msg);
 }
 
 async function doSend(){
@@ -710,19 +1006,51 @@ function toggleVoice(){
 }
 
 // ── TASKS ────────────────────────────────────────────
-async function genTasks(){
-  $('tasks-wrap').innerHTML='<div style="padding:24px;text-align:center;font-family:\'Share Tech Mono\',monospace;font-size:.62rem;letter-spacing:.2em;color:var(--red);opacity:.7;">⚡ GENERATING MISSIONS...</div>';
-  goPanel('tasks');
-  var n=U.name.split(' ')[0],g=U.goal,p=U.prof;
-  var tasks=null;
+async function genTasksGemini(n,g,p){
   try{
+    var prompt='Generate exactly 3 daily tasks for '+n+' ('+p+') with goal: "'+g+'".\nRules: Each task MUST directly help achieve "'+g+'". Specific and completable today. Return ONLY JSON array:\n[{"emoji":"🎯","title":"Short title","description":"Specific action toward goal","coins":15},{"emoji":"📊","title":"Short title","description":"Specific action","coins":10},{"emoji":"💪","title":"Short title","description":"Specific action","coins":8}]';
+    var res=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_KEY,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({contents:[{role:'user',parts:[{text:prompt}]}],generationConfig:{maxOutputTokens:400,temperature:0.7}})
+    });
+    if(res.ok){
+      var d=await res.json();
+      var raw=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts&&d.candidates[0].content.parts[0].text;
+      if(raw){
+        var m=raw.match(/\[[\s\S]*\]/);
+        if(m){var parsed=JSON.parse(m[0]);if(Array.isArray(parsed)&&parsed.length>=2)return parsed;}
+      }
+    }
+  }catch(e){console.log('Gemini task err',e);}
+  return null;
+}
+
+async function genTasks(){
+  var n=U.name.split(' ')[0], g=U.goal, p=U.prof;
+  
+  // Show loading in BOTH chat and tasks panel
+  var taskWrap = $('tasks-wrap');
+  if(taskWrap) taskWrap.innerHTML='<div style="padding:20px;text-align:center;font-family:monospace;font-size:.6rem;letter-spacing:.2em;color:var(--red);opacity:.7;">⚡ GENERATING MISSIONS...</div>';
+  
+  var tasks=null;
+  // Try Gemini first (better quality)
+  var geminiTasks=await genTasksGemini(n,g,p);
+  if(geminiTasks){
+    tasks=geminiTasks.slice(0,3).map(function(t,i){
+      return{id:'t'+Date.now()+'_'+i,emoji:t.emoji||['🎯','📊','💪'][i],title:t.title||'Mission '+(i+1),desc:t.description||'',coins:t.coins||[15,10,8][i],done:false};
+    });
+  }
+  if(!tasks) try{
     var res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
       method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+OR_KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
       body:JSON.stringify({
         model:'meta-llama/llama-3.1-8b-instruct:free',
-        max_tokens:480,temperature:.7,
-        messages:[{role:'system',content:'You are generating 3 daily missions for '+n+' specifically.\n\nCRITICAL CONTEXT:\n- Their name: '+n+'\n- Profession: '+p+'\n- Their EXACT goal: \''+g+'\' — every task must move them toward THIS specific goal\n\nRULES:\n- Do NOT generate generic tasks like \'read a book\' or \'exercise\'\n- Each task must be a direct step toward \''+g+'\' specifically\n- Tasks must be completable TODAY in 1-3 hours\n- Include specific numbers, outcomes, or deliverables\n\nReturn ONLY valid JSON array — no text before or after:\n[{"emoji":"🎯","title":"Short action title","description":"Specific: what exactly to do, how long, what output","coins":15},{"emoji":"📊","title":"Short action title","description":"Specific action toward goal","coins":10},{"emoji":"💪","title":"Short action title","description":"Specific action toward goal","coins":8}]'},{role:'user',content:'Generate my 3 missions.'}]
+        max_tokens:500,temperature:.7,
+        messages:[
+          {role:'system',content:'You are a strict task generator. Generate EXACTLY 3 tasks.\nName: '+n+'\nProfession: '+p+'\nEXACT GOAL: "'+g+'"\nCRITICAL: Every task MUST be a direct step toward "'+g+'". NO generic tasks.\nReturn ONLY valid JSON: [{"emoji":"🎯","title":"Short title","description":"Specific action toward goal","coins":15},{"emoji":"📊","title":"Short title","description":"Specific action","coins":10},{"emoji":"💪","title":"Short title","description":"Specific action","coins":8}]'},
+          {role:'user',content:'Generate my 3 missions for today.'}
+        ]
       })
     });
     if(res.ok){
@@ -742,13 +1070,13 @@ async function genTasks(){
 
   if(!tasks){
     var FB={
-      student:[{emoji:'📚',title:'Deep study 90 min',desc:'One subject, phone off, zero distractions. Full focus on exam prep.',coins:15},{emoji:'💡',title:'Apply what you learned',desc:'Build something based on today\'s study — code it, write it, solve problems.',coins:10},{emoji:'🔁',title:'Active recall test',desc:'Close notes. Write from memory everything you know. This locks it in.',coins:8}],
-      developer:[{emoji:'💻',title:'2hr deep coding',desc:'Work on the hardest feature. No tutorials, think it through yourself.',coins:15},{emoji:'🚀',title:'Ship one feature',desc:'Complete and deploy one improvement today. Shipping beats perfecting.',coins:10},{emoji:'📖',title:'Learn one concept',desc:'Go one level deeper in your stack — read docs or source code.',coins:8}],
-      entrepreneur:[{emoji:'🎯',title:'Revenue-generating action',desc:'One thing that directly moves money today — pitch, follow-up, or sale.',coins:15},{emoji:'📊',title:'Review your numbers',desc:'Open your metrics. What is working? Kill what is not.',coins:10},{emoji:'💬',title:'Talk to a customer',desc:'Call one real customer. Listen more than you speak.',coins:8}],
-      creator:[{emoji:'🎬',title:'Create and publish',desc:'Post one piece of content. Imperfect and live beats perfect and hidden.',coins:15},{emoji:'📈',title:'Engage 10 people',desc:'Reply personally to 10 comments or DMs. Real connection builds audience.',coins:10},{emoji:'🧠',title:'Study top creator',desc:'20 min analyzing what your best competitor does that you do not.',coins:8}],
-      athlete:[{emoji:'💪',title:'Full training session',desc:'Complete your planned workout. No skipping, no shortcuts.',coins:15},{emoji:'🥗',title:'Track every meal',desc:'Log all food today. You cannot out-train a bad diet.',coins:10},{emoji:'😴',title:'Plan 8hr sleep',desc:'Decide your sleep time now and commit to it.',coins:8}],
-      freelancer:[{emoji:'💌',title:'5 outreach messages',desc:'Send 5 cold messages to potential clients today.',coins:15},{emoji:'🏆',title:'Overdeliver one project',desc:'Give 20 percent more than expected on one current project.',coins:10},{emoji:'📸',title:'Update portfolio',desc:'Add one recent project. Your work sells itself.',coins:8}],
-      business:[{emoji:'🤝',title:'High-value call',desc:'One client call or deal push today. Move the needle.',coins:15},{emoji:'⚙️',title:'Systemize a process',desc:'Document one thing you keep doing manually.',coins:10},{emoji:'📋',title:'Team check-in',desc:'Find what your team is blocked on. Remove one obstacle.',coins:8}]
+      student:[{emoji:'📚',title:'Deep study 90 min',desc:'One subject, phone off, full focus on your exam prep.',coins:15},{emoji:'💡',title:'Apply what you learned',desc:'Build something from today study — code it or write it.',coins:10},{emoji:'🔁',title:'Active recall test',desc:'Close notes. Write from memory. This is how you lock in.',coins:8}],
+      developer:[{emoji:'💻',title:'2hr deep coding',desc:'Work on the hardest feature. No tutorials.',coins:15},{emoji:'🚀',title:'Ship one feature',desc:'Complete and deploy one improvement today.',coins:10},{emoji:'📖',title:'Learn one concept',desc:'Read docs or source code. Go deeper.',coins:8}],
+      entrepreneur:[{emoji:'🎯',title:'Revenue action now',desc:'One thing that moves money today — pitch, follow-up, sale.',coins:15},{emoji:'📊',title:'Review your numbers',desc:'Open your metrics. Kill what is not working.',coins:10},{emoji:'💬',title:'Customer conversation',desc:'Call one real customer. Listen more than you speak.',coins:8}],
+      creator:[{emoji:'🎬',title:'Create and publish',desc:'Post one piece of content. Imperfect and live wins.',coins:15},{emoji:'📈',title:'Engage 10 real people',desc:'Reply personally to 10 comments or DMs.',coins:10},{emoji:'🧠',title:'Study top creator',desc:'20 min on what your best competitor does differently.',coins:8}],
+      athlete:[{emoji:'💪',title:'Full training session',desc:'Complete your planned workout. No shortcuts.',coins:15},{emoji:'🥗',title:'Track every meal',desc:'Log all food today. Diet is 80 percent.',coins:10},{emoji:'😴',title:'Plan 8hr sleep',desc:'Decide sleep time now and commit.',coins:8}],
+      freelancer:[{emoji:'💌',title:'Send 5 outreach msgs',desc:'5 cold messages to potential clients today.',coins:15},{emoji:'🏆',title:'Overdeliver on project',desc:'Give 20 percent more than expected.',coins:10},{emoji:'📸',title:'Update portfolio',desc:'Add one recent project. Your work sells itself.',coins:8}],
+      business:[{emoji:'🤝',title:'High-value call',desc:'One client call or deal push. Move the needle.',coins:15},{emoji:'⚙️',title:'Systemize one process',desc:'Document one thing you keep doing manually.',coins:10},{emoji:'📋',title:'Team check-in',desc:'Find what team is blocked on. Remove one blocker.',coins:8}]
     };
     var base=FB[p]||FB.student;
     tasks=base.map(function(t,i){return Object.assign({},t,{id:'t'+Date.now()+'_'+i,done:false});});
@@ -758,9 +1086,64 @@ async function genTasks(){
   localStorage.setItem('EX_T',JSON.stringify(tasks));
   localStorage.setItem('EX_TD',today());
   renderTasks();
+
+  // Show tasks IN CHAT as compact cards
+  showTasksInChat(tasks);
+}
+
+function showTasksInChat(tasks){
+  var n=U.name.split(' ')[0], g=U.goal;
   var totalEC=tasks.reduce(function(s,t){return s+t.coins;},0);
-  addMsg('m',n+' — 3 missions loaded. '+(totalEC)+' EC waiting for you.\n\nEach one is a direct step toward "'+g.slice(0,40)+'...".\n\nHit the 📷 camera icon when you are done. Which mission first?');
-  goPanel('chat');
+  
+  addMsg('m',n+' - your 3 missions are live. '+totalEC+' EC total. Built for your goal: "'+g.slice(0,45)+'...". Submit photo proof with the camera button to earn coins.');
+  
+  var c=$('chat-msgs');
+  var wrap=document.createElement('div');
+  wrap.style.cssText='display:flex;flex-direction:column;gap:8px;margin:8px 0;';
+  
+  tasks.forEach(function(t){
+    var card=document.createElement('div');
+    card.id='chat-task-'+t.id;
+    card.style.cssText='padding:11px 13px;border-radius:10px;background:rgba(255,34,34,.06);border:1px solid rgba(255,34,34,.18);display:flex;align-items:center;gap:10px;'+(t.done?'opacity:.5;':'');
+    
+    var titleEl=document.createElement('span');
+    titleEl.style.cssText='font-size:.85rem;font-weight:600;color:var(--text);'+(t.done?'text-decoration:line-through;':'');
+    titleEl.textContent=t.title;
+    
+    var descEl=document.createElement('div');
+    descEl.style.cssText='font-size:.72rem;color:var(--dim);margin-top:2px;';
+    descEl.textContent=t.desc;
+    
+    var ecEl=document.createElement('div');
+    ecEl.style.cssText='font-family:monospace;font-size:.6rem;color:'+(t.done?'#00ee44':'var(--red)')+';margin-top:4px;';
+    ecEl.textContent='+'+t.coins+' EC'+(t.done?' EARNED':'');
+    
+    var textWrap=document.createElement('div');
+    textWrap.style.cssText='flex:1;min-width:0;';
+    textWrap.appendChild(titleEl);
+    textWrap.appendChild(descEl);
+    textWrap.appendChild(ecEl);
+    
+    var emojiEl=document.createElement('span');
+    emojiEl.style.cssText='font-size:1.2rem;flex-shrink:0;';
+    emojiEl.textContent=t.emoji;
+    
+    card.appendChild(emojiEl);
+    card.appendChild(textWrap);
+    
+    if(!t.done){
+      var camBtn=document.createElement('button');
+      camBtn.style.cssText='cursor:pointer;width:34px;height:34px;border-radius:50%;background:rgba(255,34,34,.12);border:1px solid rgba(255,34,34,.3);font-size:.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;';
+      camBtn.textContent='📷';
+      camBtn.dataset.proofId=t.id;
+      card.appendChild(camBtn);
+    }
+    
+    wrap.appendChild(card);
+  });
+  
+  c.appendChild(wrap);
+  c.scrollTop=c.scrollHeight;
 }
 
 function renderTasks(){
@@ -874,8 +1257,15 @@ async function submitProof(){
   save();
   updateHUD();
   addMsg('m',msg);
-  toast('+'+task.coins+' EC EARNED! Total: '+U.coins+' EC 🔥',3500);
+  toast('+'+task.coins+' EC EARNED! Total: '+U.coins+' EC',3500);
   setTimeout(function(){renderTasks();},600);
+  
+  // Show share card after every 3 tasks
+  if(U.tasks>0 && U.tasks%3===0){
+    setTimeout(function(){
+      showShareCard();
+    }, 2500);
+  }
 }
 
 
@@ -947,7 +1337,100 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('ELYX v6 — events wired ✅');
 });
 
+// Cursor glow follow
+(function(){
+  var g=document.getElementById('cursor-glow');
+  if(!g) return;
+  document.addEventListener('mousemove',function(e){
+    g.style.left=e.clientX+'px';
+    g.style.top=e.clientY+'px';
+  });
+})();
+
+
+// VIRAL SHARE SYSTEM
+function showShareCard(){
+  var overlay=document.getElementById('share-overlay');
+  if(!overlay) return;
+  
+  // Fill card data
+  document.getElementById('sc-name').textContent = U.name || 'Operative';
+  document.getElementById('sc-level').textContent = 'LEVEL '+U.level+' · '+LVLNAMES[U.level];
+  document.getElementById('sc-coins').textContent = U.coins || 0;
+  document.getElementById('sc-tasks').textContent = U.tasks || 0;
+  document.getElementById('sc-goal').textContent = U.goal ? '"'+U.goal.slice(0,60)+'"' : '';
+  
+  overlay.style.display='flex';
+}
+
+function shareELYX(){
+  var text = U.name.split(' ')[0]+' just earned '+U.coins+' Elite Coins on ELYX. '+(U.tasks)+' missions completed. AI mentor that actually holds you accountable. Try it: elyx-founder.github.io/mentor-elyx-system';
+  
+  if(navigator.share){
+    navigator.share({
+      title:'ELYX — My AI Mentor',
+      text:text,
+      url:'https://elyx-founder.github.io/mentor-elyx-system'
+    }).then(function(){
+      toast('Shared! Your network will join soon.');
+    });
+  } else {
+    navigator.clipboard && navigator.clipboard.writeText(text).then(function(){
+      toast('Copied! Paste it on Instagram, WhatsApp, anywhere.');
+    });
+  }
+}
+
+// Show share card after first task completion
+var _origAwardCoins = window.awardCoins;
+
 console.log('ELYX v6 loaded ✅ — all features active');
 </script>
+
+<!-- VIRAL SHARE CARD -->
+<div id="share-overlay" style="display:none;position:fixed;inset:0;z-index:800;background:rgba(4,4,14,.97);display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;">
+  <div id="share-card" style="width:min(360px,90vw);background:linear-gradient(135deg,#0a0a1a,#120408);border:1px solid rgba(255,34,34,.4);border-radius:16px;padding:28px;text-align:center;position:relative;overflow:hidden;">
+    
+    <!-- Background glow -->
+    <div style="position:absolute;top:-50px;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(255,34,34,.15),transparent);pointer-events:none;"></div>
+    
+    <!-- Header -->
+    <div style="font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.3em;color:var(--red);margin-bottom:16px;">ELYX · ELITE REPORT</div>
+    
+    <!-- Name -->
+    <div id="sc-name" style="font-size:1.4rem;font-weight:700;letter-spacing:.05em;margin-bottom:4px;"></div>
+    <div id="sc-level" style="font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:rgba(255,34,34,.7);margin-bottom:20px;"></div>
+    
+    <!-- Stats -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+      <div style="padding:12px;background:rgba(255,34,34,.06);border:1px solid rgba(255,34,34,.12);border-radius:8px;">
+        <div id="sc-coins" style="font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--red);"></div>
+        <div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:2px;">ELITE COINS</div>
+      </div>
+      <div style="padding:12px;background:rgba(255,34,34,.06);border:1px solid rgba(255,34,34,.12);border-radius:8px;">
+        <div id="sc-tasks" style="font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--red);"></div>
+        <div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:2px;">MISSIONS DONE</div>
+      </div>
+    </div>
+    
+    <!-- Goal -->
+    <div style="padding:12px;background:rgba(255,34,34,.04);border:1px solid rgba(255,34,34,.1);border-radius:8px;margin-bottom:20px;">
+      <div style="font-size:.62rem;color:rgba(255,255,255,.35);font-family:monospace;letter-spacing:.1em;margin-bottom:4px;">MISSION</div>
+      <div id="sc-goal" style="font-size:.82rem;color:var(--text);line-height:1.4;"></div>
+    </div>
+    
+    <!-- CTA -->
+    <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.15em;color:rgba(255,255,255,.4);margin-bottom:16px;">elyx-founder.github.io/mentor-elyx-system</div>
+    
+    <!-- Tagline -->
+    <div style="font-size:.75rem;color:rgba(255,34,34,.7);font-style:italic;">"My AI mentor that actually holds me accountable"</div>
+  </div>
+  
+  <div style="display:flex;gap:10px;margin-top:20px;">
+    <button onclick="shareELYX()" style="cursor:pointer;padding:12px 24px;background:linear-gradient(135deg,rgba(255,34,34,.3),var(--red));border:none;border-radius:8px;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.15em;color:#fff;">🔥 SHARE THIS</button>
+    <button onclick="document.getElementById('share-overlay').style.display='none'" style="cursor:pointer;padding:12px 20px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:8px;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.12em;color:rgba(255,255,255,.5);">CLOSE</button>
+  </div>
+</div>
+
 </body>
 </html>
