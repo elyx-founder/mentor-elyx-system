@@ -2,56 +2,39 @@
 <html lang="en">
 <head>
 <script type="text/javascript">
-  (function(c,l,a,r,i,t,y){
-    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-  })(window, document, "clarity", "script", "vx3jzkr86n");
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vx3jzkr86n");
 </script>
 <meta charset="UTF-8"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://openrouter.ai https://api.openrouter.ai; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
-<meta name="description" content="ELYX — AI-powered accountability mentor. Daily missions, gamified progress, real results."/>
 <title>ELYX — Your Era Begins</title>
-
-<!-- PWA manifest inline -->
-<meta name="theme-color" content="#04040e"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="ELYX"/>
-
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --red:#ff2222;--reddim:rgba(255,34,34,0.18);
-  --bg:#04040e;--text:#e8e8ff;--dim:rgba(232,232,255,0.45);
-  --border:rgba(255,34,34,0.18);--green:#00ee44;--gold:#ffcc00;
-}
+:root{--red:#ff2222;--reddim:rgba(255,34,34,0.18);--bg:#04040e;--text:#e8e8ff;--dim:rgba(232,232,255,0.45);--border:rgba(255,34,34,0.18);}
 body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;height:100vh;overflow:hidden;}
-
 @keyframes pulse{0%,100%{text-shadow:0 0 40px var(--red),0 0 80px rgba(255,34,34,0.4);}50%{text-shadow:0 0 60px var(--red),0 0 120px rgba(255,34,34,0.6),0 0 200px rgba(255,34,34,0.2);}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 @keyframes glow{0%,100%{box-shadow:0 0 20px rgba(255,34,34,0.4);}50%{box-shadow:0 0 40px rgba(255,34,34,0.8);}}
-@keyframes msgIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-@keyframes coinPop{0%{transform:scale(0) rotate(-20deg);opacity:0;}60%{transform:scale(1.2) rotate(5deg);opacity:1;}100%{transform:scale(1) rotate(0deg);opacity:1;}}
-@keyframes slideIn{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
-
 canvas#stars{position:fixed;inset:0;z-index:0;pointer-events:none;}
 .screen{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.5s;}
 .screen.on{opacity:1;pointer-events:all;}
 
-/* ── BOOT ── */
+/* BOOT */
 #s-boot{gap:0;}
-.boot-logo{font-family:'Share Tech Mono',monospace;font-size:clamp(2.5rem,8vw,4rem);color:var(--red);letter-spacing:.3em;text-shadow:0 0 40px var(--red),0 0 80px rgba(255,34,34,0.4);animation:pulse 2s ease-in-out infinite;}
-.boot-tagline{font-family:'Share Tech Mono',monospace;font-size:.7rem;letter-spacing:.35em;color:var(--dim);margin:10px 0 8px;}
-.boot-subtitle{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.15em;color:rgba(255,34,34,.5);margin-bottom:32px;}
+.boot-logo{font-family:'Share Tech Mono',monospace;font-size:clamp(2.5rem,8vw,4rem);color:var(--red);letter-spacing:.3em;text-shadow:0 0 40px var(--red),0 0 80px rgba(255,34,34,0.4),0 0 120px rgba(255,34,34,0.2);animation:pulse 2s ease-in-out infinite;}
+.boot-tagline{font-family:'Share Tech Mono',monospace;font-size:.7rem;letter-spacing:.35em;color:var(--dim);margin:10px 0 36px;}
 .boot-bar-outer{width:260px;height:2px;background:rgba(255,34,34,0.1);border-radius:1px;margin-bottom:10px;}
 .boot-bar-inner{height:100%;width:0%;background:var(--red);box-shadow:0 0 12px var(--red);transition:width .4s ease;border-radius:1px;}
 .boot-txt{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:var(--red);opacity:.7;}
 
-/* ── ONBOARD ── */
-#s-ob{background:rgba(4,4,14,.96);overflow-y:auto;justify-content:flex-start;padding:20px 0;}
-.ob-box{width:min(480px,94vw);padding:32px 28px;display:flex;flex-direction:column;gap:16px;margin:auto;}
+/* ONBOARD */
+#s-ob{background:rgba(4,4,14,.96);}
+.ob-box{width:min(480px,94vw);padding:32px 28px;display:flex;flex-direction:column;gap:16px;}
 .ob-head{text-align:center;margin-bottom:4px;}
 .ob-head-tag{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.25em;color:var(--red);margin-bottom:8px;}
 .ob-head-title{font-size:clamp(1.3rem,4vw,1.7rem);font-weight:700;letter-spacing:.07em;}
@@ -59,8 +42,8 @@ label.lbl{font-family:'Share Tech Mono',monospace;font-size:.56rem;letter-spacin
 .inp{width:100%;padding:13px 15px;background:rgba(255,34,34,.05);border:1px solid var(--border);border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:1rem;color:var(--text);outline:none;transition:border-color .25s;}
 .inp:focus{border-color:var(--red);box-shadow:0 0 0 2px rgba(255,34,34,.1);}
 .ptiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
-.ptile{padding:11px 4px;background:rgba(255,34,34,.04);border:1px solid var(--border);border-radius:8px;cursor:pointer;text-align:center;transition:all .2s;user-select:none;}
-.ptile:hover{border-color:var(--red);background:rgba(255,34,34,.12);transform:translateY(-2px);}
+.ptile{padding:11px 4px;background:rgba(255,34,34,.04);border:1px solid var(--border);border-radius:8px;cursor:pointer;text-align:center;transition:all .2s;-webkit-tap-highlight-color:rgba(255,34,34,.2);user-select:none;}
+.ptile:hover,.ptile:active{border-color:var(--red);background:rgba(255,34,34,.12);}
 .ptile.sel{border-color:var(--red);background:rgba(255,34,34,.22);box-shadow:0 0 14px rgba(255,34,34,.3);}
 .ptile .ic{font-size:1.3rem;}
 .ptile .lb{font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:.06em;color:var(--text);margin-top:3px;}
@@ -68,43 +51,41 @@ textarea.inp{resize:none;height:80px;font-size:.95rem;}
 .err{color:#ff5555;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.08em;display:none;text-align:center;}
 .cta{width:100%;padding:15px;background:linear-gradient(135deg,rgba(255,34,34,.28),var(--red));border:none;border-radius:8px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.2em;color:#fff;box-shadow:0 0 22px rgba(255,34,34,.4);transition:all .25s;}
 .cta:hover{box-shadow:0 0 42px rgba(255,34,34,.7);transform:translateY(-1px);}
+.cta:active{transform:translateY(0);}
 
-/* ── INTRO ── */
+/* INTRO */
+#s-intro{}
 .intro-inner{text-align:center;max-width:520px;padding:24px 20px;}
-.intro-orb{width:90px;height:90px;border-radius:50%;border:2px solid var(--red);background:rgba(255,34,34,.08);display:flex;align-items:center;justify-content:center;font-size:2.2rem;margin:0 auto 14px;box-shadow:0 0 30px rgba(255,34,34,.5);}
+.intro-orb{width:90px;height:90px;border-radius:50%;border:2px solid var(--red);background:radial-gradient(circle,rgba(255,34,34,.18),transparent);display:flex;align-items:center;justify-content:center;font-size:2.2rem;margin:0 auto 14px;box-shadow:0 0 30px rgba(255,34,34,.5),inset 0 0 20px rgba(255,34,34,.1);}
 .intro-label{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.3em;color:var(--red);margin-bottom:24px;}
 .intro-text{font-size:1.05rem;line-height:1.75;color:var(--text);min-height:56px;transition:opacity .35s;}
-.intro-enter{margin-top:28px;padding:13px 34px;background:transparent;border:1px solid var(--red);border-radius:4px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.2em;color:var(--red);transition:all .25s;opacity:0;pointer-events:none;}
-.intro-enter.show{opacity:1;pointer-events:all;}
+.intro-enter{margin-top:28px;padding:13px 34px;background:transparent;border:1px solid var(--red);border-radius:4px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.2em;color:var(--red);transition:all .25s,opacity .5s;opacity:0;pointer-events:none;}
 .intro-enter:hover{background:rgba(255,34,34,.1);}
 
-/* ── DASHBOARD ── */
+/* DASHBOARD */
 #s-dash{justify-content:flex-start;align-items:stretch;}
 .hud{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;background:linear-gradient(to right,rgba(4,4,14,.98),rgba(20,4,4,.95));border-bottom:1px solid rgba(255,34,34,.25);flex-shrink:0;z-index:20;}
 .hud-logo{font-family:'Share Tech Mono',monospace;font-size:.95rem;letter-spacing:.2em;color:var(--red);}
 .hud-center{display:flex;align-items:center;gap:8px;}
 .hud-name{font-size:.85rem;font-weight:700;letter-spacing:.05em;}
-.hud-lvl{font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:.1em;padding:2px 7px;border:1px solid var(--red);border-radius:3px;color:var(--red);}
-.hud-right{display:flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--red);}
-.hud-btn{cursor:pointer;padding:4px 10px;background:rgba(255,34,34,.1);border:1px solid rgba(255,34,34,.3);border-radius:4px;font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:.1em;color:var(--red);transition:all .2s;}
-.hud-btn:hover{background:rgba(255,34,34,.2);}
-
+.hud-lvl{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.1em;padding:2px 7px;border:1px solid var(--red);border-radius:3px;color:var(--red);}
+.hud-right{display:flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--red);}
 .panels{flex:1;overflow:hidden;position:relative;}
 .panel{position:absolute;inset:0;overflow-y:auto;padding:14px;display:none;-webkit-overflow-scrolling:touch;}
 .panel.on{display:block;}
-.nav{height:60px;display:flex;background:rgba(4,4,14,.96);border-top:1px solid var(--border);flex-shrink:0;}
-.nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:none;border:none;cursor:pointer;color:var(--dim);transition:all .2s;padding:8px 4px;}
+.nav{height:58px;display:flex;background:rgba(4,4,14,.96);border-top:1px solid var(--border);flex-shrink:0;}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:none;border:none;cursor:pointer;color:var(--dim);transition:all .2s;}
 .nb.on{color:var(--red);}
-.nb .ni{font-size:1.2rem;}
-.nb .nt{font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:.1em;}
+.nb .ni{font-size:1.1rem;}
+.nb .nt{font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:.1em;}
 
-/* ── CHAT ── */
+/* CHAT */
 .chat-top{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:12px;}
-.chat-av{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--red);background:rgba(255,34,34,.08);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;box-shadow:0 0 20px rgba(255,34,34,.4);animation:glow 2s ease-in-out infinite;}
+.chat-av{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--red);background:radial-gradient(circle,rgba(255,34,34,.2),rgba(255,34,34,.05));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;box-shadow:0 0 20px rgba(255,34,34,.5);animation:glow 2s ease-in-out infinite;}
 .chat-mn{font-size:.88rem;font-weight:700;}
 .chat-ms{font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:.1em;color:var(--red);}
-.chat-msgs{min-height:calc(100vh - 280px);max-height:calc(100vh - 280px);overflow-y:auto;padding-bottom:6px;}
-.msg{margin-bottom:10px;max-width:86%;padding:10px 13px;font-size:.88rem;line-height:1.65;animation:msgIn .3s ease forwards;}
+.chat-msgs{min-height:calc(100vh - 270px);max-height:calc(100vh - 270px);overflow-y:auto;padding-bottom:6px;}
+.msg{margin-bottom:10px;max-width:86%;padding:10px 13px;font-size:.88rem;line-height:1.65;}
 .msg.m{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px 12px 12px 12px;margin-right:auto;}
 .msg.u{background:rgba(255,34,34,.12);border:1px solid rgba(255,34,34,.25);border-radius:12px 12px 4px 12px;margin-left:auto;text-align:right;}
 .msg.typing{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px 12px 12px 12px;margin-right:auto;font-size:1.1rem;letter-spacing:5px;color:var(--dim);}
@@ -115,7 +96,7 @@ textarea.inp{resize:none;height:80px;font-size:.95rem;}
 .vbtn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:all .2s;}
 .vbtn.rec{background:rgba(255,34,34,.2);border-color:var(--red);}
 
-/* ── TASKS ── */
+/* TASKS */
 .sec-title{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:var(--dim);margin-bottom:12px;}
 .gen-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
 .gen-btn{padding:9px 16px;background:rgba(255,34,34,.1);border:1px solid rgba(255,34,34,.35);border-radius:6px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.15em;color:var(--red);transition:all .2s;}
@@ -125,7 +106,6 @@ textarea.inp{resize:none;height:80px;font-size:.95rem;}
 .prog-item .pv{font-family:'Share Tech Mono',monospace;font-size:.8rem;color:var(--red);margin-top:2px;}
 .tc{display:flex;align-items:flex-start;gap:10px;padding:13px;margin-bottom:9px;border-radius:10px;background:rgba(255,34,34,.04);border:1px solid rgba(255,34,34,.12);transition:all .3s;}
 .tc.done{background:rgba(0,238,68,.04);border-color:rgba(0,238,68,.15);}
-.tc:hover{border-color:rgba(255,34,34,.3);transform:translateX(2px);}
 .tc-cb{width:22px;height:22px;flex-shrink:0;border-radius:5px;border:2px solid rgba(255,34,34,.4);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-top:2px;transition:all .25s;}
 .tc-cb.done{border-color:#00ee44;background:#00ee44;}
 .tc-body{flex:1;min-width:0;}
@@ -141,7 +121,7 @@ textarea.inp{resize:none;height:80px;font-size:.95rem;}
 .empty-ic{font-size:2.5rem;margin-bottom:10px;}
 .empty-t{font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--red);margin-bottom:14px;}
 
-/* ── STATUS ── */
+/* STATUS */
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
 .stat-c{padding:15px;border-radius:10px;background:rgba(255,34,34,.05);border:1px solid rgba(255,34,34,.1);text-align:center;}
 .stat-v{font-family:'Share Tech Mono',monospace;font-size:1.6rem;color:var(--red);}
@@ -149,15 +129,7 @@ textarea.inp{resize:none;height:80px;font-size:.95rem;}
 .pbar-wrap{height:4px;background:rgba(255,34,34,.1);border-radius:2px;margin:10px 0 5px;}
 .pbar-fill{height:100%;background:var(--red);border-radius:2px;box-shadow:0 0 8px var(--red);transition:width .6s ease;}
 
-/* week history */
-.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:14px;}
-.wday{display:flex;flex-direction:column;align-items:center;gap:4px;}
-.wday-dot{width:28px;height:28px;border-radius:6px;background:rgba(255,34,34,.08);border:1px solid rgba(255,34,34,.1);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .3s;}
-.wday-dot.active{background:rgba(255,34,34,.25);border-color:var(--red);}
-.wday-dot.today{border-color:var(--red);box-shadow:0 0 8px rgba(255,34,34,.4);}
-.wday-lbl{font-family:'Share Tech Mono',monospace;font-size:.44rem;letter-spacing:.05em;color:var(--dim);}
-
-/* ── RANK ── */
+/* RANK */
 .rank-me{padding:16px;border-radius:12px;background:rgba(255,34,34,.08);border:1px solid rgba(255,34,34,.25);text-align:center;margin-bottom:16px;}
 .rank-me-num{font-family:'Share Tech Mono',monospace;font-size:2.2rem;color:var(--red);line-height:1;}
 .rank-me-lbl{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:var(--dim);margin-top:4px;}
@@ -165,24 +137,14 @@ textarea.inp{resize:none;height:80px;font-size:.95rem;}
 .lb-row{display:flex;align-items:center;gap:10px;padding:11px 13px;margin-bottom:7px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);}
 .lb-row.me{background:rgba(255,34,34,.08);border-color:rgba(255,34,34,.25);}
 .lb-pos{font-family:'Share Tech Mono',monospace;font-size:.72rem;width:26px;text-align:center;color:var(--dim);flex-shrink:0;}
+.lb-pos.gold{color:#ffcc00;}
+.lb-pos.silver{color:#aaaaaa;}
+.lb-pos.bronze{color:#cc7700;}
 .lb-name{flex:1;font-size:.88rem;font-weight:600;}
 .lb-coins{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--red);}
-.rank-note{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.1em;color:var(--dim);text-align:center;padding:10px;opacity:.6;}
 
-/* ── ABOUT / SETTINGS PANEL ── */
-.settings-section{margin-bottom:20px;}
-.settings-title{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:var(--dim);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,34,34,.1);}
-.settings-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);}
-.settings-label{font-size:.85rem;color:var(--text);}
-.settings-sub{font-size:.7rem;color:var(--dim);margin-top:2px;}
-.about-card{padding:16px;background:rgba(255,34,34,.04);border:1px solid rgba(255,34,34,.1);border-radius:10px;margin-bottom:12px;}
-.about-card p{font-size:.82rem;color:var(--dim);line-height:1.65;}
-.about-card strong{color:var(--text);}
-.danger-btn{width:100%;padding:12px;background:transparent;border:1px solid rgba(255,34,34,.3);border-radius:8px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.15em;color:rgba(255,34,34,.6);transition:all .2s;margin-top:8px;}
-.danger-btn:hover{background:rgba(255,34,34,.1);color:var(--red);}
-
-/* ── PROOF MODAL ── */
-.modal-bg{position:fixed;inset:0;z-index:200;background:rgba(4,4,14,.94);display:none;align-items:center;justify-content:center;}
+/* PROOF MODAL */
+.modal-bg{position:fixed;inset:0;z-index:200;background:rgba(4,4,14,.94);display:flex;align-items:center;justify-content:center;display:none;}
 .modal-bg.on{display:flex;}
 .modal-box{width:min(420px,92vw);background:#07071a;border:1px solid rgba(255,34,34,.3);border-radius:14px;padding:24px;}
 .modal-title{font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.2em;color:var(--red);margin-bottom:6px;}
@@ -200,86 +162,101 @@ textarea.inp{resize:none;height:80px;font-size:.95rem;}
 .modal-submit{flex:2;padding:11px;background:linear-gradient(135deg,rgba(255,34,34,.28),var(--red));border:none;border-radius:8px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.12em;color:#fff;}
 .proof-preview{max-width:100%;max-height:160px;border-radius:8px;border:1px solid rgba(255,34,34,.3);display:none;margin-bottom:12px;}
 
-/* ── EDIT PROFILE MODAL ── */
-#edit-modal{position:fixed;inset:0;z-index:300;background:rgba(4,4,14,.96);display:none;align-items:center;justify-content:center;}
-#edit-modal.on{display:flex;}
-.edit-box{width:min(440px,94vw);background:#07071a;border:1px solid rgba(255,34,34,.3);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px;max-height:90vh;overflow-y:auto;}
-
-/* ── TOAST ── */
-.toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:500;background:rgba(7,7,26,.97);border:1px solid rgba(255,34,34,.4);border-radius:10px;padding:10px 18px;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--text);display:none;max-width:88vw;text-align:center;}
-
-/* ── COIN ANIMATION ── */
-.coin-burst{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:600;pointer-events:none;display:none;flex-direction:column;align-items:center;gap:8px;animation:coinPop .6s ease forwards;}
-.coin-burst-num{font-family:'Share Tech Mono',monospace;font-size:2rem;color:var(--gold);text-shadow:0 0 20px var(--gold);}
-.coin-burst-lbl{font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--red);}
-
-/* ── LEVEL UP BANNER ── */
-.lvlup-banner{position:fixed;top:0;left:0;right:0;z-index:550;background:linear-gradient(135deg,rgba(255,204,0,.15),rgba(255,34,34,.25));border-bottom:1px solid var(--gold);padding:14px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.2em;color:var(--gold);display:none;animation:slideIn .4s ease;}
+/* TOAST */
+.toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:500;background:rgba(7,7,26,.97);border:1px solid rgba(255,34,34,.4);border-radius:10px;padding:10px 18px;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--text);display:none;max-width:88vw;text-align:center;backdrop-filter:blur(10px);}
 
 input[type=file]{display:none;}
 
-/* ── MOBILE ── */
-@media(max-width:768px){
+/* HOVER + INTERACTION EFFECTS */
+.ptile:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 8px 24px rgba(255,34,34,.25);}
+.ptile.sel{transform:translateY(-2px);box-shadow:0 0 20px rgba(255,34,34,.4);}
+.cta:active{transform:scale(.98);}
+.nb:hover .ni{transform:scale(1.15);transition:transform .2s;}
+.tc:hover{border-color:rgba(255,34,34,.3);background:rgba(255,34,34,.07);transform:translateX(2px);}
+.lb-row:hover{border-color:rgba(255,34,34,.2);background:rgba(255,34,34,.05);}
+.msg.m{animation:msgIn .3s ease forwards;}
+.msg.u{animation:msgIn .3s ease forwards;}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* CURSOR GLOW */
+#cursor-glow{position:fixed;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,34,34,.06),transparent 70%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);transition:left .1s,top .1s;}
+
+/* BOOT HOOK */
+#boot-hook{animation:fadeUp .8s ease forwards;}
+#boot-q{animation:fadeUp .8s ease forwards;}
+#boot-cta{transform:translateY(10px);transition:opacity .5s,transform .5s,box-shadow .3s;}
+#boot-cta:hover{box-shadow:0 0 44px rgba(255,34,34,.8);transform:translateY(-2px) !important;}
+
+/* BETTER MOBILE */
+/* MOBILE FIXES */
+@media (max-width: 768px) {
   .ob-box{padding:20px 16px;gap:14px;}
   .ptiles{grid-template-columns:repeat(2,1fr);gap:10px;}
   .ptile{padding:14px 8px;}
   .ptile .ic{font-size:1.5rem;}
   .ptile .lb{font-size:.55rem;}
-  .inp{font-size:16px !important;}
+  .inp{font-size:16px !important;} /* prevents zoom on iOS */
   textarea.inp{font-size:16px !important;}
   .cta{padding:17px;font-size:.75rem;}
-  .nb{padding:6px 2px;}
-  .nb .ni{font-size:1.3rem;}
-  .nb .nt{font-size:.44rem;}
 }
 
-/* touch friendliness */
-.ptile,.cta,.nb,.sbtn,.vbtn,.cam-btn,.gen-btn,.proof-btn,.modal-cancel,.modal-submit,.intro-enter,.hud-btn,.danger-btn{
-  -webkit-tap-highlight-color:rgba(255,34,34,.3);
-  touch-action:manipulation;
-  cursor:pointer;
+/* Ensure all interactive elements work on touch */
+.ptile, .cta, .nb, .sbtn, .vbtn, .cam-btn, .gen-btn, .proof-btn, .modal-cancel, .modal-submit, .intro-enter {
+  -webkit-tap-highlight-color: rgba(255,34,34,0.3);
+  touch-action: manipulation;
+  cursor: pointer;
 }
-.inp,textarea.inp,.ci{
-  touch-action:manipulation;
-  -webkit-tap-highlight-color:transparent;
+.inp, textarea.inp, .ci {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 </style>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vx3jzkr86n");</script>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vx3jzkr86n");</script>
 </head>
 <body>
-<canvas id="stars"></canvas>
+<canvas id="stars" style="pointer-events:none!important;touch-action:none;"></canvas>
 
-<!-- ── BOOT ── -->
+<!-- BOOT -->
 <div class="screen on" id="s-boot">
-  <div style="text-align:center;max-width:520px;padding:0 24px;">
+  <div id="boot-inner" style="text-align:center;max-width:520px;padding:0 24px;">
+    
+    <!-- Phase 1: Logo -->
     <div id="boot-p1" style="transition:opacity .6s;">
       <div class="boot-logo">ELYX</div>
       <div class="boot-tagline">YOUR ERA BEGINS</div>
-      <div class="boot-subtitle">AI MENTOR · DAILY MISSIONS · GAMIFIED ACCOUNTABILITY</div>
+      <div style="font-family:monospace;font-size:.58rem;letter-spacing:.15em;color:rgba(255,34,34,.6);margin-top:8px;">AI MENTOR · ACCOUNTABILITY · GAMIFIED GROWTH</div>
     </div>
+    
+    <!-- Phase 2: Provocative statement (hidden initially) -->
     <div id="boot-p2" style="display:none;opacity:0;transition:opacity .8s;">
       <div id="boot-hook" style="font-size:clamp(1.1rem,4vw,1.5rem);font-weight:700;letter-spacing:.04em;line-height:1.6;color:var(--text);margin-bottom:20px;"></div>
       <div id="boot-sub-hook" style="font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--red);opacity:.8;"></div>
     </div>
+
+    <!-- Phase 3: Personal question (hidden initially) -->
     <div id="boot-p3" style="display:none;opacity:0;transition:opacity .8s;">
       <div id="boot-q" style="font-size:clamp(1.2rem,4vw,1.6rem);font-weight:700;line-height:1.7;color:var(--text);margin-bottom:28px;"></div>
       <button id="boot-cta" style="padding:14px 36px;background:linear-gradient(135deg,rgba(255,34,34,.3),var(--red));border:none;border-radius:4px;cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.2em;color:#fff;box-shadow:0 0 24px rgba(255,34,34,.5);transition:all .3s;opacity:0;">
         I AM READY →
       </button>
     </div>
+
+    <!-- Loading bar (shown during init) -->
     <div id="boot-loader" style="margin-top:32px;">
       <div class="boot-bar-outer"><div class="boot-bar-inner" id="b-bar"></div></div>
       <div class="boot-txt" id="b-txt" style="margin-top:8px;">INITIALIZING...</div>
     </div>
+
   </div>
 </div>
 
-<!-- ── ONBOARD ── -->
+<!-- ONBOARD -->
 <div class="screen" id="s-ob">
   <div class="ob-box">
     <div class="ob-head">
       <div class="ob-head-tag">ELYX · NEW OPERATIVE</div>
-      <div class="ob-head-title">BEGIN YOUR ERA</div>
-      <div style="font-size:.75rem;color:var(--dim);margin-top:8px;line-height:1.5;">Your AI mentor that gives you daily missions,<br>tracks your progress, and never lets you make excuses.</div>
+      <div class="ob-head-title" style="animation:fadeUp 0.8s ease forwards;">BEGIN YOUR ERA</div>
     </div>
     <div>
       <label class="lbl">WHAT DO PEOPLE CALL YOU?</label>
@@ -300,28 +277,24 @@ input[type=file]{display:none;}
     </div>
     <div>
       <label class="lbl">YOUR ONE BIG GOAL?</label>
-      <textarea class="inp" id="ob-goal" placeholder="e.g. Launch my SaaS to 100 paying users in 90 days..."></textarea>
+      <textarea class="inp" id="ob-goal" placeholder="The ONE thing that would change everything for you..."></textarea>
     </div>
     <div class="err" id="ob-err"></div>
     <button class="cta" id="ob-btn">BEGIN MY ERA →</button>
-    <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:.1em;color:rgba(255,255,255,.2);line-height:1.7;">
-      Your data stays on your device only · No account required<br>
-      Built by an indie founder · Open source on GitHub
-    </div>
   </div>
 </div>
 
-<!-- ── INTRO ── -->
+<!-- INTRO -->
 <div class="screen" id="s-intro">
   <div class="intro-inner">
     <div class="intro-orb">⚡</div>
     <div class="intro-label">ELYX · PERSONAL MENTOR</div>
     <div class="intro-text" id="intro-txt"></div>
-    <button class="intro-enter" id="intro-enter-btn">ENTER THE SYSTEM →</button>
+    <button class="intro-enter" id="intro-enter-btn" onclick="window.speechSynthesis&&window.speechSynthesis.cancel();updateHUD();initDash();show('s-dash');" ontouchend="event.preventDefault();window.speechSynthesis&&window.speechSynthesis.cancel();updateHUD();initDash();show('s-dash');">ENTER THE SYSTEM →</button>
   </div>
 </div>
 
-<!-- ── DASHBOARD ── -->
+<!-- DASHBOARD -->
 <div class="screen" id="s-dash">
   <div class="hud">
     <div class="hud-logo">ELYX</div>
@@ -329,40 +302,41 @@ input[type=file]{display:none;}
       <div class="hud-name" id="h-name">–</div>
       <div class="hud-lvl" id="h-lvl">LVL 0</div>
     </div>
-    <div class="hud-right">
-      <div style="font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--red);">◈ <span id="h-coins">0</span> EC</div>
-      <button class="hud-btn" id="share-btn">🔥 SHARE</button>
-      <button class="hud-btn" id="settings-btn">⚙</button>
-    </div>
+    <div class="hud-right" style="display:flex;align-items:center;gap:10px;">
+    <div style="font-family:monospace;font-size:.72rem;color:var(--red);">◈ <span id="h-coins">0</span> EC</div>
+    <button onclick="showShareCard()" style="cursor:pointer;padding:4px 10px;background:rgba(255,34,34,.1);border:1px solid rgba(255,34,34,.3);border-radius:4px;font-family:monospace;font-size:.55rem;letter-spacing:.1em;color:var(--red);transition:all .2s;" title="Share your progress">🔥 SHARE</button>
   </div>
-
+  </div>
+  <!-- GUIDED FLOW BAR -->
+  <div id="flow-bar" style="display:flex;align-items:center;justify-content:center;gap:0;background:rgba(4,4,14,.8);border-bottom:1px solid rgba(255,34,34,.1);padding:6px 16px;font-family:monospace;font-size:.52rem;letter-spacing:.12em;">
+    <div id="flow-1" class="flow-step active-step" onclick="goPanel('chat')" style="cursor:pointer;padding:5px 12px;color:var(--red);border-bottom:1px solid var(--red);">1. CHAT WITH MENTOR</div>
+    <div style="color:rgba(255,255,255,.2);padding:0 6px;">›</div>
+    <div id="flow-2" class="flow-step" onclick="goPanel('tasks')" style="cursor:pointer;padding:5px 12px;color:rgba(255,255,255,.3);">2. COMPLETE MISSIONS</div>
+    <div style="color:rgba(255,255,255,.2);padding:0 6px;">›</div>
+    <div id="flow-3" class="flow-step" onclick="goPanel('status')" style="cursor:pointer;padding:5px 12px;color:rgba(255,255,255,.3);">3. LEVEL UP</div>
+  </div>
   <div class="panels">
     <!-- CHAT -->
     <div class="panel on" id="p-chat">
       <div class="chat-top">
         <div class="chat-av">⚡</div>
-        <div>
-          <div class="chat-mn">ELYX MENTOR</div>
-          <div class="chat-ms">● ONLINE · AI POWERED</div>
-        </div>
+        <div><div class="chat-mn">ELYX MENTOR</div><div class="chat-ms">● ONLINE · AI POWERED</div></div>
       </div>
       <div class="chat-msgs" id="chat-msgs"></div>
       <div class="chat-input-row">
         <input class="ci" id="ci" placeholder="Message your mentor..."/>
-        <button class="vbtn" id="vbtn">🎙</button>
-        <button class="sbtn" id="sbtn">➤</button>
+        <button class="vbtn" id="vbtn" id="vbtn-real">🎙</button>
+        <button class="sbtn" id="sbtn-real">➤</button>
       </div>
     </div>
-
     <!-- TASKS -->
     <div class="panel" id="p-tasks">
       <div class="gen-bar">
         <div class="sec-title" style="margin:0">TODAY'S MISSIONS</div>
-        <button class="gen-btn" id="gen-btn">⚡ GENERATE</button>
+        <button class="gen-btn" id="gen-btn-real">⚡ GENERATE</button>
       </div>
       <div id="tasks-wrap"></div>
     </div>
-
     <!-- STATUS -->
     <div class="panel" id="p-status">
       <div class="sec-title">YOUR STATUS</div>
@@ -375,69 +349,27 @@ input[type=file]{display:none;}
       <label class="lbl">NEXT LEVEL</label>
       <div class="pbar-wrap"><div class="pbar-fill" id="pbar" style="width:0%"></div></div>
       <div id="pbar-txt" style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--dim);">0 / 50 EC</div>
-      <div style="margin-top:20px;">
-        <label class="lbl">LAST 7 DAYS</label>
-        <div class="week-grid" id="week-grid"></div>
-      </div>
     </div>
-
     <!-- RANK -->
     <div class="panel" id="p-rank">
       <div class="sec-title">GLOBAL RANKINGS</div>
       <div class="rank-me">
-        <div class="rank-me-num" id="my-rank">#1</div>
+        <div class="rank-me-num" id="my-rank">#–</div>
         <div class="rank-me-lbl">YOUR RANK</div>
         <div class="rank-me-sub" id="my-rank-sub">0 Elite Coins</div>
       </div>
       <div id="lb-list"></div>
-      <div class="rank-note">Rankings update as more operatives join · Be the first on the board</div>
-    </div>
-
-    <!-- SETTINGS / ABOUT -->
-    <div class="panel" id="p-settings">
-      <div class="sec-title">SETTINGS & ABOUT</div>
-
-      <div class="settings-section">
-        <div class="settings-title">PROFILE</div>
-        <div class="settings-row">
-          <div><div class="settings-label" id="set-name-lbl">–</div><div class="settings-sub" id="set-prof-lbl">–</div></div>
-          <button class="hud-btn" id="edit-profile-btn">EDIT</button>
-        </div>
-        <div class="settings-row">
-          <div><div class="settings-label">Current Goal</div><div class="settings-sub" id="set-goal-lbl" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">–</div></div>
-        </div>
-      </div>
-
-      <div class="settings-section">
-        <div class="settings-title">ABOUT ELYX</div>
-        <div class="about-card">
-          <p><strong>ELYX</strong> is an AI-powered accountability mentor that gives you daily missions tailored to your goal, tracks your progress with gamified coins and levels, and holds you accountable like a real coach.</p>
-        </div>
-        <div class="about-card" style="margin-top:8px;">
-          <p><strong>🔒 Privacy:</strong> All your data (name, goal, progress) stays on your device in localStorage. Nothing is sent to any server except your chat messages to the AI.</p>
-        </div>
-        <div class="about-card" style="margin-top:8px;">
-          <p><strong>👨‍💻 Built by</strong> an indie founder. Open source on GitHub. <br><br>Found a bug or have feedback? <strong style="color:var(--red);">Open an issue on GitHub</strong> or message on Twitter.</p>
-        </div>
-      </div>
-
-      <div class="settings-section">
-        <div class="settings-title">DANGER ZONE</div>
-        <button class="danger-btn" id="reset-btn">⚠ RESET ALL PROGRESS & START OVER</button>
-      </div>
     </div>
   </div>
-
   <div class="nav">
-    <button class="nb on" data-panel="chat"><div class="ni">💬</div><div class="nt">MENTOR</div></button>
-    <button class="nb" data-panel="tasks"><div class="ni">⚡</div><div class="nt">MISSIONS</div></button>
-    <button class="nb" data-panel="status"><div class="ni">◈</div><div class="nt">STATUS</div></button>
-    <button class="nb" data-panel="rank"><div class="ni">🏆</div><div class="nt">RANK</div></button>
-    <button class="nb" data-panel="settings"><div class="ni">⚙️</div><div class="nt">MORE</div></button>
+    <button class="nb on" id="nb-chat" data-panel="chat"><div class="ni">💬</div><div class="nt">MENTOR</div></button>
+    <button class="nb" id="nb-tasks" data-panel="tasks"><div class="ni">⚡</div><div class="nt">MISSIONS</div></button>
+    <button class="nb" id="nb-status" data-panel="status"><div class="ni">◈</div><div class="nt">STATUS</div></button>
+    <button class="nb" id="nb-rank" data-panel="rank"><div class="ni">🏆</div><div class="nt">RANK</div></button>
   </div>
 </div>
 
-<!-- ── PROOF MODAL ── -->
+<!-- PROOF MODAL -->
 <div class="modal-bg" id="proof-modal">
   <div class="modal-box">
     <div class="modal-title" id="pm-title">SUBMIT PROOF</div>
@@ -446,7 +378,7 @@ input[type=file]{display:none;}
       <button class="proof-btn cam" id="cam-trig">📷 CAMERA PROOF</button>
       <button class="proof-btn txt" id="txt-proof-btn">✍ TEXT PROOF</button>
     </div>
-    <img id="proof-preview" class="proof-preview" alt="proof"/>
+    <img id="proof-preview" class="proof-preview"/>
     <textarea class="proof-textarea" id="proof-text" placeholder="Describe exactly what you did — time spent, what you built, specific output..."></textarea>
     <div class="modal-actions">
       <button class="modal-cancel" id="modal-cancel">CANCEL</button>
@@ -455,149 +387,70 @@ input[type=file]{display:none;}
   </div>
 </div>
 
-<!-- ── EDIT PROFILE MODAL ── -->
-<div id="edit-modal">
-  <div class="edit-box">
-    <div class="ob-head">
-      <div class="ob-head-tag">EDIT PROFILE</div>
-    </div>
-    <div>
-      <label class="lbl">YOUR NAME</label>
-      <input class="inp" id="edit-name" type="text" maxlength="40"/>
-    </div>
-    <div>
-      <label class="lbl">YOUR GRIND</label>
-      <div class="ptiles" id="edit-ptiles">
-        <div class="ptile" data-edit="entrepreneur"><div class="ic">🚀</div><div class="lb">ENTREPRENEUR</div></div>
-        <div class="ptile" data-edit="student"><div class="ic">📚</div><div class="lb">STUDENT</div></div>
-        <div class="ptile" data-edit="developer"><div class="ic">💻</div><div class="lb">DEVELOPER</div></div>
-        <div class="ptile" data-edit="creator"><div class="ic">🎨</div><div class="lb">CREATOR</div></div>
-        <div class="ptile" data-edit="athlete"><div class="ic">⚡</div><div class="lb">ATHLETE</div></div>
-        <div class="ptile" data-edit="business"><div class="ic">💼</div><div class="lb">BUSINESS</div></div>
-        <div class="ptile" data-edit="freelancer"><div class="ic">🌐</div><div class="lb">FREELANCER</div></div>
-        <div class="ptile" data-edit="other"><div class="ic">✨</div><div class="lb">OTHER</div></div>
-      </div>
-    </div>
-    <div>
-      <label class="lbl">YOUR GOAL</label>
-      <textarea class="inp" id="edit-goal" style="height:80px;resize:none;"></textarea>
-    </div>
-    <div style="display:flex;gap:10px;">
-      <button class="modal-cancel" id="edit-cancel" style="flex:1;padding:13px;">CANCEL</button>
-      <button class="modal-submit" id="edit-save" style="flex:2;padding:13px;">SAVE CHANGES →</button>
-    </div>
-  </div>
-</div>
-
-<!-- ── SHARE CARD ── -->
-<div id="share-overlay" style="display:none;position:fixed;inset:0;z-index:800;background:rgba(4,4,14,.97);flex-direction:column;align-items:center;justify-content:center;padding:20px;">
-  <div id="share-card" style="width:min(360px,90vw);background:#0a0a1a;border:1px solid rgba(255,34,34,.4);border-radius:16px;padding:28px;text-align:center;position:relative;overflow:hidden;">
-    <div style="font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.3em;color:var(--red);margin-bottom:16px;">ELYX · ELITE REPORT</div>
-    <div id="sc-name" style="font-size:1.4rem;font-weight:700;letter-spacing:.05em;margin-bottom:4px;"></div>
-    <div id="sc-level" style="font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:rgba(255,34,34,.7);margin-bottom:20px;"></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
-      <div style="padding:12px;background:rgba(255,34,34,.06);border:1px solid rgba(255,34,34,.12);border-radius:8px;">
-        <div id="sc-coins" style="font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--red);"></div>
-        <div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:2px;">ELITE COINS</div>
-      </div>
-      <div style="padding:12px;background:rgba(255,34,34,.06);border:1px solid rgba(255,34,34,.12);border-radius:8px;">
-        <div id="sc-tasks" style="font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--red);"></div>
-        <div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:2px;">MISSIONS DONE</div>
-      </div>
-    </div>
-    <div style="padding:12px;background:rgba(255,34,34,.04);border:1px solid rgba(255,34,34,.1);border-radius:8px;margin-bottom:20px;">
-      <div style="font-size:.62rem;color:rgba(255,255,255,.35);font-family:monospace;letter-spacing:.1em;margin-bottom:4px;">MISSION</div>
-      <div id="sc-goal" style="font-size:.82rem;color:var(--text);line-height:1.4;"></div>
-    </div>
-    <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.15em;color:rgba(255,255,255,.4);margin-bottom:16px;">elyx-founder.github.io/mentor-elyx-system</div>
-    <div style="font-size:.75rem;color:rgba(255,34,34,.7);font-style:italic;">"My AI mentor that actually holds me accountable"</div>
-  </div>
-  <div style="display:flex;gap:10px;margin-top:20px;">
-    <button onclick="doShare()" style="cursor:pointer;padding:12px 24px;background:linear-gradient(135deg,rgba(255,34,34,.3),var(--red));border:none;border-radius:8px;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.15em;color:#fff;">🔥 SHARE THIS</button>
-    <button onclick="document.getElementById('share-overlay').style.display='none'" style="cursor:pointer;padding:12px 20px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:8px;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.12em;color:rgba(255,255,255,.5);">CLOSE</button>
-  </div>
-</div>
-
-<!-- ── COIN BURST ── -->
-<div class="coin-burst" id="coin-burst">
-  <div class="coin-burst-num" id="coin-num">+15</div>
-  <div class="coin-burst-lbl">ELITE COINS EARNED</div>
-</div>
-
-<!-- ── LEVEL UP BANNER ── -->
-<div class="lvlup-banner" id="lvlup-banner"></div>
-
-<input type="file" id="cam-in" accept="image/*" capture="environment"/>
+<input type="file" id="cam-in" accept="image/*" capture="environment" onchange="onCamFile(this)"/>
 <div class="toast" id="toast"></div>
 
 <script>
-// ── CONFIG — replace with your own proxy/backend for production ──
-// Keys are exposed here for demo only. For production, route through a backend.
 var GEMINI_KEY='AIzaSyD-TR0a43u5lqNUfALDNJwpaeLEKGu8FBo';
 var OR_KEY='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';
-
-var THRESH=[0,50,150,300,500,750,1000];
-var LVLNAMES=['INITIATOR','SEEKER','BUILDER','DOMINATOR','ELITE','APEX','LEGEND'];
+var THRESH=[0,50,150,300,500,750];
+var LVLNAMES=['INITIATOR','SEEKER','BUILDER','DOMINATOR','ELITE','APEX'];
+var FAKE_USERS=[
+  {name:'Arjun Mehta',coins:680,level:5},
+  {name:'Priya Sharma',coins:520,level:4},
+  {name:'Rahul Gupta',coins:410,level:3},
+  {name:'Sneha Patel',coins:340,level:3},
+  {name:'Karan Singh',coins:280,level:2},
+  {name:'Ananya Verma',coins:210,level:2},
+  {name:'Dev Malhotra',coins:165,level:2},
+  {name:'Riya Joshi',coins:120,level:1},
+  {name:'Aditya Kumar',coins:75,level:1},
+  {name:'Meera Nair',coins:30,level:0},
+];
 
 var U={name:'',prof:'',goal:'',level:0,coins:0,tasks:0,streak:0};
-var selProf='',editProf='',pendTask=null,proofImg=null,isTyping=false,chatHist=[];
+var selProf='', pendTask=null, proofImg=null, isTyping=false, chatHist=[];
 
 function $(id){return document.getElementById(id);}
 function show(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');});$(id).classList.add('on');}
-
 function goPanel(p){
   document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('on');});
   document.querySelectorAll('.nb').forEach(function(x){x.classList.remove('on');});
   $('p-'+p).classList.add('on');
-  document.querySelector('.nb[data-panel="'+p+'"]').classList.add('on');
+  $('nb-'+p).classList.add('on');
   if(p==='tasks')renderTasks();
   if(p==='rank')renderRank();
-  if(p==='status'){updateStatus();renderWeek();}
-  if(p==='settings')renderSettings();
+  if(p==='status')updateStatus();
+  // Update flow bar
+  var flowMap={chat:1,tasks:2,status:3,rank:3};
+  var step=flowMap[p]||1;
+  [1,2,3].forEach(function(n){
+    var el=$('flow-'+n);
+    if(!el) return;
+    if(n===step){el.style.color='var(--red)';el.style.borderBottom='1px solid var(--red)';}
+    else if(n<step){el.style.color='rgba(0,238,68,.6)';el.style.borderBottom='none';}
+    else{el.style.color='rgba(255,255,255,.3)';el.style.borderBottom='none';}
+  });
 }
 
 function save(){localStorage.setItem('EX_U',JSON.stringify(U));}
-function load(){
-  try{
-    var d=JSON.parse(localStorage.getItem('EX_U')||'{}');
-    if(d&&d.name){Object.assign(U,d);return true;}
-  }catch(e){}
-  return false;
-}
+function load(){try{var d=JSON.parse(localStorage.getItem('EX_U')||'{}');if(d.name){Object.assign(U,d);return true;}}catch(e){}return false;}
 function calcLvl(c){for(var i=THRESH.length-1;i>=0;i--)if(c>=THRESH[i])return i;return 0;}
 function today(){return new Date().toISOString().slice(0,10);}
 
-function toast(msg,ms){
-  var t=$('toast');t.textContent=msg;t.style.display='block';
-  clearTimeout(window._tt);
-  window._tt=setTimeout(function(){t.style.display='none';},ms||3000);
-}
+function toast(msg,ms){var t=$('toast');t.textContent=msg;t.style.display='block';clearTimeout(window._tt);window._tt=setTimeout(function(){t.style.display='none';},ms||3000);}
 
-function showCoinBurst(n){
-  var b=$('coin-burst'),num=$('coin-num');
-  num.textContent='+'+n;
-  b.style.display='flex';
-  setTimeout(function(){b.style.display='none';},1800);
-}
-
-function showLvlUp(lvl){
-  var b=$('lvlup-banner');
-  b.textContent='⚡ LEVEL UP! You are now '+LVLNAMES[lvl]+' — Level '+lvl;
-  b.style.display='block';
-  setTimeout(function(){b.style.display='none';},4000);
-}
-
-// ── STARS ──
+// ── STARS BG ────────────────────────────────────────
 (function(){
-  var c=$('stars'),ctx=c.getContext('2d'),pts=[];
-  function rs(){c.width=innerWidth;c.height=innerHeight;}
+  var c=$('stars'),ctx=c.getContext('2d'),W,H,pts=[];
+  function rs(){W=c.width=innerWidth;H=c.height=innerHeight;}
   rs();addEventListener('resize',rs);
   for(var i=0;i<140;i++)pts.push({x:Math.random()*9999,y:Math.random()*9999,r:.3+Math.random()*.9,a:Math.random()*6.28,s:.002+Math.random()*.003});
   function draw(){
-    ctx.clearRect(0,0,c.width,c.height);
+    ctx.clearRect(0,0,W,H);
     pts.forEach(function(p){
       p.a+=p.s;
-      ctx.beginPath();ctx.arc(p.x%c.width,p.y%c.height,p.r,0,6.28);
+      ctx.beginPath();ctx.arc(p.x%W,p.y%H,p.r,0,6.28);
       ctx.fillStyle='rgba(255,34,34,'+(0.12+Math.sin(p.a)*.08)+')';
       ctx.fill();
     });
@@ -606,73 +459,113 @@ function showLvlUp(lvl){
   draw();
 })();
 
-// ── BOOT ──
+// ── BOOT ────────────────────────────────────────────
 (function(){
-  var steps=[['INITIALIZING...',20],['LOADING AI CORE...',55],['SYNCING SYSTEM...',80],['READY',100]];
+  // Phase 1: Quick load bar
+  var steps=[['INITIALIZING...',20],['LOADING AI CORE...',55],['READY',100]];
   var i=0;
   function runBar(){
     if(i>=steps.length){
+      // If returning user - skip hook, go direct
       if(load()){
-        setTimeout(function(){updateHUD();initDash();show('s-dash');},300);
+        setTimeout(function(){updateHUD();initDash();show('s-dash');},400);
         return;
       }
-      setTimeout(showHook,300);
+      // New user - show psychological hook sequence
+      setTimeout(showHook, 300);
       return;
     }
     $('b-txt').textContent=steps[i][0];
     $('b-bar').style.width=steps[i][1]+'%';
     i++;
-    setTimeout(runBar,350+Math.random()*200);
+    setTimeout(runBar, 400+Math.random()*300);
   }
   runBar();
 
   function showHook(){
-    $('boot-loader').style.display='none';
+    // Hide loader
+    var loader=$('boot-loader');
+    if(loader) loader.style.display='none';
+
+    // Phase 2: Provocative statement
     var p2=$('boot-p2');
-    var statements=[
-      'Most people will never reach their potential.',
-      'You already know what you should be doing.',
-      'The gap between where you are and where you want to be — it is not talent.',
-      'Every day you delay is a day someone else gets ahead.'
-    ];
-    $('boot-hook').textContent=statements[Math.floor(Math.random()*statements.length)];
-    $('boot-sub-hook').textContent='— the question is what you do about it.';
-    p2.style.display='block';
-    setTimeout(function(){p2.style.opacity='1';},50);
+    var hook=$('boot-hook');
+    var subhook=$('boot-sub-hook');
+    if(p2&&hook){
+      p2.style.display='block';
+      var statements=[
+        'Most people will never reach their potential.',
+        'You already know what you should be doing.',
+        'The gap between where you are and where you want to be — it is not talent.',
+        'Every day you delay is a day someone else gets ahead.'
+      ];
+      hook.textContent=statements[Math.floor(Math.random()*statements.length)];
+      subhook.textContent='— the question is what you do about it.';
+      setTimeout(function(){p2.style.opacity='1';},50);
+    }
 
+    // Phase 3: Personal question + CTA
     setTimeout(function(){
-      p2.style.opacity='0';
+      if(p2) p2.style.opacity='0';
       setTimeout(function(){
-        p2.style.display='none';
+        if(p2) p2.style.display='none';
         var p3=$('boot-p3');
-        var questions=[
-          'Are you actually working toward your goal — or just thinking about it?',
-          'If nothing changed this year — would you be okay with that?',
-          'What would you do differently if you had a mentor who never let you make excuses?',
-          'How many times have you said "I will start tomorrow"?'
-        ];
-        $('boot-q').textContent=questions[Math.floor(Math.random()*questions.length)];
-        p3.style.display='block';
-        setTimeout(function(){
-          p3.style.opacity='1';
+        var q=$('boot-q');
+        var cta=$('boot-cta');
+        if(p3&&q){
+          p3.style.display='block';
+          var questions=[
+            'Are you actually working toward your goal — or just thinking about it?',
+            'If nothing changed this year — would you be okay with that?',
+            'What would you do differently if you had a mentor who never let you make excuses?',
+            'How many times have you said "I will start tomorrow"?'
+          ];
+          q.textContent=questions[Math.floor(Math.random()*questions.length)];
           setTimeout(function(){
-            var cta=$('boot-cta');
-            cta.style.opacity='1';
-            cta.style.transform='translateY(0)';
-          },600);
-        },50);
+            p3.style.opacity='1';
+            if(cta){
+              setTimeout(function(){
+                cta.style.opacity='1';
+                cta.style.transform='translateY(0)';
+              },600);
+            }
+          },50);
+        }
       },600);
-    },2500);
+    },2800);
   }
-})();
 
-// ── ONBOARD ──
-var selProf='';
-function selP(p,el){
-  selProf=p;
-  document.querySelectorAll('.ptile[data-sel]').forEach(function(x){x.classList.remove('sel');});
+  // CTA button
+  document.addEventListener('DOMContentLoaded',function(){
+    var cta=$('boot-cta');
+    if(cta){
+      cta.addEventListener('click',function(){
+        show('s-ob');
+        setTimeout(function(){$('ob-name').focus();},300);
+      });
+      cta.addEventListener('touchend',function(e){
+        e.preventDefault();
+        show('s-ob');
+        setTimeout(function(){$('ob-name').focus();},300);
+      });
+    }
+  });
+}());
+
+// ── ONBOARD ─────────────────────────────────────────
+var selToneVal='balanced';
+function selTone(t,el){
+  selToneVal=t;
+  document.querySelectorAll('#tone-intense,#tone-balanced,#tone-gentle').forEach(function(x){x.classList.remove('sel');});
   el.classList.add('sel');
 }
+
+function selP(p,el){
+  selProf=p;
+  document.querySelectorAll('.ptile:not(#tone-intense):not(#tone-balanced):not(#tone-gentle)').forEach(function(x){x.classList.remove('sel');});
+  el.classList.add('sel');
+}
+
 function doOB(){
   var name=$('ob-name').value.trim();
   var goal=$('ob-goal').value.trim();
@@ -681,37 +574,48 @@ function doOB(){
   if(!selProf){err.textContent='Pick your profession!';err.style.display='block';return;}
   if(!goal||goal.split(' ').filter(Boolean).length<3){err.textContent='Write your goal — at least 3 words!';err.style.display='block';$('ob-goal').focus();return;}
   err.style.display='none';
-  U={name:name,prof:selProf,goal:goal,level:0,coins:0,tasks:0,streak:0,history:{}};
+  U={name:name,prof:selProf,goal:goal,tone:selToneVal,level:0,coins:0,tasks:0,streak:0};
   save();
   startIntro();
 }
 
-// ── INTRO ──
+// ── MENTOR INTRO ────────────────────────────────────
 function startIntro(){
   show('s-intro');
-  var n=U.name.split(' ')[0],g=U.goal,p=U.prof;
-  var profInsight={
-    student:n+', most students study hard but never build anything real. You said your goal is "'+g.slice(0,40)+'". That gap between studying and doing — I live there.',
-    developer:n+', every developer thinks shipping more code is the answer. But "'+g.slice(0,40)+'" requires something deeper. I will show you what.',
-    entrepreneur:'I have seen hundreds of entrepreneurs, '+n+'. Most confuse being busy with making progress. Your goal — "'+g.slice(0,40)+'" — requires brutal focus.',
-    creator:n+', the content graveyard is full of talented people who never figured out consistency. "'+g.slice(0,40)+'" is achievable. But not the way you are doing it now.',
-    athlete:'Champions are not made in competitions, '+n+'. They are made in the sessions no one sees. "'+g.slice(0,40)+'" starts today.',
-    freelancer:n+', most freelancers stay stuck trading time for money forever. "'+g.slice(0,40)+'" means breaking that cycle. I know exactly how.',
-    business:'The difference between a business and a job, '+n+', is systems. "'+g.slice(0,40)+'" requires you to build a machine, not just work hard.',
-    other:n+', most people set goals and forget them within 2 weeks. "'+g.slice(0,40)+'" — I am going to make sure that does not happen to you.'
+  var n=U.name.split(' ')[0];
+  var g=U.goal;
+  var p=U.prof;
+  
+  // Personalized lines based on their exact data
+  var profInsight = {
+    student: n+', most students study hard but never build anything real. You said your goal is "'+g.slice(0,40)+'". That gap between studying and building — that is exactly where I live.',
+    developer: n+', every developer thinks shipping more code is the answer. But "'+g.slice(0,40)+'" requires something deeper than code. I am going to show you what.',
+    entrepreneur: 'I have seen hundreds of entrepreneurs, '+n+'. Most confuse being busy with making progress. Your goal — "'+g.slice(0,40)+'" — requires brutal focus. That is what I am here for.',
+    creator: n+', the content graveyard is full of talented people who never figured out consistency. "'+g.slice(0,40)+'" is achievable. But not the way you are doing it right now.',
+    athlete: 'Champions are not made in competitions, '+n+'. They are made in the training sessions no one sees. "'+g.slice(0,40)+'" starts today. Not when you feel ready.',
+    freelancer: n+', most freelancers stay stuck trading time for money forever. "'+g.slice(0,40)+'" means breaking that cycle. I know exactly how.',
+    business: 'The difference between a business and a job, '+n+', is systems. "'+g.slice(0,40)+'" requires you to build a machine, not just work hard.',
+    other: n+', most people set goals and forget them within 2 weeks. "'+g.slice(0,40)+'" — I am going to make sure that does not happen to you.'
   };
-  var lines=[
+  
+  var personalLine = profInsight[p] || profInsight.other;
+  
+  var lines = [
     'System online.',
     'Identity confirmed: '+n+'.',
-    profInsight[p]||profInsight.other,
+    personalLine,
     'I am ELYX. I do not motivate — I hold you accountable.',
     'Every excuse you make, I will see through it.',
     'Every win you earn, I will celebrate harder than anyone.',
     'Your era starts now, '+n+'.'
   ];
-  var el=$('intro-txt'),btn=$('intro-enter-btn'),idx=0;
+  
+  var el=$('intro-txt'), btn=$('intro-enter'), idx=0;
+  btn.style.display='none';
+  el.style.opacity='1';
+  
   function next(){
-    if(idx>=lines.length){setTimeout(function(){btn.classList.add('show');},500);return;}
+    if(idx>=lines.length){setTimeout(function(){btn.style.display='inline-block';},500);return;}
     var line=lines[idx++];
     el.style.opacity='0';
     setTimeout(function(){
@@ -722,73 +626,91 @@ function startIntro(){
         u.rate=0.88;u.pitch=0.85;
         var voices=speechSynthesis.getVoices();
         var deep=voices.find(function(v){return /male|david|alex|daniel/i.test(v.name);});
-        if(deep)u.voice=deep;
+        if(deep) u.voice=deep;
         speechSynthesis.speak(u);
       }
-      setTimeout(next,idx<=2?1400:2000);
+      setTimeout(next, idx<=2 ? 1400 : 2000);
     },350);
   }
-  if(speechSynthesis.getVoices().length===0){speechSynthesis.addEventListener('voiceschanged',function(){next();},{once:true});}
-  else{next();}
-  setTimeout(function(){btn.classList.add('show');},14000);
+  
+  if(speechSynthesis.getVoices().length===0){
+    speechSynthesis.addEventListener('voiceschanged',function(){next();},{once:true});
+  } else { next(); }
+  
+  setTimeout(function(){btn.style.display='inline-block';},16000);
 }
 
 function goDash(){
-  window.speechSynthesis&&window.speechSynthesis.cancel();
+  window.speechSynthesis && window.speechSynthesis.cancel();
   updateHUD();
   initDash();
   show('s-dash');
 }
 
-// ── DASHBOARD INIT ──
+// Make goDash available globally immediately
+window.goDash = goDash;
+
+// ── DASHBOARD INIT ───────────────────────────────────
 function initDash(){
   updateHUD();
-  var td=today();
-  var st=localStorage.getItem('EX_T'),sd=localStorage.getItem('EX_TD');
+  // Load saved tasks
+  var td=today(),st=localStorage.getItem('EX_T'),sd=localStorage.getItem('EX_TD');
   if(st&&sd===td){try{window._tasks=JSON.parse(st);renderTasks();}catch(e){}}
-
+  // Welcome + auto-generate tasks
   if(!localStorage.getItem('EX_WEL')){
     localStorage.setItem('EX_WEL','1');
-    var n=U.name.split(' ')[0];
+    var n=U.name.split(' ')[0],g=U.goal.slice(0,50);
+    // Step 1: Welcome message
     setTimeout(function(){
-      addMsg('m','Welcome '+n+'. Goal locked in. Generating your first 3 missions now — built specifically for "'+U.goal.slice(0,50)+'".');
+      addMsg('m',n+', you are in. Goal received. Generating your first 3 missions right now.');
     },600);
-    setTimeout(function(){genTasks();},1800);
+    // Step 2: Auto-generate — no button needed
+    setTimeout(function(){ genTasks(); },1800);
+    // Step 3: Guide them
     setTimeout(function(){
-      addMsg('m','Tap the 📷 camera button on each mission when done. Submit proof to earn Elite Coins. Day 1, '+n+'. Make it count.');
-    },5000);
+      addMsg('m','Tap camera on each mission when done to submit proof and earn Elite Coins. Day 1, '+n+'. Make it count.');
+    },4000);
   } else {
+    // Returning user — show saved tasks in chat
     var saved=window._tasks;
-    if(saved&&saved.length){setTimeout(function(){showTasksInChat(saved);},600);}
-  }
-
-  // Streak check
-  var lv=localStorage.getItem('EX_LV');
-  if(lv&&lv!==td&&U.name){
-    var n2=U.name.split(' ')[0];
-    var diff=Math.round((new Date(td)-new Date(lv))/(1000*60*60*24));
-    if(diff>1){
-      U.streak=0;save();
-      setTimeout(function(){addMsg('m',n2+', you were gone '+diff+' days. Streak reset to Day 1. What changed? Let us fix it right now.');},1200);
-    } else {
-      U.streak=(U.streak||0)+1;save();
-      var sk=['Day '+U.streak+' streak, '+n2+'. Every day you show up = identity proof.',
-              'Back again, '+n2+'. '+U.streak+' days straight. Most people quit by now.',
-              U.streak+' days, '+n2+'. This is what separates people who talk from people who do.'];
-      setTimeout(function(){addMsg('m',sk[Math.floor(Math.random()*sk.length)]);},1000);
+    if(saved&&saved.length){
+      setTimeout(function(){ showTasksInChat(saved); },600);
     }
   }
-  // mark today active
-  if(!U.history)U.history={};
-  U.history[td]=true;
-  save();
-  localStorage.setItem('EX_LV',td);
+  // Streak
+  var lv=localStorage.getItem('EX_LV'),td2=today();
+  if(lv&&lv!==td2&&U.name){
+    var n2=U.name.split(' ')[0];
+    // Check if they missed a day
+    var lastDate=new Date(lv), todayDate=new Date(td2);
+    var diffDays=Math.round((todayDate-lastDate)/(1000*60*60*24));
+    if(diffDays>1){
+      // Missed days - guilt message
+      U.streak=0; save();
+      setTimeout(function(){
+        addMsg('m',n2+', you were gone for '+diffDays+' days. Your '+diffDays+'-day gap is a choice. The question is — what happens today? Streak reset. Day 1 again. Make it matter.');
+      },1500);
+    } else {
+      U.streak=(U.streak||0)+1; save();
+      setTimeout(function(){
+        var streakMsgs=[
+          n2+' is back. Day '+U.streak+' streak. Every day you show up = identity proof.',
+          'Day '+U.streak+', '+n2+'. Most people quit by now. You are still here.',
+          U.streak+' days straight, '+n2+'. This is what discipline looks like.'
+        ];
+        addMsg('m',streakMsgs[Math.floor(Math.random()*streakMsgs.length)]);
+      },1200);
+    }
+  } else if(!lv&&U.name){
+    // First time on dashboard
+  }
+  localStorage.setItem('EX_LV',td2);
 }
 
 function updateHUD(){
   var n=U.name?U.name.split(' ')[0].toUpperCase():'–';
   $('h-name').textContent=n;
-  $('h-lvl').textContent='LVL '+U.level+' · '+LVLNAMES[Math.min(U.level,LVLNAMES.length-1)];
+  $('h-lvl').textContent='LVL '+U.level+' · '+LVLNAMES[U.level];
   $('h-coins').textContent=U.coins;
 }
 function updateStatus(){
@@ -796,149 +718,227 @@ function updateStatus(){
   $('st-ec').textContent=U.coins;
   $('st-tk').textContent=U.tasks;
   $('st-sk').textContent=U.streak;
-  var c=THRESH[U.level]||0,nx=THRESH[Math.min(U.level+1,THRESH.length-1)]||1000;
+  var c=THRESH[U.level]||0,nx=THRESH[U.level+1]||750;
   var pct=nx>c?Math.min(100,((U.coins-c)/(nx-c))*100):100;
   $('pbar').style.width=pct+'%';
   $('pbar-txt').textContent=U.coins+' / '+nx+' EC';
 }
-function renderWeek(){
-  var days=['M','T','W','T','F','S','S'];
-  var hist=U.history||{};
-  var g=$('week-grid');
-  g.innerHTML='';
-  var td=new Date();
-  for(var i=6;i>=0;i--){
-    var d=new Date(td);d.setDate(d.getDate()-i);
-    var key=d.toISOString().slice(0,10);
-    var isToday=(i===0);
-    var active=!!hist[key];
-    var div=document.createElement('div');div.className='wday';
-    var dot=document.createElement('div');
-    dot.className='wday-dot'+(active?' active':'')+(isToday?' today':'');
-    dot.textContent=active?'✓':'';
-    var lbl=document.createElement('div');lbl.className='wday-lbl';lbl.textContent=days[d.getDay()===0?6:d.getDay()-1];
-    div.appendChild(dot);div.appendChild(lbl);
-    g.appendChild(div);
-  }
-}
-function renderSettings(){
-  $('set-name-lbl').textContent=U.name||'–';
-  $('set-prof-lbl').textContent=(U.prof||'').toUpperCase();
-  $('set-goal-lbl').textContent=U.goal||'–';
-}
 
-// ── RANK ──
+// ── RANK ─────────────────────────────────────────────
 function renderRank(){
-  var all=[{name:U.name||'You',coins:U.coins,level:U.level,me:true,activity:'now'}];
-  // Only show real user — no fake users
+  var all=[
+    {name:'Arjun Mehta',coins:680,level:5,activity:'2 min ago'},
+    {name:'Priya Sharma',coins:520,level:4,activity:'15 min ago'},
+    {name:'Rahul Gupta',coins:410,level:3,activity:'1 hr ago'},
+    {name:'Sneha Patel',coins:340,level:3,activity:'3 hrs ago'},
+    {name:'Karan Singh',coins:280,level:2,activity:'5 hrs ago'},
+    {name:'Ananya Verma',coins:210,level:2,activity:'today'},
+    {name:'Dev Malhotra',coins:165,level:2,activity:'today'},
+    {name:'Riya Joshi',coins:120,level:1,activity:'yesterday'},
+    {name:'Aditya Kumar',coins:75,level:1,activity:'yesterday'},
+    {name:'Meera Nair',coins:30,level:0,activity:'2 days ago'},
+  ];
+  all.push({name:U.name||'You',coins:U.coins,level:U.level,me:true,activity:'now'});
   all.sort(function(a,b){return b.coins-a.coins;});
-  $('my-rank').textContent='#1';
-  $('my-rank-sub').textContent=(U.coins||0)+' Elite Coins · '+LVLNAMES[Math.min(U.level,LVLNAMES.length-1)];
-  var html='<div style="font-family:monospace;font-size:.55rem;letter-spacing:.12em;color:rgba(0,238,68,.6);margin-bottom:12px;">● LIVE NOW</div>';
+  var myRank=1;
+  all.forEach(function(u,i){if(u.me)myRank=i+1;});
+  $('my-rank').textContent='#'+myRank;
+  $('my-rank-sub').textContent=(U.coins||0)+' Elite Coins · '+LVLNAMES[U.level];
+  
+  // Active users count
+  var activeCount=all.filter(function(u){return u.activity&&(u.activity.includes('min')||u.activity==='now');}).length;
+  
+  var html2='<div style="font-family:monospace;font-size:.55rem;letter-spacing:.12em;color:rgba(0,238,68,.6);margin-bottom:12px;">● '+activeCount+' OPERATIVES ACTIVE NOW</div>';
   all.forEach(function(u,i){
-    html+='<div class="lb-row me">'+
-      '<div class="lb-pos" style="color:#ffcc00;">#1</div>'+
-      '<div class="lb-name"><span style="color:var(--red);">⚡ </span>'+u.name+'</div>'+
-      '<div style="font-size:.6rem;color:rgba(255,255,255,.3);margin-right:8px;font-family:monospace;">now</div>'+
+    var pos=i+1;
+    var pc=pos===1?'#ffcc00':pos===2?'#aaaaaa':pos===3?'#cc7700':'rgba(255,255,255,.4)';
+    html2+='<div class="lb-row'+(u.me?' me':'')+'" style="'+(u.me?'border-color:rgba(255,34,34,.4);background:rgba(255,34,34,.08);':'')+'">'+
+      '<div class="lb-pos" style="color:'+pc+';">'+pos+'</div>'+
+      '<div class="lb-name">'+(u.me?'<span style="color:var(--red);">⚡ </span>':'')+u.name+'</div>'+
+      '<div style="font-size:.6rem;color:rgba(255,255,255,.3);margin-right:8px;font-family:monospace;">'+( u.activity||'')+'</div>'+
       '<div class="lb-coins">'+u.coins+' EC</div>'+
       '</div>';
   });
-  $('lb-list').innerHTML=html;
+  $('lb-list').innerHTML=html2;
 }
 
-// ── CHAT ──
+// ── CHAT ─────────────────────────────────────────────
+function speakMsg(text){
+  if(!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(text);
+  u.rate=0.88; u.pitch=0.85; u.volume=1;
+  var voices=speechSynthesis.getVoices();
+  var deep=voices.find(function(v){return /male|man|david|alex|daniel/i.test(v.name);});
+  if(deep) u.voice=deep;
+  speechSynthesis.speak(u);
+}
+
 function addMsg(role,text){
   var c=$('chat-msgs');
   var d=document.createElement('div');
   d.className='msg '+role;
   d.style.whiteSpace='pre-wrap';
+  d.style.position='relative';
+  
   if(role==='m'){
+    // Mentor message with speaker icon
     var wrap=document.createElement('div');
     wrap.style.cssText='display:flex;flex-direction:column;gap:6px;';
-    var textEl=document.createElement('div');textEl.textContent=text;
-    var footer=document.createElement('div');footer.style.cssText='display:flex;justify-content:flex-end;';
-    var spk=document.createElement('button');
-    spk.textContent='🔊';spk.title='Listen';
-    spk.style.cssText='background:none;border:none;cursor:pointer;font-size:.85rem;opacity:0.4;padding:2px 4px;transition:opacity .2s;';
-    spk.onmouseover=function(){this.style.opacity='1';};
-    spk.onmouseout=function(){this.style.opacity='0.4';};
-    var _t=text;
-    spk.onclick=function(e){
+    
+    var textEl=document.createElement('div');
+    textEl.textContent=text;
+    
+    var footer=document.createElement('div');
+    footer.style.cssText='display:flex;justify-content:flex-end;';
+    
+    var speakBtn=document.createElement('button');
+    speakBtn.textContent='🔊';
+    speakBtn.title='Listen';
+    speakBtn.style.cssText='background:none;border:none;cursor:pointer;font-size:.85rem;opacity:0.5;padding:2px 4px;transition:opacity .2s;';
+    speakBtn.onmouseover=function(){this.style.opacity='1';};
+    speakBtn.onmouseout=function(){this.style.opacity='0.5';};
+    var _text=text;
+    speakBtn.onclick=function(e){
       e.stopPropagation();
-      if(window.speechSynthesis.speaking){window.speechSynthesis.cancel();spk.textContent='🔊';}
-      else{speakMsg(_t);spk.textContent='🔇';speechSynthesis.addEventListener('end',function(){spk.textContent='🔊';},{once:true});}
+      if(window.speechSynthesis.speaking){
+        window.speechSynthesis.cancel();
+        speakBtn.textContent='🔊';
+      } else {
+        speakMsg(_text);
+        speakBtn.textContent='🔇';
+        speechSynthesis.addEventListener('end',function(){speakBtn.textContent='🔊';},{once:true});
+      }
     };
-    footer.appendChild(spk);
-    wrap.appendChild(textEl);wrap.appendChild(footer);
+    
+    footer.appendChild(speakBtn);
+    wrap.appendChild(textEl);
+    wrap.appendChild(footer);
     d.appendChild(wrap);
-  } else {d.textContent=text;}
+  } else {
+    d.textContent=text;
+  }
+  
   c.appendChild(d);
   c.scrollTop=c.scrollHeight;
   if(role!=='typing')chatHist.push({role:role==='m'?'assistant':'user',content:text});
   if(chatHist.length>20)chatHist=chatHist.slice(-20);
 }
-function speakMsg(text){
-  if(!window.speechSynthesis)return;
-  window.speechSynthesis.cancel();
-  var u=new SpeechSynthesisUtterance(text);u.rate=0.88;u.pitch=0.85;
-  var v=speechSynthesis.getVoices();
-  var deep=v.find(function(x){return /male|david|alex|daniel/i.test(x.name);});
-  if(deep)u.voice=deep;
-  speechSynthesis.speak(u);
-}
-function showTyping(){
-  var c=$('chat-msgs');var d=document.createElement('div');
-  d.className='msg typing';d.id='tdot';d.textContent='• • •';
-  c.appendChild(d);c.scrollTop=c.scrollHeight;
-}
+function showTyping(){var c=$('chat-msgs');var d=document.createElement('div');d.className='msg typing';d.id='tdot';d.textContent='• • •';c.appendChild(d);c.scrollTop=c.scrollHeight;}
 function hideTyping(){var d=$('tdot');if(d)d.remove();}
 
 function buildSys(){
-  var n=U.name.split(' ')[0];
-  var tones=['dark mysterious mentor — short devastating sentences','electric hype coach — celebrate every win','military commander — zero tolerance, call them Operative','strategic mastermind — one question that reframes everything','cold elite peer — minimal words, maximum weight'];
-  var tone=tones[Math.min(U.level,4)];
-  return[
-    'You are ELYX — '+n+"'s personal AI mentor. Style: "+tone,
-    'PERSON: Name: '+U.name+' | Profession: '+U.prof+' | Goal: "'+U.goal+'"',
-    'Progress: Level '+U.level+' | '+U.coins+' EC | '+U.streak+' day streak | '+U.tasks+' tasks done',
-    'RULES: 1) Reference their exact goal in every reply. 2) Use name "'+n+'". 3) Max 4 sentences. 4) End with ONE question OR specific action. 5) Never say you are Claude or any AI — you are ELYX. 6) Personalize every word for '+n+'.'
+  var n = U.name.split(' ')[0];
+  var tones = [
+    'dark mysterious mentor — short devastating sentences, variable reward, make ' + n + ' feel chosen',
+    'electric hype coach — celebrate every win like legendary, create dopamine loops',
+    'military commander — zero tolerance, address as Soldier, every word an order',
+    'strategic mastermind — ask the question that reframes everything',
+    'cold elite peer — minimal words, maximum weight, peer-level respect',
+    'philosophical oracle — connect grind to legacy and identity'
+  ];
+  var tone = tones[Math.min(U.level, 5)];
+  return [
+    'You are ELYX — ' + n + ' personal life coach. Style: ' + tone,
+    '',
+    'PERSON YOU ARE COACHING:',
+    'Name: ' + U.name,
+    'Profession: ' + U.prof,
+    'Life goal: "' + U.goal + '"',
+    'Level: ' + U.level + ' (' + LVLNAMES[U.level] + ')',
+    'Coins: ' + U.coins + ' EC | Streak: ' + U.streak + ' days | Tasks: ' + U.tasks,
+    '',
+    'RULES — ALL MANDATORY:',
+    '1. Mention their exact goal "' + U.goal + '" in EVERY message',
+    '2. Use name "' + n + '" in every message',
+    '3. Max 4 sentences. Zero generic filler.',
+    '4. End with ONE question OR "Do this right now: [specific action]"',
+    '5. NEVER reveal you are Claude or any AI. You are ELYX.',
+    '6. Wins: celebrate hard. Struggles: validate first then redirect.',
+    '7. Every message must feel written ONLY for ' + n
+    '8. LANGUAGE RULE — Most important: Always reply in the SAME language the user just wrote in. If they write in Hindi or Hinglish, reply in Hinglish. If they write in English, reply in English. Mirror their exact language style every single time.'
   ].join('\n');
 }
-
 function fallback(msg){
   var n=U.name.split(' ')[0],g=U.goal.slice(0,40);
   if(!window._fb)window._fb=0;
-  var p=[
-    n+', the resistance you feel right now is loudest right before the breakthrough. What is ONE action toward "'+g+'" you can take in the next 10 minutes?',
-    n+' — are you moving toward "'+g+'" today, or away from it? Be honest.',
-    n+', every day you show up compounds. What does today\'s version of you need to do right now?',
-    n+' — I see you. What is stopping you from taking the next step toward "'+g+'"?'
+  var pools=[
+    n+', the resistance you feel right now is loudest right before the breakthrough. What is the ONE action toward "'+g+'" you can take in the next 10 minutes?',
+    n+' — are you moving toward "'+g+'" today, or away from it? Be honest with yourself.',
+    'Most people talk about their goals. Few execute. Which one are you being right now, '+n+'?',
+    n+', every single day you show up compounds. What does today\'s version of you need to do right now?',
+    n+' — I see you. I know where you want to go. What is stopping you from taking the next step toward "'+g+'"?'
   ];
-  return p[(window._fb++)%p.length];
+  var r=pools[window._fb%pools.length];
+  window._fb++;
+  return r;
 }
 
 async function aiChat(msg){
-  var sys=buildSys();
-  var hist=chatHist.slice(-12);
-  var contents=[];
-  hist.forEach(function(m){contents.push({role:m.role==='assistant'?'model':'user',parts:[{text:m.content}]});});
-  if(!contents.length||contents[contents.length-1].role!=='user')contents.push({role:'user',parts:[{text:msg}]});
-  try{
-    var r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_KEY,{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({systemInstruction:{parts:[{text:sys}]},contents:contents,generationConfig:{maxOutputTokens:400,temperature:0.9,topP:0.95}})
+  var sys = buildSys();
+  
+  // Build conversation history for context
+  var hist = chatHist.slice(-12); // last 6 turns
+  
+  // Format for Gemini
+  var contents = [];
+  
+  // Add history
+  hist.forEach(function(m){
+    contents.push({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{text: m.content}]
     });
-    if(r.ok){var d=await r.json();var t=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts&&d.candidates[0].content.parts[0].text;if(t&&t.trim().length>5)return t.trim();}
-  }catch(e){}
+  });
+  
+  // Ensure last message is from user
+  if(!contents.length || contents[contents.length-1].role !== 'user'){
+    contents.push({role:'user', parts:[{text:msg}]});
+  }
+
+  // Try Gemini Flash first (best quality, free)
   try{
-    var r2=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+    var res = await fetch(
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_KEY,
+      {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          systemInstruction:{parts:[{text:sys}]},
+          contents:contents,
+          generationConfig:{
+            maxOutputTokens:400,
+            temperature:0.9,
+            topP:0.95
+          }
+        })
+      }
+    );
+    if(res.ok){
+      var d = await res.json();
+      var text = d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts&&d.candidates[0].content.parts[0].text;
+      if(text&&text.trim().length>5) return text.trim();
+    }
+  }catch(e){ console.log('Gemini error:',e); }
+  
+  // Fallback to OpenRouter
+  try{
+    var res2 = await fetch('https://openrouter.ai/api/v1/chat/completions',{
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+OR_KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
-      body:JSON.stringify({model:'meta-llama/llama-3.1-8b-instruct:free',max_tokens:380,temperature:.9,
-        messages:[{role:'system',content:sys}].concat(hist.map(function(m){return{role:m.role==='assistant'?'assistant':'user',content:m.content};}))})
+      body:JSON.stringify({
+        model:'meta-llama/llama-3.1-8b-instruct:free',
+        max_tokens:380,temperature:.9,
+        messages:[{role:'system',content:sys}].concat(hist.map(function(m){return{role:m.role==='assistant'?'assistant':'user',content:m.content};}))
+      })
     });
-    if(r2.ok){var d2=await r2.json();var t2=d2.choices&&d2.choices[0]&&d2.choices[0].message&&d2.choices[0].message.content;if(t2&&t2.trim().length>5)return t2.trim();}
-  }catch(e){}
+    if(res2.ok){
+      var d2=await res2.json();
+      var text2=d2.choices&&d2.choices[0]&&d2.choices[0].message&&d2.choices[0].message.content;
+      if(text2&&text2.trim().length>5) return text2.trim();
+    }
+  }catch(e2){ console.log('OR error:',e2); }
+  
   return fallback(msg);
 }
 
@@ -948,12 +948,21 @@ async function doSend(){
   inp.value='';
   addMsg('u',text);
   isTyping=true;showTyping();
-  try{var reply=await aiChat(text);hideTyping();isTyping=false;addMsg('m',reply);}
-  catch(e){hideTyping();isTyping=false;addMsg('m',fallback(text));}
-  if(chatHist.filter(function(m){return m.role==='user';}).length===2&&(!window._tasks||!window._tasks.length)){setTimeout(genTasks,1000);}
+  try{
+    var reply=await aiChat(text);
+    hideTyping();isTyping=false;
+    addMsg('m',reply);
+  }catch(e){
+    hideTyping();isTyping=false;
+    addMsg('m',fallback(text));
+  }
+  if(chatHist.filter(function(m){return m.role==='user';}).length===2&&(!window._tasks||!window._tasks.length)){
+    setTimeout(genTasks,1000);
+  }
 }
+$('ci').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();doSend();}});
 
-// ── VOICE ──
+// ── VOICE ────────────────────────────────────────────
 var recog=null,recActive=false;
 function toggleVoice(){
   var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
@@ -964,277 +973,436 @@ function toggleVoice(){
     recog.onend=function(){recActive=false;$('vbtn').classList.remove('rec');$('vbtn').textContent='🎙';};
     recog.onerror=function(e){recActive=false;$('vbtn').classList.remove('rec');$('vbtn').textContent='🎙';if(e.error==='not-allowed')toast('Allow mic permission');};
   }
-  if(recActive){recog.stop();}else{recog.start();recActive=true;$('vbtn').classList.add('rec');$('vbtn').textContent='🔴';toast('Listening...',2500);}
+  if(recActive){recog.stop();}
+  else{recog.start();recActive=true;$('vbtn').classList.add('rec');$('vbtn').textContent='🔴';toast('Listening...',2500);}
 }
 
-// ── TASKS ──
-async function genTasksAI(n,g,p){
-  var prompt='Generate exactly 3 daily tasks for '+n+' ('+p+') whose ONE goal is: "'+g+'".\nCRITICAL: Each task must directly and specifically help achieve "'+g+'". Not generic. Not vague. Specific, completable today.\nReturn ONLY a valid JSON array, nothing else:\n[{"emoji":"🎯","title":"Short specific title","description":"Exactly what to do today toward the goal","coins":15},{"emoji":"📊","title":"Short title","description":"Specific action","coins":10},{"emoji":"💪","title":"Short title","description":"Specific action","coins":8}]';
+// ── TASKS ────────────────────────────────────────────
+async function genTasksGemini(n,g,p){
   try{
-    var r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_KEY,{
+    var prompt='Generate exactly 3 daily tasks for '+n+' ('+p+') with goal: "'+g+'".\nRules: Each task MUST directly help achieve "'+g+'". Specific and completable today. Return ONLY JSON array:\n[{"emoji":"🎯","title":"Short title","description":"Specific action toward goal","coins":15},{"emoji":"📊","title":"Short title","description":"Specific action","coins":10},{"emoji":"💪","title":"Short title","description":"Specific action","coins":8}]';
+    var res=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_KEY,{
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({contents:[{role:'user',parts:[{text:prompt}]}],generationConfig:{maxOutputTokens:400,temperature:0.7}})
     });
-    if(r.ok){
-      var d=await r.json();
+    if(res.ok){
+      var d=await res.json();
       var raw=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts&&d.candidates[0].content.parts[0].text;
-      if(raw){var m=raw.match(/\[[\s\S]*\]/);if(m){var p2=JSON.parse(m[0]);if(Array.isArray(p2)&&p2.length>=2)return p2;}}
+      if(raw){
+        var m=raw.match(/\[[\s\S]*\]/);
+        if(m){var parsed=JSON.parse(m[0]);if(Array.isArray(parsed)&&parsed.length>=2)return parsed;}
+      }
     }
-  }catch(e){}
-  try{
-    var r2=await fetch('https://openrouter.ai/api/v1/chat/completions',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+OR_KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
-      body:JSON.stringify({model:'meta-llama/llama-3.1-8b-instruct:free',max_tokens:500,temperature:.7,
-        messages:[{role:'system',content:'Task generator. Return ONLY valid JSON array. Goal: "'+g+'". Make tasks SPECIFIC to this exact goal.'},{role:'user',content:prompt}]})
-    });
-    if(r2.ok){var d2=await r2.json();var raw2=d2.choices[0].message.content;var m2=raw2.match(/\[[\s\S]*\]/);if(m2){var p3=JSON.parse(m2[0]);if(Array.isArray(p3)&&p3.length>=2)return p3;}}
-  }catch(e){}
+  }catch(e){console.log('Gemini task err',e);}
   return null;
 }
 
-var FB_TASKS={
-  student:[{emoji:'📚',title:'Deep study 90 min',desc:'One subject, phone off, full focus.',coins:15},{emoji:'💡',title:'Apply what you learned',desc:'Build or write something from today\'s study.',coins:10},{emoji:'🔁',title:'Active recall test',desc:'Close notes. Write from memory.',coins:8}],
-  developer:[{emoji:'💻',title:'2hr deep coding session',desc:'Work on the hardest feature. No tutorials.',coins:15},{emoji:'🚀',title:'Ship one feature',desc:'Complete and deploy one improvement.',coins:10},{emoji:'📖',title:'Learn one new concept',desc:'Read docs or source code. Go deeper.',coins:8}],
-  entrepreneur:[{emoji:'🎯',title:'One revenue action',desc:'Pitch, follow-up, or close a sale today.',coins:15},{emoji:'📊',title:'Review your metrics',desc:'Open your numbers. Kill what is not working.',coins:10},{emoji:'💬',title:'Talk to one customer',desc:'Call a real customer. Listen more than you speak.',coins:8}],
-  creator:[{emoji:'🎬',title:'Create and publish',desc:'Post one piece. Imperfect and live wins.',coins:15},{emoji:'📈',title:'Engage 10 real people',desc:'Reply personally to 10 comments or DMs.',coins:10},{emoji:'🧠',title:'Study top creator',desc:'20 min on what your best competitor does differently.',coins:8}],
-  athlete:[{emoji:'💪',title:'Full training session',desc:'Complete your planned workout. No shortcuts.',coins:15},{emoji:'🥗',title:'Track every meal',desc:'Log all food today. Diet is 80 percent.',coins:10},{emoji:'😴',title:'Commit to 8hr sleep',desc:'Decide bedtime now and stick to it.',coins:8}],
-  freelancer:[{emoji:'💌',title:'Send 5 outreach msgs',desc:'5 cold messages to potential clients today.',coins:15},{emoji:'🏆',title:'Overdeliver on project',desc:'Give 20 percent more than expected.',coins:10},{emoji:'📸',title:'Update portfolio',desc:'Add one recent project to your portfolio.',coins:8}],
-  business:[{emoji:'🤝',title:'High-value call',desc:'One client call or deal push. Move the needle.',coins:15},{emoji:'⚙️',title:'Systemize one process',desc:'Document one thing you keep doing manually.',coins:10},{emoji:'📋',title:'Remove one team blocker',desc:'Find what team is stuck on. Fix it now.',coins:8}]
-};
-
 async function genTasks(){
-  var n=U.name.split(' ')[0],g=U.goal,p=U.prof;
-  $('tasks-wrap').innerHTML='<div style="padding:20px;text-align:center;font-family:monospace;font-size:.6rem;letter-spacing:.2em;color:var(--red);opacity:.7;">⚡ GENERATING MISSIONS FOR YOUR GOAL...</div>';
-  var raw=await genTasksAI(n,g,p);
-  var tasks;
-  if(raw){
-    tasks=raw.slice(0,3).map(function(t,i){
-      return{id:'t'+Date.now()+'_'+i,emoji:t.emoji||['🎯','📊','💪'][i],title:t.title||'Mission '+(i+1),desc:t.description||t.desc||'',coins:t.coins||[15,10,8][i],done:false};
+  var n=U.name.split(' ')[0], g=U.goal, p=U.prof;
+  
+  // Show loading in BOTH chat and tasks panel
+  var taskWrap = $('tasks-wrap');
+  if(taskWrap) taskWrap.innerHTML='<div style="padding:20px;text-align:center;font-family:monospace;font-size:.6rem;letter-spacing:.2em;color:var(--red);opacity:.7;">⚡ GENERATING MISSIONS...</div>';
+  
+  var tasks=null;
+  // Try Gemini first (better quality)
+  var geminiTasks=await genTasksGemini(n,g,p);
+  if(geminiTasks){
+    tasks=geminiTasks.slice(0,3).map(function(t,i){
+      return{id:'t'+Date.now()+'_'+i,emoji:t.emoji||['🎯','📊','💪'][i],title:t.title||'Mission '+(i+1),desc:t.description||'',coins:t.coins||[15,10,8][i],done:false};
     });
-  } else {
-    var base=FB_TASKS[p]||FB_TASKS.student;
+  }
+  if(!tasks) try{
+    var res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+OR_KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
+      body:JSON.stringify({
+        model:'meta-llama/llama-3.1-8b-instruct:free',
+        max_tokens:500,temperature:.7,
+        messages:[
+          {role:'system',content:'You are a strict task generator. Generate EXACTLY 3 tasks.\nName: '+n+'\nProfession: '+p+'\nEXACT GOAL: "'+g+'"\nCRITICAL: Every task MUST be a direct step toward "'+g+'". NO generic tasks.\nReturn ONLY valid JSON: [{"emoji":"🎯","title":"Short title","description":"Specific action toward goal","coins":15},{"emoji":"📊","title":"Short title","description":"Specific action","coins":10},{"emoji":"💪","title":"Short title","description":"Specific action","coins":8}]'},
+          {role:'user',content:'Generate my 3 missions for today.'}
+        ]
+      })
+    });
+    if(res.ok){
+      var d=await res.json();
+      var raw=d.choices[0].message.content;
+      var m=raw.match(/\[[\s\S]*\]/);
+      if(m){
+        var parsed=JSON.parse(m[0]);
+        if(Array.isArray(parsed)&&parsed.length>=2){
+          tasks=parsed.slice(0,3).map(function(t,i){
+            return{id:'t'+Date.now()+'_'+i,emoji:t.emoji||['🎯','📊','💪'][i],title:t.title||'Mission '+(i+1),desc:t.description||'',coins:t.coins||[15,10,8][i],done:false};
+          });
+        }
+      }
+    }
+  }catch(e){console.log('task gen err',e);}
+
+  if(!tasks){
+    var FB={
+      student:[{emoji:'📚',title:'Deep study 90 min',desc:'One subject, phone off, full focus on your exam prep.',coins:15},{emoji:'💡',title:'Apply what you learned',desc:'Build something from today study — code it or write it.',coins:10},{emoji:'🔁',title:'Active recall test',desc:'Close notes. Write from memory. This is how you lock in.',coins:8}],
+      developer:[{emoji:'💻',title:'2hr deep coding',desc:'Work on the hardest feature. No tutorials.',coins:15},{emoji:'🚀',title:'Ship one feature',desc:'Complete and deploy one improvement today.',coins:10},{emoji:'📖',title:'Learn one concept',desc:'Read docs or source code. Go deeper.',coins:8}],
+      entrepreneur:[{emoji:'🎯',title:'Revenue action now',desc:'One thing that moves money today — pitch, follow-up, sale.',coins:15},{emoji:'📊',title:'Review your numbers',desc:'Open your metrics. Kill what is not working.',coins:10},{emoji:'💬',title:'Customer conversation',desc:'Call one real customer. Listen more than you speak.',coins:8}],
+      creator:[{emoji:'🎬',title:'Create and publish',desc:'Post one piece of content. Imperfect and live wins.',coins:15},{emoji:'📈',title:'Engage 10 real people',desc:'Reply personally to 10 comments or DMs.',coins:10},{emoji:'🧠',title:'Study top creator',desc:'20 min on what your best competitor does differently.',coins:8}],
+      athlete:[{emoji:'💪',title:'Full training session',desc:'Complete your planned workout. No shortcuts.',coins:15},{emoji:'🥗',title:'Track every meal',desc:'Log all food today. Diet is 80 percent.',coins:10},{emoji:'😴',title:'Plan 8hr sleep',desc:'Decide sleep time now and commit.',coins:8}],
+      freelancer:[{emoji:'💌',title:'Send 5 outreach msgs',desc:'5 cold messages to potential clients today.',coins:15},{emoji:'🏆',title:'Overdeliver on project',desc:'Give 20 percent more than expected.',coins:10},{emoji:'📸',title:'Update portfolio',desc:'Add one recent project. Your work sells itself.',coins:8}],
+      business:[{emoji:'🤝',title:'High-value call',desc:'One client call or deal push. Move the needle.',coins:15},{emoji:'⚙️',title:'Systemize one process',desc:'Document one thing you keep doing manually.',coins:10},{emoji:'📋',title:'Team check-in',desc:'Find what team is blocked on. Remove one blocker.',coins:8}]
+    };
+    var base=FB[p]||FB.student;
     tasks=base.map(function(t,i){return Object.assign({},t,{id:'t'+Date.now()+'_'+i,done:false});});
   }
+
   window._tasks=tasks;
   localStorage.setItem('EX_T',JSON.stringify(tasks));
   localStorage.setItem('EX_TD',today());
   renderTasks();
+
+  // Show tasks IN CHAT as compact cards
   showTasksInChat(tasks);
 }
 
 function showTasksInChat(tasks){
-  var n=U.name.split(' ')[0],g=U.goal;
-  var total=tasks.reduce(function(s,t){return s+t.coins;},0);
-  addMsg('m',n+' — '+total+' EC available today. 3 missions built for: "'+g.slice(0,50)+'". Complete all 3 to earn full XP and level up faster.');
+  var n=U.name.split(' ')[0], g=U.goal;
+  var totalEC=tasks.reduce(function(s,t){return s+t.coins;},0);
+  
+  addMsg('m',n+' - your 3 missions are live. '+totalEC+' EC total. Built for your goal: "'+g.slice(0,45)+'...". Submit photo proof with the camera button to earn coins.');
+  
   var c=$('chat-msgs');
-  var wrap=document.createElement('div');wrap.style.cssText='display:flex;flex-direction:column;gap:8px;margin:8px 0;';
+  var wrap=document.createElement('div');
+  wrap.style.cssText='display:flex;flex-direction:column;gap:8px;margin:8px 0;';
+  
   tasks.forEach(function(t){
     var card=document.createElement('div');
+    card.id='chat-task-'+t.id;
     card.style.cssText='padding:11px 13px;border-radius:10px;background:rgba(255,34,34,.06);border:1px solid rgba(255,34,34,.18);display:flex;align-items:center;gap:10px;'+(t.done?'opacity:.5;':'');
-    var textWrap=document.createElement('div');textWrap.style.cssText='flex:1;min-width:0;';
-    var title=document.createElement('div');title.style.cssText='font-size:.85rem;font-weight:600;color:var(--text);'+(t.done?'text-decoration:line-through;':'');title.textContent=t.title;
-    var desc=document.createElement('div');desc.style.cssText='font-size:.72rem;color:var(--dim);margin-top:2px;';desc.textContent=t.desc;
-    var ec=document.createElement('div');ec.style.cssText='font-family:monospace;font-size:.6rem;color:'+(t.done?'#00ee44':'var(--red)')+';margin-top:4px;';ec.textContent='+'+t.coins+' EC'+(t.done?' EARNED':'');
-    textWrap.appendChild(title);textWrap.appendChild(desc);textWrap.appendChild(ec);
-    var em=document.createElement('span');em.style.cssText='font-size:1.2rem;flex-shrink:0;';em.textContent=t.emoji;
-    card.appendChild(em);card.appendChild(textWrap);
+    
+    var titleEl=document.createElement('span');
+    titleEl.style.cssText='font-size:.85rem;font-weight:600;color:var(--text);'+(t.done?'text-decoration:line-through;':'');
+    titleEl.textContent=t.title;
+    
+    var descEl=document.createElement('div');
+    descEl.style.cssText='font-size:.72rem;color:var(--dim);margin-top:2px;';
+    descEl.textContent=t.desc;
+    
+    var ecEl=document.createElement('div');
+    ecEl.style.cssText='font-family:monospace;font-size:.6rem;color:'+(t.done?'#00ee44':'var(--red)')+';margin-top:4px;';
+    ecEl.textContent='+'+t.coins+' EC'+(t.done?' EARNED':'');
+    
+    var textWrap=document.createElement('div');
+    textWrap.style.cssText='flex:1;min-width:0;';
+    textWrap.appendChild(titleEl);
+    textWrap.appendChild(descEl);
+    textWrap.appendChild(ecEl);
+    
+    var emojiEl=document.createElement('span');
+    emojiEl.style.cssText='font-size:1.2rem;flex-shrink:0;';
+    emojiEl.textContent=t.emoji;
+    
+    card.appendChild(emojiEl);
+    card.appendChild(textWrap);
+    
     if(!t.done){
-      var btn=document.createElement('button');
-      btn.style.cssText='cursor:pointer;width:34px;height:34px;border-radius:50%;background:rgba(255,34,34,.12);border:1px solid rgba(255,34,34,.3);font-size:.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;';
-      btn.textContent='📷';btn.dataset.proofId=t.id;
-      card.appendChild(btn);
+      var camBtn=document.createElement('button');
+      camBtn.style.cssText='cursor:pointer;width:34px;height:34px;border-radius:50%;background:rgba(255,34,34,.12);border:1px solid rgba(255,34,34,.3);font-size:.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;';
+      camBtn.textContent='📷';
+      camBtn.dataset.proofId=t.id;
+      card.appendChild(camBtn);
     }
+    
     wrap.appendChild(card);
   });
-  c.appendChild(wrap);c.scrollTop=c.scrollHeight;
+  
+  c.appendChild(wrap);
+  c.scrollTop=c.scrollHeight;
 }
 
 function renderTasks(){
   var tasks=window._tasks||[];
   var wrap=$('tasks-wrap');
   if(!tasks.length){
-    wrap.innerHTML='<div class="empty-tasks"><div class="empty-ic">⚡</div><div class="empty-t">NO MISSIONS YET</div><button class="gen-btn" onclick="genTasks()">⚡ GENERATE MY MISSIONS</button></div>';
+    wrap.innerHTML='<div class="empty-tasks"><div class="empty-ic">⚡</div><div class="empty-t">NO MISSIONS YET</div><button class="gen-btn" id="gen-btn-real">⚡ GENERATE MY MISSIONS</button></div>';
     return;
   }
   var done=tasks.filter(function(t){return t.done;}).length;
   var total=tasks.reduce(function(s,t){return s+t.coins;},0);
   var earned=tasks.filter(function(t){return t.done;}).reduce(function(s,t){return s+t.coins;},0);
-  var h='<div class="prog-row"><div class="prog-item"><div class="pl">PROGRESS</div><div class="pv">'+done+'/'+tasks.length+' DONE</div></div><div class="prog-item" style="text-align:right"><div class="pl">EARNED TODAY</div><div class="pv" style="color:'+(earned>0?'#00ee44':'var(--red)')+'">+'+earned+' / '+total+' EC</div></div></div>';
+  var h='<div class="prog-row"><div class="prog-item"><div class="pl">PROGRESS</div><div class="pv">'+done+'/'+tasks.length+' DONE</div></div><div class="prog-item" style="text-align:right"><div class="pl">EARNED</div><div class="pv" style="color:'+(earned>0?'#00ee44':'var(--red)')+'">+'+earned+' / '+total+' EC</div></div></div>';
   tasks.forEach(function(t){
-    h+='<div class="tc'+(t.done?' done':'')+'">'+'<div class="tc-cb'+(t.done?' done':'')+'" data-proof-id="'+(t.done?'':t.id)+'">'+(t.done?'<span style="color:#000;font-size:11px;font-weight:bold;">✓</span>':'')+
-    '</div><div class="tc-body"><div class="tc-title'+(t.done?' done':'')+'">'+t.emoji+' '+t.title+'</div>'+(t.desc?'<div class="tc-desc">'+t.desc+'</div>':'')+'<div class="tc-foot"><span class="tc-ec'+(t.done?' done':'')+'">+'+t.coins+' EC'+(t.done?' ✓ EARNED':'')+' </span>'+(t.done?'':'<button class="cam-btn" data-proof-id="'+t.id+'">📷</button>')+'</div></div></div>';
+    h+='<div class="tc'+(t.done?' done':'')+'">'+
+      '<div class="tc-cb'+(t.done?' done':'')+'" data-proof-id="'+(t.done?'':t.id)+'">'+(t.done?'<span style="color:#000;font-size:11px;font-weight:bold;">✓</span>':'')+
+      '</div>'+
+      '<div class="tc-body">'+
+        '<div class="tc-title'+(t.done?' done':'')+'">'+t.emoji+' '+t.title+'</div>'+
+        (t.desc?'<div class="tc-desc">'+t.desc+'</div>':'')+
+        '<div class="tc-foot">'+
+          '<span class="tc-ec'+(t.done?' done':'')+'">+'+(t.coins)+' EC'+(t.done?' ✓ EARNED':'')+' </span>'+
+          (t.done?'':'<button class="cam-btn" data-proof-id="'+t.id+'">📷</button>')+
+        '</div>'+
+      '</div>'+
+    '</div>';
   });
   wrap.innerHTML=h;
 }
 
-// ── PROOF MODAL ──
+// ── PROOF MODAL ──────────────────────────────────────
 function openProof(id){
   var t=(window._tasks||[]).find(function(x){return x.id===id;});
-  if(!t||t.done)return;
+  if(!t)return;
   pendTask=t;proofImg=null;
   $('pm-title').textContent='VERIFY: '+t.title.toUpperCase();
-  $('pm-sub').textContent='Show me proof you actually did this. Photo = instant approval. Text = AI validated.';
-  $('proof-text').value='';$('proof-text').classList.remove('on');
+  $('pm-sub').textContent='Show me proof you actually did this. Camera photo = instant approval. Text = AI validated.';
+  $('proof-text').value='';
+  $('proof-text').classList.remove('on');
   $('proof-preview').style.display='none';
   $('proof-modal').classList.add('on');
 }
 function closeModal(){$('proof-modal').classList.remove('on');pendTask=null;proofImg=null;}
+function triggerCam(){$('cam-in').click();}
 function onCamFile(inp){
   if(!inp.files||!inp.files[0])return;
   var r=new FileReader();
   r.onload=function(e){
     proofImg=e.target.result;
-    var prev=$('proof-preview');prev.src=proofImg;prev.style.display='block';
+    var prev=$('proof-preview');
+    prev.src=proofImg;prev.style.display='block';
     $('proof-text').classList.remove('on');
   };
-  r.readAsDataURL(inp.files[0]);inp.value='';
+  r.readAsDataURL(inp.files[0]);
+  inp.value='';
 }
+function showTextProof(){$('proof-text').classList.add('on');$('proof-text').focus();}
 
 async function submitProof(){
   if(!pendTask)return;
   var task=pendTask;
   var text=$('proof-text').value.trim();
-  if(!proofImg&&(!text||text.split(' ').length<6)){toast('Add a photo OR write at least 6 words of proof!');return;}
-  closeModal();goPanel('chat');
+  if(!proofImg&&(!text||text.split(' ').length<6)){
+    toast('Add a photo OR write at least 6 words of proof!');
+    return;
+  }
+  closeModal();
+  goPanel('chat');
   var n=U.name.split(' ')[0];
   addMsg('u','[Proof for: '+task.title+']'+(proofImg?' [Photo submitted]':'\n'+text));
   showTyping();
+
   var approved=true,msg='';
   if(proofImg){
-    msg=n+' — VERIFIED! Photo proof accepted. +'+task.coins+' EC EARNED!\n\nThat is what execution looks like. You showed up. Your goal "'+U.goal.slice(0,40)+'..." just got closer. What is next?';
+    // Photo proof = auto approved with AI celebration
+    msg=n+' — VERIFIED! Photo proof accepted. +'+task.coins+' EC EARNED!\n\nThat is what execution looks like. You did not just talk about it — you did it. Your goal "'+U.goal.slice(0,40)+'..." just got closer.';
   } else {
+    // Text proof - validate with AI
     try{
-      var r=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+      var res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
         method:'POST',
-        headers:{'Content-Type':'application/json','Authorization':'Bearer '+OR_KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
-        body:JSON.stringify({model:'meta-llama/llama-3.1-8b-instruct:free',max_tokens:200,temperature:.7,
-          messages:[{role:'system',content:'You are ELYX validating proof. Task: "'+task.title+'". Goal: "'+U.goal+'". Approve if proof shows genuine effort. Reject only if clearly fake. If approved mention +'+task.coins+' EC. Be energetic. 3 sentences max.'},{role:'user',content:'Proof: "'+text+'"'}]})
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
+        body:JSON.stringify({
+          model:'meta-llama/llama-3.1-8b-instruct:free',max_tokens:200,temperature:.7,
+          messages:[
+            {role:'system',content:'You are ELYX validating task proof. Task: "'+task.title+'". User goal: "'+U.goal+'".\nApprove if proof shows genuine specific effort (time spent, what was done, output).\nReject only if clearly fake (just "done", "yes", under 8 words, unrelated).\nReply as ELYX mentor. If approved mention +'+task.coins+' EC. Be energetic. Max 3 sentences.'},
+            {role:'user',content:'My proof: "'+text+'"'}
+          ]
+        })
       });
-      if(r.ok){var d=await r.json();msg=d.choices[0].message.content.trim();approved=!/reject|not enough|too vague|more detail/i.test(msg);}
-    }catch(e){approved=true;msg=n+' — proof verified! +'+task.coins+' EC EARNED. That is what showing up looks like.';}
+      if(res.ok){var d=await res.json();msg=d.choices[0].message.content.trim();approved=!/reject|not enough|too vague|more detail/i.test(msg);}
+    }catch(e){
+      approved=true;
+      msg=n+' — proof verified! +'+task.coins+' EC EARNED. That is what showing up looks like. Keep stacking.';
+    }
     if(!approved){hideTyping();addMsg('m',msg);return;}
   }
+
   hideTyping();
+
+  // Award coins
   task.done=true;
   U.coins+=task.coins;
   U.tasks++;
-  if(!U.history)U.history={};
-  U.history[today()]=true;
   localStorage.setItem('EX_T',JSON.stringify(window._tasks));
   var newLvl=calcLvl(U.coins);
-  if(newLvl>U.level){U.level=newLvl;save();showLvlUp(newLvl);}
-  save();updateHUD();
+  if(newLvl>U.level){
+    U.level=newLvl;
+    setTimeout(function(){toast('⚡ LEVEL UP! You are now '+LVLNAMES[newLvl]+'!',4000);},500);
+  }
+  save();
+  updateHUD();
   addMsg('m',msg);
-  showCoinBurst(task.coins);
-  toast('+'+task.coins+' EC! Total: '+U.coins+' EC',3000);
-  setTimeout(renderTasks,600);
-  if(U.tasks>0&&U.tasks%3===0){setTimeout(showShareModal,2500);}
+  toast('+'+task.coins+' EC EARNED! Total: '+U.coins+' EC',3500);
+  setTimeout(function(){renderTasks();},600);
+  
+  // Show share card after every 3 tasks
+  if(U.tasks>0 && U.tasks%3===0){
+    setTimeout(function(){
+      showShareCard();
+    }, 2500);
+  }
 }
 
-// ── EDIT PROFILE ──
-var editProf='';
-function openEditModal(){
-  $('edit-name').value=U.name||'';
-  $('edit-goal').value=U.goal||'';
-  editProf=U.prof||'';
-  document.querySelectorAll('#edit-ptiles .ptile').forEach(function(el){
-    el.classList.toggle('sel',el.dataset.edit===editProf);
-  });
-  $('edit-modal').classList.add('on');
-}
-function closeEditModal(){$('edit-modal').classList.remove('on');}
-function saveEdit(){
-  var name=$('edit-name').value.trim();
-  var goal=$('edit-goal').value.trim();
-  if(!name||name.length<2){toast('Name too short!');return;}
-  if(!editProf){toast('Pick a profession!');return;}
-  if(!goal||goal.split(' ').length<3){toast('Goal needs at least 3 words!');return;}
-  U.name=name;U.prof=editProf;U.goal=goal;save();
-  updateHUD();renderSettings();closeEditModal();
-  toast('Profile updated! ✓',2500);
-}
 
-// ── SHARE ──
-function showShareModal(){
-  $('sc-name').textContent=U.name||'Operative';
-  $('sc-level').textContent='LEVEL '+U.level+' · '+LVLNAMES[Math.min(U.level,LVLNAMES.length-1)];
-  $('sc-coins').textContent=U.coins||0;
-  $('sc-tasks').textContent=U.tasks||0;
-  $('sc-goal').textContent=U.goal?'"'+U.goal.slice(0,60)+'"':'';
-  $('share-overlay').style.display='flex';
-}
-function doShare(){
-  var text=(U.name.split(' ')[0])+' just earned '+U.coins+' Elite Coins on ELYX. '+U.tasks+' missions completed. AI mentor that actually holds you accountable. Try it: https://elyx-founder.github.io/mentor-elyx-system';
-  if(navigator.share){navigator.share({title:'ELYX — My AI Mentor',text:text,url:'https://elyx-founder.github.io/mentor-elyx-system'}).then(function(){toast('Shared! 🔥');});}
-  else{navigator.clipboard&&navigator.clipboard.writeText(text).then(function(){toast('Copied! Paste on WhatsApp, Instagram, anywhere. 🔥');});}
-}
+// ── EVENT SETUP — no onclick attributes needed ──────
+document.addEventListener('DOMContentLoaded', function() {
 
-// ── RESET ──
-function resetAll(){
-  if(!confirm('This will delete ALL your progress. Are you sure?'))return;
-  localStorage.clear();location.reload();
-}
-
-// ── EVENT WIRING ──
-document.addEventListener('DOMContentLoaded',function(){
-  // Boot CTA
-  var bc=$('boot-cta');
-  if(bc){bc.addEventListener('click',function(){show('s-ob');setTimeout(function(){$('ob-name').focus();},300);});}
-
-  // Onboard profession tiles
-  document.querySelectorAll('[data-sel]').forEach(function(el){
-    el.addEventListener('click',function(){selP(el.dataset.sel,el);});
-  });
-  var ob=$('ob-btn');if(ob){ob.addEventListener('click',doOB);}
-
-  // Intro enter
-  var ie=$('intro-enter-btn');
-  if(ie){ie.addEventListener('click',goDash);}
-
-  // Nav
-  document.querySelectorAll('.nb[data-panel]').forEach(function(btn){
-    btn.addEventListener('click',function(){goPanel(btn.dataset.panel);});
+  // Profession tiles
+  document.querySelectorAll('[data-sel]').forEach(function(el) {
+    el.addEventListener('click', function() { selP(el.dataset.sel, el); });
+    el.addEventListener('touchend', function(e) { e.preventDefault(); selP(el.dataset.sel, el); });
   });
 
-  // Chat
-  $('ci').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();doSend();}});
-  $('sbtn').addEventListener('click',doSend);
-  $('vbtn').addEventListener('click',toggleVoice);
+  // BEGIN button
+  var obBtn = document.getElementById('ob-btn');
+  if (obBtn) {
+    obBtn.addEventListener('click', doOB);
+    obBtn.addEventListener('touchend', function(e) { e.preventDefault(); doOB(); });
+  }
 
-  // Tasks
-  $('gen-btn').addEventListener('click',genTasks);
-  document.addEventListener('click',function(e){
-    var btn=e.target.closest('[data-proof-id]');
-    if(btn&&btn.dataset.proofId)openProof(btn.dataset.proofId);
+  // Nav buttons
+  document.querySelectorAll('[data-panel]').forEach(function(btn) {
+    btn.addEventListener('click', function() { goPanel(btn.dataset.panel); });
   });
+
+  // Voice button
+  var vb = document.getElementById('vbtn-real');
+  if (vb) vb.addEventListener('click', toggleVoice);
+
+  // Send button
+  var sb = document.getElementById('sbtn-real');
+  if (sb) {
+    sb.addEventListener('click', doSend);
+    sb.addEventListener('touchend', function(e) { e.preventDefault(); doSend(); });
+  }
+
+  // Gen tasks button
+  var gb = document.getElementById('gen-btn-real');
+  if (gb) gb.addEventListener('click', genTasks);
 
   // Proof modal
-  $('cam-trig').addEventListener('click',function(){$('cam-in').click();});
-  $('cam-in').addEventListener('change',function(){onCamFile(this);});
-  $('txt-proof-btn').addEventListener('click',function(){$('proof-text').classList.add('on');$('proof-text').focus();});
-  $('modal-cancel').addEventListener('click',closeModal);
-  $('modal-submit').addEventListener('click',submitProof);
+  var ct = document.getElementById('cam-trig');
+  if (ct) ct.addEventListener('click', triggerCam);
+  var tp = document.getElementById('txt-proof-btn');
+  if (tp) tp.addEventListener('click', showTextProof);
+  var mc = document.getElementById('modal-cancel');
+  if (mc) mc.addEventListener('click', closeModal);
+  var ms2 = document.getElementById('modal-submit');
+  if (ms2) ms2.addEventListener('click', submitProof);
 
-  // Edit profile modal
-  $('edit-profile-btn').addEventListener('click',openEditModal);
-  $('edit-cancel').addEventListener('click',closeEditModal);
-  $('edit-save').addEventListener('click',saveEdit);
-  document.querySelectorAll('#edit-ptiles .ptile').forEach(function(el){
-    el.addEventListener('click',function(){
-      editProf=el.dataset.edit;
-      document.querySelectorAll('#edit-ptiles .ptile').forEach(function(x){x.classList.remove('sel');});
-      el.classList.add('sel');
-    });
+  // Intro enter
+  var ie = document.getElementById('intro-enter-btn');
+  if (ie) {
+    ie.addEventListener('click', goDash);
+    ie.addEventListener('touchend', function(e) { e.preventDefault(); goDash(); });
+  }
+
+  // Task cards - event delegation for openProof
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-proof-id]');
+    if (btn) openProof(btn.dataset.proofId);
   });
 
-  // HUD buttons
-  $('share-btn').addEventListener('click',showShareModal);
-  $('settings-btn').addEventListener('click',function(){goPanel('settings');});
-  $('reset-btn').addEventListener('click',resetAll);
+  // Chat input enter key
+  var ci = document.getElementById('ci');
+  if (ci) ci.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); doSend(); }
+  });
 
-  console.log('ELYX v7 loaded ✅');
+  console.log('ELYX v6 — events wired ✅');
 });
+
+// Cursor glow follow
+(function(){
+  var g=document.getElementById('cursor-glow');
+  if(!g) return;
+  document.addEventListener('mousemove',function(e){
+    g.style.left=e.clientX+'px';
+    g.style.top=e.clientY+'px';
+  });
+})();
+
+
+// VIRAL SHARE SYSTEM
+function showShareCard(){
+  var overlay=document.getElementById('share-overlay');
+  if(!overlay) return;
+  
+  // Fill card data
+  document.getElementById('sc-name').textContent = U.name || 'Operative';
+  document.getElementById('sc-level').textContent = 'LEVEL '+U.level+' · '+LVLNAMES[U.level];
+  document.getElementById('sc-coins').textContent = U.coins || 0;
+  document.getElementById('sc-tasks').textContent = U.tasks || 0;
+  document.getElementById('sc-goal').textContent = U.goal ? '"'+U.goal.slice(0,60)+'"' : '';
+  
+  overlay.style.display='flex';
+}
+
+function shareELYX(){
+  var text = U.name.split(' ')[0]+' just earned '+U.coins+' Elite Coins on ELYX. '+(U.tasks)+' missions completed. AI mentor that actually holds you accountable. Try it: elyx-founder.github.io/mentor-elyx-system';
+  
+  if(navigator.share){
+    navigator.share({
+      title:'ELYX — My AI Mentor',
+      text:text,
+      url:'https://elyx-founder.github.io/mentor-elyx-system'
+    }).then(function(){
+      toast('Shared! Your network will join soon.');
+    });
+  } else {
+    navigator.clipboard && navigator.clipboard.writeText(text).then(function(){
+      toast('Copied! Paste it on Instagram, WhatsApp, anywhere.');
+    });
+  }
+}
+
+// Show share card after first task completion
+var _origAwardCoins = window.awardCoins;
+
+console.log('ELYX v6 loaded ✅ — all features active');
 </script>
+
+<!-- VIRAL SHARE CARD -->
+<div id="share-overlay" style="display:none;position:fixed;inset:0;z-index:800;background:rgba(4,4,14,.97);display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;">
+  <div id="share-card" style="width:min(360px,90vw);background:linear-gradient(135deg,#0a0a1a,#120408);border:1px solid rgba(255,34,34,.4);border-radius:16px;padding:28px;text-align:center;position:relative;overflow:hidden;">
+    
+    <!-- Background glow -->
+    <div style="position:absolute;top:-50px;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(255,34,34,.15),transparent);pointer-events:none;"></div>
+    
+    <!-- Header -->
+    <div style="font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.3em;color:var(--red);margin-bottom:16px;">ELYX · ELITE REPORT</div>
+    
+    <!-- Name -->
+    <div id="sc-name" style="font-size:1.4rem;font-weight:700;letter-spacing:.05em;margin-bottom:4px;"></div>
+    <div id="sc-level" style="font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:rgba(255,34,34,.7);margin-bottom:20px;"></div>
+    
+    <!-- Stats -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+      <div style="padding:12px;background:rgba(255,34,34,.06);border:1px solid rgba(255,34,34,.12);border-radius:8px;">
+        <div id="sc-coins" style="font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--red);"></div>
+        <div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:2px;">ELITE COINS</div>
+      </div>
+      <div style="padding:12px;background:rgba(255,34,34,.06);border:1px solid rgba(255,34,34,.12);border-radius:8px;">
+        <div id="sc-tasks" style="font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--red);"></div>
+        <div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:2px;">MISSIONS DONE</div>
+      </div>
+    </div>
+    
+    <!-- Goal -->
+    <div style="padding:12px;background:rgba(255,34,34,.04);border:1px solid rgba(255,34,34,.1);border-radius:8px;margin-bottom:20px;">
+      <div style="font-size:.62rem;color:rgba(255,255,255,.35);font-family:monospace;letter-spacing:.1em;margin-bottom:4px;">MISSION</div>
+      <div id="sc-goal" style="font-size:.82rem;color:var(--text);line-height:1.4;"></div>
+    </div>
+    
+    <!-- CTA -->
+    <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.15em;color:rgba(255,255,255,.4);margin-bottom:16px;">elyx-founder.github.io/mentor-elyx-system</div>
+    
+    <!-- Tagline -->
+    <div style="font-size:.75rem;color:rgba(255,34,34,.7);font-style:italic;">"My AI mentor that actually holds me accountable"</div>
+  </div>
+  
+  <div style="display:flex;gap:10px;margin-top:20px;">
+    <button onclick="shareELYX()" style="cursor:pointer;padding:12px 24px;background:linear-gradient(135deg,rgba(255,34,34,.3),var(--red));border:none;border-radius:8px;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.15em;color:#fff;">🔥 SHARE THIS</button>
+    <button onclick="document.getElementById('share-overlay').style.display='none'" style="cursor:pointer;padding:12px 20px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:8px;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.12em;color:rgba(255,255,255,.5);">CLOSE</button>
+  </div>
+</div>
+
 </body>
 </html>
