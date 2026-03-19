@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -8,6 +9,9 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "vx3jzkr86n");
 </script>
+
+
+
 <meta charset="UTF-8"/>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://openrouter.ai https://api.openrouter.ai; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
@@ -211,7 +215,8 @@ input[type=file]{display:none;}
   -webkit-tap-highlight-color: transparent;
 }
 </style>
-<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vx3jzkr86n");</script>
+
+
 <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vx3jzkr86n");</script>
 </head>
 <body>
@@ -349,7 +354,11 @@ input[type=file]{display:none;}
         <div class="stat-c"><div class="stat-v" id="st-lv">0</div><div class="stat-l">LEVEL</div></div>
         <div class="stat-c"><div class="stat-v" id="st-ec">0</div><div class="stat-l">ELITE COINS</div></div>
         <div class="stat-c"><div class="stat-v" id="st-tk">0</div><div class="stat-l">TASKS DONE</div></div>
-        <div class="stat-c"><div class="stat-v" id="st-sk">0</div><div class="stat-l">DAY STREAK</div></div>
+        <div class="stat-c" style="position:relative;overflow:hidden;">
+  <div class="stat-v" id="st-sk" style="color:#ff9900;">0</div>
+  <div class="stat-l">DAY STREAK 🔥</div>
+  <div id="streak-max" style="font-family:monospace;font-size:.52rem;color:rgba(255,153,0,.5);margin-top:2px;"></div>
+</div>
       </div>
       <label class="lbl">NEXT LEVEL</label>
       <div class="pbar-wrap"><div class="pbar-fill" id="pbar" style="width:0%"></div></div>
@@ -397,6 +406,8 @@ input[type=file]{display:none;}
 
 <script>
 var GEMINI_KEY='AIzaSyD-TR0a43u5lqNUfALDNJwpaeLEKGu8FBo';
+var BACKEND_URL='https://mentor-elyx-system-backend.onrender.com';
+var authToken=localStorage.getItem('EX_TOKEN')||'';
 var OR_KEY='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';
 var THRESH=[0,50,150,300,500,750];
 var LVLNAMES=['INITIATOR','SEEKER','BUILDER','DOMINATOR','ELITE','APEX'];
@@ -438,8 +449,85 @@ function goPanel(p){
   });
 }
 
-function save(){localStorage.setItem('EX_U',JSON.stringify(U));}
-function load(){try{var d=JSON.parse(localStorage.getItem('EX_U')||'{}');if(d.name){Object.assign(U,d);return true;}}catch(e){}return false;}
+// ── BACKEND API ─────────────────────────────────────
+async function api(method, path, data){
+  if(!authToken) return null;
+  try{
+    var opts={method:method,headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken}};
+    if(data) opts.body=JSON.stringify(data);
+    var res=await fetch(BACKEND_URL+path,opts);
+    if(res.ok) return await res.json();
+    if(res.status===401){ authToken=''; localStorage.removeItem('EX_TOKEN'); }
+    return null;
+  }catch(e){ return null; }
+}
+
+async function backendLogin(email, password){
+  try{
+    var res=await fetch(BACKEND_URL+'/auth/login',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,password:password})
+    });
+    if(res.ok){
+      var d=await res.json();
+      authToken=d.token;
+      localStorage.setItem('EX_TOKEN',authToken);
+      return d.user;
+    }
+  }catch(e){}
+  return null;
+}
+
+async function backendSignup(email, password){
+  try{
+    var res=await fetch(BACKEND_URL+'/auth/signup',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        email:email, password:password,
+        name:U.name, profession:U.prof,
+        goal:U.goal, tone:U.tone||'balanced'
+      })
+    });
+    if(res.ok){
+      var d=await res.json();
+      authToken=d.token;
+      localStorage.setItem('EX_TOKEN',authToken);
+      return d.user;
+    }
+  }catch(e){}
+  return null;
+}
+
+function save(){
+  try{
+    var data = JSON.stringify(U);
+    localStorage.setItem('EX_U', data);
+    sessionStorage.setItem('EX_U', data);
+    // Also save timestamp
+    localStorage.setItem('EX_SAVE_T', Date.now().toString());
+  }catch(e){ console.log('Save error:', e); }
+}
+
+function load(){
+  try{
+    var raw = localStorage.getItem('EX_U') || sessionStorage.getItem('EX_U');
+    if(raw){
+      var d = JSON.parse(raw);
+      if(d && d.name){ Object.assign(U, d); }
+    }
+    // Auto login to backend if credentials exist
+    var em=localStorage.getItem('EX_EMAIL'), pw=localStorage.getItem('EX_PASS');
+    if(em && pw && !authToken){
+      backendLogin(em,pw).then(function(user){
+        if(user){ Object.assign(U,{coins:user.coins,tasks:user.tasks_done,level:user.level,streak:user.streak}); save(); updateHUD(); }
+      });
+    }
+    return !!raw && !!JSON.parse(raw).name;
+  }catch(e){ return false; }
+}
+// load() defined above
 function calcLvl(c){for(var i=THRESH.length-1;i>=0;i--)if(c>=THRESH[i])return i;return 0;}
 function today(){return new Date().toISOString().slice(0,10);}
 
@@ -581,6 +669,14 @@ function doOB(){
   err.style.display='none';
   U={name:name,prof:selProf,goal:goal,tone:selToneVal,level:0,coins:0,tasks:0,streak:0};
   save();
+  // Auto-create backend account
+  var email = (U.name.toLowerCase().replace(/\s+/g,'.')+'.'+Date.now().toString().slice(-4)+'@elyx.app');
+  var pass = 'ElyxUser'+Date.now().toString().slice(-6);
+  localStorage.setItem('EX_EMAIL',email);
+  localStorage.setItem('EX_PASS',pass);
+  backendSignup(email, pass).then(function(user){
+    if(user) console.log('Backend account created');
+  });
   startIntro();
 }
 
@@ -723,7 +819,13 @@ function updateStatus(){
   $('st-lv').textContent=U.level;
   $('st-ec').textContent=U.coins;
   $('st-tk').textContent=U.tasks;
-  $('st-sk').textContent=U.streak;
+  $('st-sk').textContent=U.streak||0;
+  // Show streak motivation
+  var streakEl = $('streak-max');
+  if(streakEl){
+    var s=U.streak||0;
+    streakEl.textContent = s===0?'Start your streak today':s<7?'Keep going!':s<30?'On fire!':'LEGENDARY';
+  }
   var c=THRESH[U.level]||0,nx=THRESH[U.level+1]||750;
   var pct=nx>c?Math.min(100,((U.coins-c)/(nx-c))*100):100;
   $('pbar').style.width=pct+'%';
@@ -882,80 +984,42 @@ function fallback(msg){
 }
 
 async function aiChat(msg){
-  var sys = buildSys();
-  
-  // Build conversation history for context
-  var hist = chatHist.slice(-12); // last 6 turns
-  
-  // Detect user language for dynamic instruction
-  var langHint = '';
-  if(/[\u0900-\u097F]/.test(msg)){
-    langHint = 'The user is writing in Hindi. Reply in Hindi or Hinglish — match their language exactly.';
-  } else if(/[a-z].*(hai|hain|kya|nahi|mera|tera|bhai|yaar|kar|kr|ho|tha|thi|wala|wali)/i.test(msg)){
-    langHint = 'The user is writing in Hinglish (Hindi-English mix). Reply in Hinglish — casual, relatable, same energy.';
-  } else {
-    langHint = 'The user is writing in English. Reply in English.';
-  }
-  
-  // Format for Gemini
-  var contents = [];
-  var fullSys = sys + '\n\n' + langHint;
-  
-  // Add history
-  hist.forEach(function(m){
-    contents.push({
-      role: m.role === 'assistant' ? 'model' : 'user',
-      parts: [{text: m.content}]
-    });
-  });
-  
-  // Ensure last message is from user
-  if(!contents.length || contents[contents.length-1].role !== 'user'){
-    contents.push({role:'user', parts:[{text:msg}]});
+  // Try backend first (saves history, truly personal)
+  if(authToken){
+    var result = await api('POST','/chat/message',{message:msg});
+    if(result && result.reply) return result.reply;
   }
 
-  // Try Gemini Flash first (best quality, free)
+  // Fallback to direct Gemini
+  var sys = buildSys();
+  var hist = chatHist.slice(-12);
+  var langHint = '';
+  if(/[\u0900-\u097F]/.test(msg)){
+    langHint='Reply in Hindi.';
+  } else if(/\b(hai|hain|kya|nahi|bhai|yaar|kr|ho|tha)\b/i.test(msg)){
+    langHint='Reply in Hinglish.';
+  } else {
+    langHint='Reply in English.';
+  }
+  var fullSys = sys + '\n\n' + langHint;
+  
+  var contents = hist.map(function(m){
+    return {role:m.role==='assistant'?'model':'user', parts:[{text:m.content}]};
+  });
+  contents.push({role:'user',parts:[{text:msg}]});
+
   try{
     var res = await fetch(
       'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_KEY,
-      {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          systemInstruction:{parts:[{text:fullSys||sys}]},
-          contents:contents,
-          generationConfig:{
-            maxOutputTokens:400,
-            temperature:0.9,
-            topP:0.95
-          }
-        })
-      }
+      {method:'POST',headers:{'Content-Type':'application/json'},
+       body:JSON.stringify({systemInstruction:{parts:[{text:fullSys}]},contents:contents,generationConfig:{maxOutputTokens:400,temperature:0.9}})}
     );
     if(res.ok){
-      var d = await res.json();
-      var text = d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts&&d.candidates[0].content.parts[0].text;
-      if(text&&text.trim().length>5) return text.trim();
+      var d=await res.json();
+      var t=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts&&d.candidates[0].content.parts[0].text;
+      if(t&&t.trim().length>5) return t.trim();
     }
-  }catch(e){ console.log('Gemini error:',e); }
-  
-  // Fallback to OpenRouter
-  try{
-    var res2 = await fetch('https://openrouter.ai/api/v1/chat/completions',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+OR_KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
-      body:JSON.stringify({
-        model:'meta-llama/llama-3.1-8b-instruct:free',
-        max_tokens:380,temperature:.9,
-        messages:[{role:'system',content:sys}].concat(hist.map(function(m){return{role:m.role==='assistant'?'assistant':'user',content:m.content};}))
-      })
-    });
-    if(res2.ok){
-      var d2=await res2.json();
-      var text2=d2.choices&&d2.choices[0]&&d2.choices[0].message&&d2.choices[0].message.content;
-      if(text2&&text2.trim().length>5) return text2.trim();
-    }
-  }catch(e2){ console.log('OR error:',e2); }
+  }catch(e){ console.log('Gemini err:',e); }
   
   return fallback(msg);
 }
@@ -997,25 +1061,59 @@ function toggleVoice(){
 
 // ── TASKS ────────────────────────────────────────────
 async function genTasksGemini(n,g,p){
+  var prompt = 'Generate 3 tasks for ' + n + ' (' + p + '). Goal: "' + g + '". Each task MUST help achieve this goal. Return ONLY JSON array: [{"emoji":"emoji","title":"short title","description":"specific action today","coins":15},{"emoji":"emoji","title":"short title","description":"specific action","coins":10},{"emoji":"emoji","title":"short title","description":"specific action","coins":8}]';
   try{
-    var prompt='Generate exactly 3 daily tasks for '+n+' ('+p+') with goal: "'+g+'".\nRules: Each task MUST directly help achieve "'+g+'". Specific and completable today. Return ONLY JSON array:\n[{"emoji":"🎯","title":"Short title","description":"Specific action toward goal","coins":15},{"emoji":"📊","title":"Short title","description":"Specific action","coins":10},{"emoji":"💪","title":"Short title","description":"Specific action","coins":8}]';
     var res=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_KEY,{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({contents:[{role:'user',parts:[{text:prompt}]}],generationConfig:{maxOutputTokens:400,temperature:0.7}})
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        contents:[{role:'user',parts:[{text:prompt}]}],
+        generationConfig:{maxOutputTokens:500,temperature:0.7}
+      })
     });
     if(res.ok){
       var d=await res.json();
-      var raw=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts&&d.candidates[0].content.parts[0].text;
+      var raw=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts&&d.candidates[0].content.parts[0]&&d.candidates[0].content.parts[0].text;
       if(raw){
-        var m=raw.match(/\[[\s\S]*\]/);
+        var cleaned=raw.replace(/```json/g,'').replace(/```/g,'').trim();
+        var m=cleaned.match(/\[[\s\S]*\]/);
         if(m){var parsed=JSON.parse(m[0]);if(Array.isArray(parsed)&&parsed.length>=2)return parsed;}
       }
     }
-  }catch(e){console.log('Gemini task err',e);}
+  }catch(e){console.log('Gemini task err:',e);}
   return null;
 }
 
 async function genTasks(){
+  var n=U.name.split(' ')[0], g=U.goal, p=U.prof;
+
+  // Try backend first
+  if(authToken){
+    var existing = await api('GET','/tasks/today');
+    if(existing && existing.tasks && existing.tasks.length){
+      window._tasks = existing.tasks.map(function(t){
+        return {id:String(t.id),emoji:t.emoji,title:t.title,desc:t.description,coins:t.coins,done:t.status==='done'};
+      });
+      localStorage.setItem('EX_T',JSON.stringify(window._tasks));
+      renderTasks();
+      showTasksInChat(window._tasks);
+      return;
+    }
+    var generated = await api('POST','/tasks/generate');
+    if(generated && generated.tasks && generated.tasks.length){
+      window._tasks = generated.tasks.map(function(t){
+        return {id:String(t.id),emoji:t.emoji,title:t.title,desc:t.description,coins:t.coins,done:t.status==='done'};
+      });
+      localStorage.setItem('EX_T',JSON.stringify(window._tasks));
+      renderTasks();
+      showTasksInChat(window._tasks);
+      var totalEC=window._tasks.reduce(function(s,t){return s+t.coins;},0);
+      addMsg('m',n+' — your missions are live. '+totalEC+' EC waiting. Built for your goal: "'+g.slice(0,40)+'...' +'". Camera proof karo aur coins kamao.');
+      return;
+    }
+  }
+
+  // Fallback to local generation
   var n=U.name.split(' ')[0], g=U.goal, p=U.prof;
   
   // Show loading in BOTH chat and tasks panel
@@ -1193,69 +1291,75 @@ function onCamFile(inp){
 function showTextProof(){$('proof-text').classList.add('on');$('proof-text').focus();}
 
 async function submitProof(){
-  if(!pendTask)return;
+  if(!pendTask) return;
   var task=pendTask;
   var text=$('proof-text').value.trim();
   if(!proofImg&&(!text||text.split(' ').length<6)){
-    toast('Add a photo OR write at least 6 words of proof!');
+    toast('Add a photo OR write at least 6 words!');
     return;
   }
   closeModal();
   goPanel('chat');
   var n=U.name.split(' ')[0];
-  addMsg('u','[Proof for: '+task.title+']'+(proofImg?' [Photo submitted]':'\n'+text));
+  addMsg('u','[Proof for: '+task.title+']'+(proofImg?' [Photo]':' '+text));
   showTyping();
 
-  var approved=true,msg='';
-  if(proofImg){
-    // Photo proof = auto approved with AI celebration
-    msg=n+' — VERIFIED! Photo proof accepted. +'+task.coins+' EC EARNED!\n\nThat is what execution looks like. You did not just talk about it — you did it. Your goal "'+U.goal.slice(0,40)+'..." just got closer.';
-  } else {
-    // Text proof - validate with AI
-    try{
-      var res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Authorization':'Bearer '+KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
-        body:JSON.stringify({
-          model:'meta-llama/llama-3.1-8b-instruct:free',max_tokens:200,temperature:.7,
-          messages:[
-            {role:'system',content:'You are ELYX validating task proof. Task: "'+task.title+'". User goal: "'+U.goal+'".\nApprove if proof shows genuine specific effort (time spent, what was done, output).\nReject only if clearly fake (just "done", "yes", under 8 words, unrelated).\nReply as ELYX mentor. If approved mention +'+task.coins+' EC. Be energetic. Max 3 sentences.'},
-            {role:'user',content:'My proof: "'+text+'"'}
-          ]
-        })
-      });
-      if(res.ok){var d=await res.json();msg=d.choices[0].message.content.trim();approved=!/reject|not enough|too vague|more detail/i.test(msg);}
-    }catch(e){
-      approved=true;
-      msg=n+' — proof verified! +'+task.coins+' EC EARNED. That is what showing up looks like. Keep stacking.';
+  // Try backend proof validation
+  if(authToken){
+    var result = await api('POST','/tasks/proof',{
+      task_id: task.id,
+      proof_text: text||'photo proof submitted',
+      proof_type: proofImg?'photo':'text'
+    });
+    if(result){
+      hideTyping();
+      if(result.approved){
+        // Update local state from backend
+        U.coins = result.new_coins || (U.coins + task.coins);
+        U.tasks = (U.tasks||0) + 1;
+        if(result.new_level !== undefined) U.level = result.new_level;
+        save();
+        updateHUD();
+        if(window._tasks){
+          var found=window._tasks.find(function(t){return String(t.id)===String(task.id);});
+          if(found) found.done=true;
+          localStorage.setItem('EX_T',JSON.stringify(window._tasks));
+          renderTasks();
+        }
+        if(result.leveled_up) setTimeout(function(){toast('LEVEL UP! You are now '+LVLNAMES[U.level]+'!',4000);},500);
+        
+        var coinBurst=document.createElement('div');
+        coinBurst.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:900;font-family:monospace;font-size:2.5rem;font-weight:bold;color:var(--red);text-shadow:0 0 30px var(--red);animation:coinPop 1.5s ease forwards;pointer-events:none;';
+        coinBurst.textContent='+'+task.coins+' EC';
+        document.body.appendChild(coinBurst);
+        setTimeout(function(){coinBurst.remove();},1600);
+        toast('+'+task.coins+' EC EARNED! Total: '+U.coins+' EC',3000);
+        if(U.tasks%3===0) setTimeout(showShareCard,2500);
+      }
+      addMsg('m',result.message||'Verified!');
+      pendTask=null; proofImg=null;
+      return;
     }
-    if(!approved){hideTyping();addMsg('m',msg);return;}
   }
 
+  // Fallback local proof
+  var approved=true, msg='';
+  if(proofImg){
+    awardCoins(task);
+    msg=n+' — photo proof verified! +'+task.coins+' EC EARNED!';
+  } else {
+    if(text.split(' ').length<8){
+      hideTyping();
+      addMsg('m',n+', too vague. Write at least 8 words — what exactly did you do?');
+      pendTask=task;
+      return;
+    }
+    awardCoins(task);
+    msg=n+' — proof verified! +'+task.coins+' EC EARNED. Keep stacking.';
+  }
   hideTyping();
-
-  // Award coins
-  task.done=true;
-  U.coins+=task.coins;
-  U.tasks++;
-  localStorage.setItem('EX_T',JSON.stringify(window._tasks));
-  var newLvl=calcLvl(U.coins);
-  if(newLvl>U.level){
-    U.level=newLvl;
-    setTimeout(function(){toast('⚡ LEVEL UP! You are now '+LVLNAMES[newLvl]+'!',4000);},500);
-  }
-  save();
-  updateHUD();
   addMsg('m',msg);
-  toast('+'+task.coins+' EC EARNED! Total: '+U.coins+' EC',3500);
-  setTimeout(function(){renderTasks();},600);
-  
-  // Show share card after every 3 tasks
-  if(U.tasks>0 && U.tasks%3===0){
-    setTimeout(function(){
-      showShareCard();
-    }, 2500);
-  }
+  pendTask=null; proofImg=null;
 }
 
 
@@ -1402,6 +1506,20 @@ function editProfile(){
     toast('Edit your profile — progress is saved.');
   }
 }
+
+
+// AUTO-SAVE every 30 seconds
+setInterval(function(){
+  if(U.name) save();
+}, 30000);
+
+// Save on page hide/unload
+document.addEventListener('visibilitychange', function(){
+  if(document.hidden && U.name) save();
+});
+window.addEventListener('beforeunload', function(){
+  if(U.name) save();
+});
 
 console.log('ELYX v6 loaded ✅ — all features active');
 </script>
