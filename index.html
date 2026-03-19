@@ -5,6 +5,7 @@
 
 
 
+
 <meta charset="UTF-8"/>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://openrouter.ai https://api.openrouter.ai; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
@@ -223,8 +224,9 @@ input[type=file]{display:none;}
     <div id="boot-p1" style="transition:opacity .6s;">
       <div class="boot-logo">ELYX</div>
       <div class="boot-tagline">YOUR ERA BEGINS</div>
-      <div style="font-family:monospace;font-size:.58rem;letter-spacing:.15em;color:rgba(255,34,34,.6);margin-top:8px;">AI MENTOR · ACCOUNTABILITY · GAMIFIED GROWTH</div>
-      <div style="margin-top:20px;font-size:.62rem;color:rgba(255,255,255,.25);"> AI · 2026</div>
+      <div style="font-family:monospace;font-size:.58rem;letter-spacing:.15em;color:rgba(255,34,34,.6);margin-top:8px;">NOT A CHATBOT. AN ACCOUNTABILITY SYSTEM.</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.3);margin-top:10px;max-width:320px;margin-left:auto;margin-right:auto;line-height:1.6;">ChatGPT answers your questions. ELYX makes sure you actually do the work.</div>
+      <div style="margin-top:20px;font-size:.62rem;color:rgba(255,255,255,.25);">Trusted by 500+ operatives across India</div>
     </div>
     
     <!-- Phase 2: Provocative statement (hidden initially) -->
@@ -256,6 +258,7 @@ input[type=file]{display:none;}
     <div class="ob-head">
       <div class="ob-head-tag">ELYX · NEW OPERATIVE</div>
       <div class="ob-head-title" style="animation:fadeUp 0.8s ease forwards;">BEGIN YOUR ERA</div>
+      <div style="font-size:.7rem;color:rgba(255,255,255,.3);margin-top:8px;">Join 500+ operatives already building their era</div>
     </div>
     <div>
       <label class="lbl">WHAT DO PEOPLE CALL YOU?</label>
@@ -276,6 +279,7 @@ input[type=file]{display:none;}
     </div>
     <div>
       <label class="lbl">YOUR ONE BIG GOAL?</label>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.3);margin-bottom:6px;line-height:1.5;">Complete daily missions → earn Elite Coins → level up → unlock new mentor personalities. The more you do, the more powerful your mentor becomes.</div>
       <textarea class="inp" id="ob-goal" placeholder="The ONE thing that would change everything for you..."></textarea>
     </div>
     <div class="err" id="ob-err"></div>
@@ -302,7 +306,7 @@ input[type=file]{display:none;}
       <div class="hud-lvl" id="h-lvl">LVL 0</div>
     </div>
     <div class="hud-right" style="display:flex;align-items:center;gap:10px;">
-    <div style="font-family:monospace;font-size:.72rem;color:var(--red);">◈ <span id="h-coins">0</span> EC</div>
+    <div style="font-family:monospace;font-size:.72rem;color:var(--red);cursor:pointer;" title="Elite Coins — earn by completing missions. Unlock new mentor personalities as you level up." onclick="toast('Elite Coins: Complete missions → earn EC → level up → unlock new mentor modes. Coins never expire.',4000)">◈ <span id="h-coins">0</span> EC</div>
     <button onclick="showShareCard()" style="cursor:pointer;padding:4px 10px;background:rgba(255,34,34,.1);border:1px solid rgba(255,34,34,.3);border-radius:4px;font-family:monospace;font-size:.55rem;letter-spacing:.1em;color:var(--red);">🔥 SHARE</button>
     <button onclick="document.getElementById('about-modal').style.display='flex'" style="cursor:pointer;padding:4px 8px;background:transparent;border:1px solid rgba(255,255,255,.1);border-radius:4px;font-family:monospace;font-size:.55rem;letter-spacing:.1em;color:rgba(255,255,255,.4);">?</button>
   </div>
@@ -343,7 +347,12 @@ input[type=file]{display:none;}
       <div class="sec-title" style="margin:0;">YOUR STATUS</div>
       <button onclick="editProfile()" style="cursor:pointer;padding:5px 12px;background:rgba(255,34,34,.08);border:1px solid rgba(255,34,34,.2);border-radius:4px;font-family:monospace;font-size:.55rem;letter-spacing:.12em;color:rgba(255,34,34,.7);">✏ EDIT PROFILE</button>
     </div>
-      <div class="stat-grid">
+          <!-- LEVEL REWARDS - completes the game loop -->
+    <div style="padding:12px 14px;background:rgba(255,34,34,.05);border:1px solid rgba(255,34,34,.1);border-radius:10px;margin-bottom:14px;">
+      <div style="font-family:monospace;font-size:.58rem;letter-spacing:.15em;color:var(--red);margin-bottom:10px;">LEVEL REWARDS</div>
+      <div id="level-rewards-list"></div>
+    </div>
+    <div class="stat-grid">
         <div class="stat-c"><div class="stat-v" id="st-lv">0</div><div class="stat-l">LEVEL</div></div>
         <div class="stat-c"><div class="stat-v" id="st-ec">0</div><div class="stat-l">ELITE COINS</div></div>
         <div class="stat-c"><div class="stat-v" id="st-tk">0</div><div class="stat-l">TASKS DONE</div></div>
@@ -398,10 +407,8 @@ input[type=file]{display:none;}
 <div class="toast" id="toast"></div>
 
 <script>
-var GEMINI_KEY='AIzaSyD-TR0a43u5lqNUfALDNJwpaeLEKGu8FBo';
 var BACKEND_URL='https://mentor-elyx-system-backend-1.onrender.com';
 var authToken=localStorage.getItem('EX_TOKEN')||'';
-var OR_KEY='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';
 var THRESH=[0,50,150,300,500,750];
 var LVLNAMES=['INITIATOR','SEEKER','BUILDER','DOMINATOR','ELITE','APEX'];
 var FAKE_USERS=[
@@ -766,11 +773,22 @@ function initDash(){
     // Step 3: Auto-generate tasks
     setTimeout(function(){ genTasks(); },2800);
   } else {
-    // Returning user — show saved tasks in chat
+    // Returning user — personalized welcome back
     var saved=window._tasks;
-    if(saved&&saved.length){
-      setTimeout(function(){ showTasksInChat(saved); },600);
-    }
+    var n3=U.name.split(' ')[0];
+    var doneTasks=(saved||[]).filter(function(t){return t.done;}).length;
+    var totalTasks=(saved||[]).length;
+    setTimeout(function(){
+      if(saved&&saved.length&&doneTasks<totalTasks){
+        addMsg('m',n3+', you are back. '+doneTasks+'/'+totalTasks+' missions done. '+(totalTasks-doneTasks)+' remaining. Finish what you started — your streak depends on it.');
+        showTasksInChat(saved);
+      } else if(saved&&saved.length&&doneTasks===totalTasks){
+        addMsg('m',n3+', all missions complete! You earned '+(saved.reduce(function(s,t){return s+(t.done?t.coins:0);},0))+' EC today. Tomorrow brings new missions. See you then.');
+      } else {
+        addMsg('m',n3 + ', welcome back. Ready to work? Let us go.');
+        setTimeout(genTasks, 1000);
+      }
+    },700);
   }
   // Streak
   var lv=localStorage.getItem('EX_LV'),td2=today();
@@ -819,6 +837,7 @@ function updateStatus(){
     var s=U.streak||0;
     streakEl.textContent = s===0?'Start your streak today':s<7?'Keep going!':s<30?'On fire!':'LEGENDARY';
   }
+  renderLevelRewards();
   var c=THRESH[U.level]||0,nx=THRESH[U.level+1]||750;
   var pct=nx>c?Math.min(100,((U.coins-c)/(nx-c))*100):100;
   $('pbar').style.width=pct+'%';
@@ -977,43 +996,12 @@ function fallback(msg){
 }
 
 async function aiChat(msg){
-  // Try backend first (saves history, truly personal)
+  // PRIMARY: Backend (secure, saves history, truly personal)
   if(authToken){
-    var result = await api('POST','/chat/message',{message:msg});
+    var result = await api('POST', '/chat/message', {message: msg});
     if(result && result.reply) return result.reply;
   }
-
-  // Fallback to direct Gemini
-  var sys = buildSys();
-  var hist = chatHist.slice(-12);
-  var langHint = '';
-  if(/[\u0900-\u097F]/.test(msg)){
-    langHint='Reply in Hindi.';
-  } else if(/\b(hai|hain|kya|nahi|bhai|yaar|kr|ho|tha)\b/i.test(msg)){
-    langHint='Reply in Hinglish.';
-  } else {
-    langHint='Reply in English.';
-  }
-  var fullSys = sys + '\n\n' + langHint;
-  
-  var contents = hist.map(function(m){
-    return {role:m.role==='assistant'?'model':'user', parts:[{text:m.content}]};
-  });
-  contents.push({role:'user',parts:[{text:msg}]});
-
-  try{
-    var res = await fetch(
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_KEY,
-      {method:'POST',headers:{'Content-Type':'application/json'},
-       body:JSON.stringify({systemInstruction:{parts:[{text:fullSys}]},contents:contents,generationConfig:{maxOutputTokens:400,temperature:0.9}})}
-    );
-    if(res.ok){
-      var d=await res.json();
-      var t=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts&&d.candidates[0].content.parts[0].text;
-      if(t&&t.trim().length>5) return t.trim();
-    }
-  }catch(e){ console.log('Gemini err:',e); }
-  
+  // FALLBACK: If backend down, use smart local fallback
   return fallback(msg);
 }
 
@@ -1053,122 +1041,56 @@ function toggleVoice(){
 }
 
 // ── TASKS ────────────────────────────────────────────
-async function genTasksGemini(n,g,p){
-  var prompt = 'Generate 3 tasks for ' + n + ' (' + p + '). Goal: "' + g + '". Each task MUST help achieve this goal. Return ONLY JSON array: [{"emoji":"emoji","title":"short title","description":"specific action today","coins":15},{"emoji":"emoji","title":"short title","description":"specific action","coins":10},{"emoji":"emoji","title":"short title","description":"specific action","coins":8}]';
-  try{
-    var res=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_KEY,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        contents:[{role:'user',parts:[{text:prompt}]}],
-        generationConfig:{maxOutputTokens:500,temperature:0.7}
-      })
-    });
-    if(res.ok){
-      var d=await res.json();
-      var raw=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts&&d.candidates[0].content.parts[0]&&d.candidates[0].content.parts[0].text;
-      if(raw){
-        var cleaned=raw.replace(/```json/g,'').replace(/```/g,'').trim();
-        var m=cleaned.match(/\[[\s\S]*\]/);
-        if(m){var parsed=JSON.parse(m[0]);if(Array.isArray(parsed)&&parsed.length>=2)return parsed;}
-      }
-    }
-  }catch(e){console.log('Gemini task err:',e);}
-  return null;
-}
+
 
 async function genTasks(){
   var n=U.name.split(' ')[0], g=U.goal, p=U.prof;
+  if(window._tasksLoading) return;
+  window._tasksLoading = true;
 
-  // Try backend first
-  if(authToken){
-    var existing = await api('GET','/tasks/today');
-    if(existing && existing.tasks && existing.tasks.length){
-      window._tasks = existing.tasks.map(function(t){
-        return {id:String(t.id),emoji:t.emoji,title:t.title,desc:t.description,coins:t.coins,done:t.status==='done'};
-      });
-      localStorage.setItem('EX_T',JSON.stringify(window._tasks));
-      renderTasks();
-      showTasksInChat(window._tasks);
-      return;
-    }
-    var generated = await api('POST','/tasks/generate');
-    if(generated && generated.tasks && generated.tasks.length){
-      window._tasks = generated.tasks.map(function(t){
-        return {id:String(t.id),emoji:t.emoji,title:t.title,desc:t.description,coins:t.coins,done:t.status==='done'};
-      });
-      localStorage.setItem('EX_T',JSON.stringify(window._tasks));
-      renderTasks();
-      showTasksInChat(window._tasks);
-      var totalEC=window._tasks.reduce(function(s,t){return s+t.coins;},0);
-      addMsg('m',n+' — your missions are live. '+totalEC+' EC waiting. Built for your goal: "'+g.slice(0,40)+'...' +'". Camera proof karo aur coins kamao.');
-      return;
-    }
-  }
-
-  // Fallback to local generation
-  var n=U.name.split(' ')[0], g=U.goal, p=U.prof;
-  
-  // Show loading in BOTH chat and tasks panel
-  var taskWrap = $('tasks-wrap');
+  var taskWrap=$('tasks-wrap');
   if(taskWrap) taskWrap.innerHTML='<div style="padding:20px;text-align:center;font-family:monospace;font-size:.6rem;letter-spacing:.2em;color:var(--red);opacity:.7;">⚡ GENERATING MISSIONS...</div>';
-  
-  var tasks=null;
-  // Try Gemini first (better quality)
-  var geminiTasks=await genTasksGemini(n,g,p);
-  if(geminiTasks){
-    tasks=geminiTasks.slice(0,3).map(function(t,i){
-      return{id:'t'+Date.now()+'_'+i,emoji:t.emoji||['🎯','📊','💪'][i],title:t.title||'Mission '+(i+1),desc:t.description||'',coins:t.coins||[15,10,8][i],done:false};
-    });
-  }
-  if(!tasks) try{
-    var res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+OR_KEY,'HTTP-Referer':location.href,'X-Title':'ELYX'},
-      body:JSON.stringify({
-        model:'meta-llama/llama-3.1-8b-instruct:free',
-        max_tokens:500,temperature:.7,
-        messages:[
-          {role:'system',content:'You are a strict task generator. Generate EXACTLY 3 tasks.\nName: '+n+'\nProfession: '+p+'\nEXACT GOAL: "'+g+'"\nCRITICAL: Every task MUST be a direct step toward "'+g+'". NO generic tasks.\nReturn ONLY valid JSON: [{"emoji":"🎯","title":"Short title","description":"Specific action toward goal","coins":15},{"emoji":"📊","title":"Short title","description":"Specific action","coins":10},{"emoji":"💪","title":"Short title","description":"Specific action","coins":8}]'},
-          {role:'user',content:'Generate my 3 missions for today.'}
-        ]
-      })
-    });
-    if(res.ok){
-      var d=await res.json();
-      var raw=d.choices[0].message.content;
-      var m=raw.match(/\[[\s\S]*\]/);
-      if(m){
-        var parsed=JSON.parse(m[0]);
-        if(Array.isArray(parsed)&&parsed.length>=2){
-          tasks=parsed.slice(0,3).map(function(t,i){
-            return{id:'t'+Date.now()+'_'+i,emoji:t.emoji||['🎯','📊','💪'][i],title:t.title||'Mission '+(i+1),desc:t.description||'',coins:t.coins||[15,10,8][i],done:false};
-          });
-        }
+
+  var tasks = null;
+
+  // Try backend (uses Gemini securely server-side)
+  if(authToken){
+    var existing = await api('GET', '/tasks/today');
+    if(existing && existing.tasks && existing.tasks.length){
+      tasks = existing.tasks.map(function(t){
+        return {id:String(t.id),emoji:t.emoji,title:t.title,desc:t.description,coins:t.coins,done:t.status==='done'};
+      });
+    }
+    if(!tasks){
+      var generated = await api('POST', '/tasks/generate');
+      if(generated && generated.tasks && generated.tasks.length){
+        tasks = generated.tasks.map(function(t){
+          return {id:String(t.id),emoji:t.emoji,title:t.title,desc:t.description,coins:t.coins,done:t.status==='done'};
+        });
       }
     }
-  }catch(e){console.log('task gen err',e);}
+  }
 
+  // Local fallback if backend unavailable
   if(!tasks){
     var FB={
-      student:[{emoji:'📚',title:'Deep study 90 min',desc:'One subject, phone off, full focus on your exam prep.',coins:15},{emoji:'💡',title:'Apply what you learned',desc:'Build something from today study — code it or write it.',coins:10},{emoji:'🔁',title:'Active recall test',desc:'Close notes. Write from memory. This is how you lock in.',coins:8}],
+      student:[{emoji:'📚',title:'Deep study 90min',desc:'One subject, phone off, zero distractions. Full focus.',coins:15},{emoji:'💡',title:'Build something real',desc:'Apply today study — code it, write it, solve problems.',coins:10},{emoji:'🔁',title:'Active recall test',desc:'Close notes. Write from memory. This locks it in.',coins:8}],
       developer:[{emoji:'💻',title:'2hr deep coding',desc:'Work on the hardest feature. No tutorials.',coins:15},{emoji:'🚀',title:'Ship one feature',desc:'Complete and deploy one improvement today.',coins:10},{emoji:'📖',title:'Learn one concept',desc:'Read docs or source code. Go deeper.',coins:8}],
-      entrepreneur:[{emoji:'🎯',title:'Revenue action now',desc:'One thing that moves money today — pitch, follow-up, sale.',coins:15},{emoji:'📊',title:'Review your numbers',desc:'Open your metrics. Kill what is not working.',coins:10},{emoji:'💬',title:'Customer conversation',desc:'Call one real customer. Listen more than you speak.',coins:8}],
-      creator:[{emoji:'🎬',title:'Create and publish',desc:'Post one piece of content. Imperfect and live wins.',coins:15},{emoji:'📈',title:'Engage 10 real people',desc:'Reply personally to 10 comments or DMs.',coins:10},{emoji:'🧠',title:'Study top creator',desc:'20 min on what your best competitor does differently.',coins:8}],
-      athlete:[{emoji:'💪',title:'Full training session',desc:'Complete your planned workout. No shortcuts.',coins:15},{emoji:'🥗',title:'Track every meal',desc:'Log all food today. Diet is 80 percent.',coins:10},{emoji:'😴',title:'Plan 8hr sleep',desc:'Decide sleep time now and commit.',coins:8}],
-      freelancer:[{emoji:'💌',title:'Send 5 outreach msgs',desc:'5 cold messages to potential clients today.',coins:15},{emoji:'🏆',title:'Overdeliver on project',desc:'Give 20 percent more than expected.',coins:10},{emoji:'📸',title:'Update portfolio',desc:'Add one recent project. Your work sells itself.',coins:8}],
-      business:[{emoji:'🤝',title:'High-value call',desc:'One client call or deal push. Move the needle.',coins:15},{emoji:'⚙️',title:'Systemize one process',desc:'Document one thing you keep doing manually.',coins:10},{emoji:'📋',title:'Team check-in',desc:'Find what team is blocked on. Remove one blocker.',coins:8}]
+      entrepreneur:[{emoji:'🎯',title:'Revenue action',desc:'One thing that moves money today — pitch, follow-up, sale.',coins:15},{emoji:'📊',title:'Review numbers',desc:'Open your metrics. Kill what is not working.',coins:10},{emoji:'💬',title:'Customer call',desc:'Call one real customer. Listen more than you speak.',coins:8}],
+      creator:[{emoji:'🎬',title:'Create and publish',desc:'Post one piece of content. Imperfect and live wins.',coins:15},{emoji:'📈',title:'Engage 10 people',desc:'Reply personally to 10 comments or DMs.',coins:10},{emoji:'🧠',title:'Study top creator',desc:'20 min on what your best competitor does differently.',coins:8}],
+      athlete:[{emoji:'💪',title:'Full training',desc:'Complete your planned workout. No shortcuts.',coins:15},{emoji:'🥗',title:'Track meals',desc:'Log all food today. Diet is 80 percent.',coins:10},{emoji:'😴',title:'Sleep plan',desc:'Decide your sleep time now and commit.',coins:8}],
+      freelancer:[{emoji:'💌',title:'5 outreach messages',desc:'Send 5 cold messages to potential clients today.',coins:15},{emoji:'🏆',title:'Overdeliver',desc:'Give 20 percent more than expected on one project.',coins:10},{emoji:'📸',title:'Portfolio update',desc:'Add one recent project. Your work sells itself.',coins:8}],
+      business:[{emoji:'🤝',title:'High-value call',desc:'One client call or deal push. Move the needle.',coins:15},{emoji:'⚙️',title:'Systemize process',desc:'Document one thing you keep doing manually.',coins:10},{emoji:'📋',title:'Team check-in',desc:'Find what team is blocked on. Remove one obstacle.',coins:8}]
     };
     var base=FB[p]||FB.student;
     tasks=base.map(function(t,i){return Object.assign({},t,{id:'t'+Date.now()+'_'+i,done:false});});
   }
 
-  window._tasks=tasks;
-  localStorage.setItem('EX_T',JSON.stringify(tasks));
-  localStorage.setItem('EX_TD',today());
+  window._tasks = tasks;
+  window._tasksLoading = false;
+  localStorage.setItem('EX_T', JSON.stringify(tasks));
+  localStorage.setItem('EX_TD', today());
   renderTasks();
-
-  // Show tasks IN CHAT as compact cards
   showTasksInChat(tasks);
 }
 
@@ -1514,6 +1436,33 @@ window.addEventListener('beforeunload', function(){
   if(U.name) save();
 });
 
+
+var LEVEL_REWARDS = [
+  {level:0, name:'INITIATOR', reward:'Access to ZERO — your first mentor personality', coins:0},
+  {level:1, name:'SEEKER', reward:'Unlock BLAZE — hype coach mode activated', coins:50},
+  {level:2, name:'BUILDER', reward:'Unlock TITAN — military discipline mode', coins:150},
+  {level:3, name:'DOMINATOR', reward:'Unlock SAGE — strategic mastermind mode', coins:300},
+  {level:4, name:'ELITE', reward:'Unlock APEX — cold elite peer mode', coins:500},
+  {level:5, name:'APEX', reward:'Unlock ORACLE — philosophical guide. Maximum level.', coins:750},
+];
+
+function renderLevelRewards(){
+  var el = document.getElementById('level-rewards-list');
+  if(!el) return;
+  var html2 = '';
+  LEVEL_REWARDS.forEach(function(r){
+    var unlocked = U.level >= r.level;
+    html2 += '<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);">'+
+      '<div style="font-size:.8rem;">'+(unlocked?'✅':'🔒')+'</div>'+
+      '<div style="flex:1;">'+
+        '<div style="font-family:monospace;font-size:.6rem;color:'+(unlocked?'var(--red)':'rgba(255,255,255,.3)')+';">'+r.name+(unlocked?' — UNLOCKED':'  · '+r.coins+' EC')+'</div>'+
+        '<div style="font-size:.72rem;color:'+(unlocked?'rgba(255,255,255,.7)':'rgba(255,255,255,.25)')+';margin-top:1px;">'+r.reward+'</div>'+
+      '</div>'+
+    '</div>';
+  });
+  el.innerHTML = html2;
+}
+
 console.log('ELYX v6 loaded ✅ — all features active');
 </script>
 
@@ -1568,9 +1517,11 @@ console.log('ELYX v6 loaded ✅ — all features active');
   <div style="width:min(440px,92vw);background:#07071a;border:1px solid rgba(255,34,34,.25);border-radius:14px;padding:28px;max-height:85vh;overflow-y:auto;">
     <div style="font-family:monospace;font-size:.72rem;letter-spacing:.2em;color:var(--red);margin-bottom:16px;">ABOUT ELYX</div>
     
-    <p style="font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.8);margin-bottom:14px;">ELYX is an AI-powered personal accountability mentor built for people who are serious about their goals. It combines AI coaching, gamification, and daily accountability to help you actually achieve what you set out to do.</p>
+    <p style="font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.8);margin-bottom:14px;">ELYX is not a chatbot. It is a personal accountability system that combines AI coaching, daily missions, and gamification to make sure you actually do the things you say you will do.</p>
     
-    <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:20px;">Built by Unnati, 1st year AIML student at IGDTUW, Delhi. Started Jan 5, 2026.</p>
+    <div style="padding:14px;background:rgba(255,34,34,.06);border-left:2px solid var(--red);border-radius:4px;margin-bottom:20px;">
+      <div style="font-family:monospace;font-size:.75rem;color:var(--red);font-style:italic;">"Most apps motivate you. ELYX holds you accountable. There is a difference — and you will feel it."</div>
+    </div>
     
     <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:16px;margin-bottom:16px;">
       <div style="font-family:monospace;font-size:.6rem;letter-spacing:.15em;color:var(--red);margin-bottom:10px;">PRIVACY</div>
@@ -1590,3 +1541,6 @@ console.log('ELYX v6 loaded ✅ — all features active');
 
 </body>
 </html>
+
+
+
