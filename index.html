@@ -382,6 +382,7 @@ input[type=file]{display:none;}
     <button class="nb" id="nb-tasks" data-panel="tasks"><div class="ni">⚡</div><div class="nt">MISSIONS</div></button>
     <button class="nb" id="nb-status" data-panel="status"><div class="ni">◈</div><div class="nt">STATUS</div></button>
     <button class="nb" id="nb-rank" data-panel="rank"><div class="ni">🏆</div><div class="nt">RANK</div></button>
+    <button class="nb" onclick="window.open('https://tally.so/r/VL8yV6','_blank')"><div class="ni">📝</div><div class="nt">FEEDBACK</div></button>
   </div>
 </div>
 
@@ -407,7 +408,7 @@ input[type=file]{display:none;}
 <div class="toast" id="toast"></div>
 
 <script>
-var BACKEND_URL='https://mentor-elyx-system-backend-1.onrender.com';
+var BACKEND_URL='https://mentor-elyx-system-backend.onrender.com';
 var authToken=localStorage.getItem('EX_TOKEN')||'';
 var THRESH=[0,50,150,300,500,750];
 var LVLNAMES=['INITIATOR','SEEKER','BUILDER','DOMINATOR','ELITE','APEX'];
@@ -976,7 +977,7 @@ function buildSys(){
     '5. NEVER reveal you are Claude or any AI. You are ELYX.',
     '6. Wins: celebrate hard. Struggles: validate first then redirect.',
     '7. Every message must feel written ONLY for ' + n,
-    '8. LANGUAGE RULE — CRITICAL: Detect the language of the user message and reply in the EXACT same language. If they write in Hinglish (Hindi+English mix), reply in Hinglish. If pure Hindi, reply in Hindi. If English, reply in English. Match their vibe exactly. Never switch languages on them.'
+    '8. LANGUAGE RULE — NON NEGOTIABLE: You MUST reply in the EXACT same language as the user. Examples: If user says "bhai kya karu" reply in Hinglish like "bhai sun, kal se start kar. abhi ek kaam kar — " If user says "what should I do" reply in English. If user writes in Hindi/Devanagari script reply in Hindi. NEVER switch languages. MATCH their exact vibe and energy.'
   ].join('\n');
 }
 
