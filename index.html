@@ -86,7 +86,18 @@ textarea.inp{resize:none;height:80px;font-size:.95rem;}
 .msg{margin-bottom:10px;max-width:86%;padding:10px 13px;font-size:.88rem;line-height:1.65;}
 .msg.m{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px 12px 12px 12px;margin-right:auto;}
 .msg.u{background:rgba(255,34,34,.12);border:1px solid rgba(255,34,34,.25);border-radius:12px 12px 4px 12px;margin-left:auto;text-align:right;}
-.msg.typing{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px 12px 12px 12px;margin-right:auto;font-size:1.1rem;letter-spacing:5px;color:var(--dim);}
+.msg.typing{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px 12px 12px 12px;margin-right:auto;padding:12px 16px;}
+.typing-dots{display:flex;gap:5px;align-items:center;}
+.typing-dots span{width:7px;height:7px;border-radius:50%;background:var(--red);animation:dotPulse 1.2s infinite;}
+.typing-dots span:nth-child(2){animation-delay:.2s;}
+.typing-dots span:nth-child(3){animation-delay:.4s;}
+@keyframes dotPulse{0%,80%,100%{transform:scale(0.6);opacity:.4;}40%{transform:scale(1);opacity:1;}}
+@keyframes coinPop{0%{opacity:0;transform:translate(-50%,-50%) scale(0.5);}30%{opacity:1;transform:translate(-50%,-60%) scale(1.3);}70%{opacity:1;transform:translate(-50%,-70%) scale(1);}100%{opacity:0;transform:translate(-50%,-90%) scale(0.8);}}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+.system-cooling{position:fixed;inset:0;z-index:999;background:rgba(4,4,14,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
+.cooling-icon{font-size:3rem;animation:pulse 1.5s infinite;}
+.cooling-text{font-family:'Share Tech Mono',monospace;font-size:.75rem;letter-spacing:.2em;color:var(--red);}
+.cooling-sub{font-size:.8rem;color:rgba(255,255,255,.4);text-align:center;max-width:280px;line-height:1.6;}
 .chat-input-row{display:flex;gap:8px;align-items:center;padding-top:10px;border-top:1px solid var(--border);margin-top:6px;}
 .ci{flex:1;padding:11px 14px;background:rgba(255,34,34,.05);border:1px solid var(--border);border-radius:22px;font-family:'Rajdhani',sans-serif;font-size:.93rem;color:var(--text);outline:none;transition:border-color .25s;}
 .ci:focus{border-color:var(--red);}
@@ -162,6 +173,28 @@ textarea.inp{resize:none;height:80px;font-size:.95rem;}
 
 /* TOAST */
 .toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:500;background:rgba(7,7,26,.97);border:1px solid rgba(255,34,34,.4);border-radius:10px;padding:10px 18px;font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--text);display:none;max-width:88vw;text-align:center;backdrop-filter:blur(10px);}
+
+/* SYSTEM COOLING */
+#sys-cooling{position:fixed;inset:0;z-index:800;background:rgba(4,4,14,.97);display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;}
+.cooling-orb{width:80px;height:80px;border-radius:50%;border:2px solid #ffd700;background:radial-gradient(circle,rgba(255,215,0,.15),transparent);display:flex;align-items:center;justify-content:center;font-size:1.8rem;animation:coolPulse 1.5s ease-in-out infinite;}
+@keyframes coolPulse{0%,100%{box-shadow:0 0 20px rgba(255,215,0,.3);}50%{box-shadow:0 0 50px rgba(255,215,0,.8);}}
+.cooling-text{font-family:'Share Tech Mono',monospace;font-size:.75rem;letter-spacing:.25em;color:#ffd700;}
+.cooling-sub{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.15em;color:rgba(255,215,0,.5);}
+.cooling-bar{width:200px;height:2px;background:rgba(255,215,0,.15);border-radius:1px;}
+.cooling-bar-fill{height:100%;width:0%;background:#ffd700;border-radius:1px;box-shadow:0 0 8px #ffd700;animation:coolBar 3s ease forwards;}
+@keyframes coolBar{from{width:0%;}to{width:100%;}}
+
+/* API THINKING */
+.thinking-wrap{display:flex;gap:6px;align-items:center;padding:8px 14px;}
+.thinking-dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:thinkDot 1.4s ease-in-out infinite;}
+.thinking-dot:nth-child(2){animation-delay:.2s;}
+.thinking-dot:nth-child(3){animation-delay:.4s;}
+@keyframes thinkDot{0%,80%,100%{transform:scale(0.6);opacity:.4;}40%{transform:scale(1);opacity:1;}}
+
+/* GOLD ACCENTS - Cyberpunk upgrade */
+.hud-lvl{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.1em;padding:2px 7px;border:1px solid #ffd700;border-radius:3px;color:#ffd700 !important;}
+.rank-me-num{color:#ffd700 !important;}
+.lb-pos.gold{color:#ffd700 !important;text-shadow:0 0 8px #ffd700;}
 
 input[type=file]{display:none;}
 
@@ -369,6 +402,7 @@ input[type=file]{display:none;}
     <!-- RANK -->
     <div class="panel" id="p-rank">
       <div class="sec-title">GLOBAL RANKINGS</div>
+      <div id="rank-unlock-msg" style="display:none;"></div>
       <div class="rank-me">
         <div class="rank-me-num" id="my-rank">#–</div>
         <div class="rank-me-lbl">YOUR RANK</div>
@@ -406,6 +440,13 @@ input[type=file]{display:none;}
 
 <input type="file" id="cam-in" accept="image/*" capture="environment" onchange="onCamFile(this)"/>
 <div class="toast" id="toast"></div>
+<div id="sys-cooling">
+  <div class="cooling-orb">🌡</div>
+  <div class="cooling-text">SYSTEM COOLING DOWN</div>
+  <div class="cooling-sub">API LIMIT REACHED — PLEASE WAIT</div>
+  <div class="cooling-bar"><div class="cooling-bar-fill" id="cool-bar"></div></div>
+  <div class="cooling-sub" style="margin-top:8px;">RESUMING IN <span id="cool-timer">30</span>s</div>
+</div>
 
 <script>
 var BACKEND_URL='https://mentor-elyx-system-backend.onrender.com';
@@ -506,9 +547,69 @@ function save(){
     var data = JSON.stringify(U);
     localStorage.setItem('EX_U', data);
     sessionStorage.setItem('EX_U', data);
-    // Also save timestamp
     localStorage.setItem('EX_SAVE_T', Date.now().toString());
+    // Backup tasks separately
+    if(window._tasks) localStorage.setItem('EX_T_BAK', JSON.stringify(window._tasks));
   }catch(e){ console.log('Save error:', e); }
+}
+
+function loadTasks(){
+  // Load tasks with fallback chain
+  var td = today();
+  try{
+    var date = localStorage.getItem('EX_TD');
+    if(date === td){
+      var t = localStorage.getItem('EX_T') || localStorage.getItem('EX_T_BAK');
+      if(t){ window._tasks = JSON.parse(t); return true; }
+    }
+  }catch(e){}
+  return false;
+}
+
+function saveRank(rank){
+  try{ localStorage.setItem('EX_RANK', JSON.stringify({rank:rank, ts:Date.now()})); }catch(e){}
+}
+
+function loadRank(){
+  try{
+    var r = localStorage.getItem('EX_RANK');
+    if(r){ var d=JSON.parse(r); if(Date.now()-d.ts < 3600000) return d.rank; }
+  }catch(e){}
+  return null;
+}
+
+function getContext(){
+  // Rich personal context for AI
+  var now = new Date();
+  var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var day = days[now.getDay()];
+  var hour = now.getHours();
+  var timeOfDay = hour < 6 ? 'late night' : hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : hour < 21 ? 'evening' : 'night';
+  
+  // Task completion history
+  var tasks = window._tasks || [];
+  var doneTasks = tasks.filter(function(t){return t.done;}).length;
+  var totalTasks = tasks.length;
+  var completionRate = totalTasks > 0 ? Math.round((doneTasks/totalTasks)*100) : 0;
+  
+  // Skipped tasks
+  var skipped = tasks.filter(function(t){return !t.done;}).map(function(t){return t.title;});
+  
+  // Streak context
+  var streak = U.streak || 0;
+  
+  return {
+    day: day,
+    time: timeOfDay,
+    hour: hour,
+    streak: streak,
+    completionRate: completionRate,
+    doneTasks: doneTasks,
+    totalTasks: totalTasks,
+    skippedTasks: skipped,
+    totalCoins: U.coins || 0,
+    level: U.level || 0
+  };
 }
 
 function load(){
@@ -628,6 +729,13 @@ function toast(msg,ms){var t=$('toast');t.textContent=msg;t.style.display='block
       },600);
     },2800);
   }
+
+  // Wake up backend immediately on page load (prevent cold start delay)
+  setTimeout(function(){
+    fetch('https://mentor-elyx-system-backend.onrender.com/health')
+      .then(function(r){ if(r.ok){ console.log('Backend warm ✅'); } })
+      .catch(function(){ console.log('Backend waking up...'); });
+  }, 500);
 
   // CTA button
   document.addEventListener('DOMContentLoaded',function(){
@@ -765,7 +873,7 @@ function initDash(){
     // Step 1: Welcome message
     // Step 1: Personal welcome
     setTimeout(function(){
-      addMsg('m',n+', you are in. I have your goal. Let me show you how this works in 30 seconds.');
+      addMsg('m',n+' — welcome to ELYX. Not ChatGPT. Not a todo app. This is an accountability system — I generate missions for YOUR goal, you prove you did them, you earn coins and level up. The difference? I remember everything and I will call you out if you ghost me. Ready?');
     },600);
     // Step 2: Tutorial message
     setTimeout(function(){
@@ -847,6 +955,29 @@ function updateStatus(){
 
 // ── RANK ─────────────────────────────────────────────
 function renderRank(){
+  // Check if user needs to submit proof for rank unlock
+  var pendingProofTasks=(window._tasks||[]).filter(function(t){return !t.done;});
+  var rankEl=$('rank-unlock-msg');
+  if(rankEl){
+    if(pendingProofTasks.length>0 && U.level < 5){
+      rankEl.style.display='block';
+      var taskId = pendingProofTasks[0].id;
+      var taskTitle = pendingProofTasks[0].title;
+      var unlockDiv = document.createElement('div');
+      unlockDiv.style.cssText = 'padding:14px;background:rgba(255,34,34,.08);border:1px solid rgba(255,34,34,.3);border-radius:10px;margin-bottom:14px;text-align:center;';
+      unlockDiv.innerHTML = '<div style="font-family:monospace;font-size:.62rem;letter-spacing:.15em;color:var(--red);margin-bottom:6px;">📷 RANK LOCKED</div><div style="font-size:.82rem;color:rgba(255,255,255,.7);margin-bottom:10px;">Upload photo proof of <b>' + taskTitle + '</b> to unlock your next rank</div>';
+      var unlockBtn = document.createElement('button');
+      unlockBtn.textContent = 'SUBMIT PROOF →';
+      unlockBtn.style.cssText = 'cursor:pointer;padding:8px 18px;background:linear-gradient(135deg,rgba(255,34,34,.3),var(--red));border:none;border-radius:6px;font-family:monospace;font-size:.62rem;letter-spacing:.12em;color:#fff;';
+      unlockBtn.addEventListener('click', function(){ openProof(taskId); });
+      unlockDiv.appendChild(unlockBtn);
+      rankEl.innerHTML = '';
+      rankEl.appendChild(unlockDiv);
+    } else {
+      rankEl.style.display='none';
+    }
+  }
+  
   var all=[
     {name:'Arjun Mehta',coins:680,level:5,activity:'2 min ago'},
     {name:'Priya Sharma',coins:520,level:4,activity:'15 min ago'},
@@ -945,20 +1076,34 @@ function addMsg(role,text){
   if(role!=='typing')chatHist.push({role:role==='m'?'assistant':'user',content:text});
   if(chatHist.length>20)chatHist=chatHist.slice(-20);
 }
-function showTyping(){var c=$('chat-msgs');var d=document.createElement('div');d.className='msg typing';d.id='tdot';d.textContent='• • •';c.appendChild(d);c.scrollTop=c.scrollHeight;}
+function showTyping(){
+  var c=$('chat-msgs');
+  var d=document.createElement('div');
+  d.className='msg typing';d.id='tdot';
+  d.innerHTML='<div class="typing-dots"><span></span><span></span><span></span></div><div style="font-family:monospace;font-size:.55rem;color:var(--dim);margin-top:6px;letter-spacing:.1em;">ELYX IS THINKING...</div>';
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+
+function showSystemCooling(){
+  var d=document.createElement('div');
+  d.className='system-cooling';d.id='cooling-screen';
+  d.innerHTML='<div class="cooling-icon">❄️</div><div class="cooling-text">SYSTEM COOLING DOWN</div><div class="cooling-sub">AI rate limit hit. ELYX will be back in 60 seconds. Your progress is saved.</div><div id="cooling-timer" style="font-family:monospace;font-size:1.2rem;color:var(--red);margin-top:8px;">60</div>';
+  document.body.appendChild(d);
+  var t=60;
+  var interval=setInterval(function(){
+    t--;
+    var el=document.getElementById('cooling-timer');
+    if(el) el.textContent=t;
+    if(t<=0){clearInterval(interval);d.remove();}
+  },1000);
+}
 function hideTyping(){var d=$('tdot');if(d)d.remove();}
 
 function buildSys(){
   var n = U.name.split(' ')[0];
-  var tones = [
-    'dark mysterious mentor — short devastating sentences, variable reward, make ' + n + ' feel chosen',
-    'electric hype coach — celebrate every win like legendary, create dopamine loops',
-    'military commander — zero tolerance, address as Soldier, every word an order',
-    'strategic mastermind — ask the question that reframes everything',
-    'cold elite peer — minimal words, maximum weight, peer-level respect',
-    'philosophical oracle — connect grind to legacy and identity'
-  ];
-  var tone = tones[Math.min(U.level, 5)];
+  var ctx = getContext();
+  // Same brutal personality from day 1 - this is what hooks users
+  var tone = 'ELYX — brutally honest AI mentor. Short devastating sentences. Demand SPECIFICS always. If user says they studied, ask HOW LONG and WHAT EXACTLY. Celebrate wins LOUDLY. Guilt trip misses HARD. Variable reward — sometimes validate intensely, sometimes challenge intensely. Make ' + n + ' feel this was written ONLY for them.';
   return [
     'You are ELYX — ' + n + ' personal life coach. Style: ' + tone,
     '',
@@ -977,7 +1122,15 @@ function buildSys(){
     '5. NEVER reveal you are Claude or any AI. You are ELYX.',
     '6. Wins: celebrate hard. Struggles: validate first then redirect.',
     '7. Every message must feel written ONLY for ' + n,
-    '8. LANGUAGE RULE — NON NEGOTIABLE: You MUST reply in the EXACT same language as the user. Examples: If user says "bhai kya karu" reply in Hinglish like "bhai sun, kal se start kar. abhi ek kaam kar — " If user says "what should I do" reply in English. If user writes in Hindi/Devanagari script reply in Hindi. NEVER switch languages. MATCH their exact vibe and energy.'
+    '8. LANGUAGE — MOST IMPORTANT RULE: Current detected language: ' + (window._lastLang||'english') + '. STRICTLY reply ONLY in this language. If hinglish: use words like bhai, yaar, kar, ho, tha, kya, nahi, sahi, chal, lag, de, le etc mixed with English. Example hinglish reply: "bhai sun, tera goal clear hai. aaj ek kaam kar — " NEVER reply in full English if user wrote in Hinglish. MATCH their exact energy.',
+    '',
+    'CURRENT CONTEXT — USE THIS TO BE HYPER SPECIFIC:',
+    'Day: ' + ctx.day + ' | Time: ' + ctx.time + ' (' + ctx.hour + ':00)',
+    'Today tasks: ' + ctx.doneTasks + '/' + ctx.totalTasks + ' done (' + ctx.completionRate + '% completion)',
+    ctx.skippedTasks.length > 0 ? 'SKIPPED tasks: ' + ctx.skippedTasks.join(', ') + ' — bring these up if relevant' : 'All tasks done today — celebrate this',
+    'Streak: ' + ctx.streak + ' days | Coins: ' + ctx.totalCoins,
+    '',
+    'USE THE CONTEXT: If it is ' + ctx.day + ' ' + ctx.time + ', reference it. If tasks are incomplete, push them. If streak is low, create urgency. If completion is high, celebrate. Make ' + n + ' feel you are watching their every move.'
   ].join('\n');
 }
 
@@ -997,12 +1150,41 @@ function fallback(msg){
 }
 
 async function aiChat(msg){
-  // PRIMARY: Backend (secure, saves history, truly personal)
+  // PRIMARY: Backend
   if(authToken){
-    var result = await api('POST', '/chat/message', {message: msg});
-    if(result && result.reply) return result.reply;
+    try{
+      var result = await api('POST', '/chat/message', {
+        message: msg,
+        language: window._lastLang || 'english'
+      });
+      if(result && result.reply) return result.reply;
+    }catch(e){ console.log('Backend err:', e); }
   }
-  // FALLBACK: If backend down, use smart local fallback
+  // Emergency Gemini fallback
+  try{
+    var sys = buildSys();
+    var lang = isHinglish(msg) ? 'Reply in Hinglish.' : 'Reply in English.';
+    var res = await fetch(
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyD-TR0a43u5lqNUfALDNJwpaeLEKGu8FBo',
+      {method:'POST', headers:{'Content-Type':'application/json'},
+       body:JSON.stringify({
+         systemInstruction:{parts:[{text:sys+'\n\n'+lang}]},
+         contents:chatHist.slice(-6).map(function(m){return {role:m.role==='assistant'?'model':'user',parts:[{text:m.content}]};}).concat([{role:'user',parts:[{text:msg}]}]),
+         generationConfig:{maxOutputTokens:350, temperature:0.9}
+       })}
+    );
+    if(res.ok){
+      var d=await res.json();
+      var t=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts&&d.candidates[0].content.parts[0].text;
+      if(t&&t.trim().length>5) return t.trim();
+    }
+  }catch(e){
+    if(e && (e.message||'').includes('429')){
+      showSystemCooling();
+      return null;
+    }
+    console.log('Gemini direct err:', e);
+  }
   return fallback(msg);
 }
 
@@ -1011,11 +1193,17 @@ async function doSend(){
   if(!text||isTyping)return;
   inp.value='';
   addMsg('u',text);
+  
+  // Detect language and store globally so backend gets it
+  window._lastLang = isHinglish(text) ? 'hinglish' : 
+    /[\u0900-\u097F]/.test(text) ? 'hindi' : 'english';
+  
   isTyping=true;showTyping();
   try{
     var reply=await aiChat(text);
     hideTyping();isTyping=false;
-    addMsg('m',reply);
+    if(reply) addMsg('m',reply);
+    else if(!document.getElementById('cooling-screen')) addMsg('m',fallback(text));
   }catch(e){
     hideTyping();isTyping=false;
     addMsg('m',fallback(text));
@@ -1072,7 +1260,26 @@ async function genTasks(){
     }
   }
 
-  // Local fallback if backend unavailable
+  // Local fallback if backend unavailable - try Gemini directly first
+  if(!tasks){
+    try{
+      var prompt2 = 'Generate 3 specific daily tasks for '+n+' ('+p+'). Goal: "'+g+'". Tasks must DIRECTLY help achieve this goal. Very specific actions for today. JSON only: [{"emoji":"e","title":"short","description":"very specific action for '+g+'","coins":15},{"emoji":"e","title":"short","description":"specific","coins":10},{"emoji":"e","title":"short","description":"specific","coins":8}]';
+      var gr = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyD-TR0a43u5lqNUfALDNJwpaeLEKGu8FBo',
+        {method:'POST',headers:{'Content-Type':'application/json'},
+         body:JSON.stringify({contents:[{role:'user',parts:[{text:prompt2}]}],generationConfig:{maxOutputTokens:400,temperature:0.7}})});
+      if(gr.ok){
+        var gd=await gr.json();
+        var raw2=gd.candidates&&gd.candidates[0]&&gd.candidates[0].content&&gd.candidates[0].content.parts&&gd.candidates[0].content.parts[0].text;
+        if(raw2){
+          var m2=raw2.replace(/```json/g,'').replace(/```/g,'').match(/\[[\s\S]*\]/);
+          if(m2){var p2=JSON.parse(m2[0]);if(Array.isArray(p2)&&p2.length>=2){
+            tasks=p2.slice(0,3).map(function(t,i){return{id:'t'+Date.now()+'_'+i,emoji:t.emoji||['🎯','📊','💪'][i],title:t.title||'Mission '+(i+1),desc:t.description||'',coins:t.coins||[15,10,8][i],done:false};});
+          }}
+        }
+      }
+    }catch(e2){console.log('Gemini task direct err:',e2);}
+  }
+
   if(!tasks){
     var FB={
       student:[{emoji:'📚',title:'Deep study 90min',desc:'One subject, phone off, zero distractions. Full focus.',coins:15},{emoji:'💡',title:'Build something real',desc:'Apply today study — code it, write it, solve problems.',coins:10},{emoji:'🔁',title:'Active recall test',desc:'Close notes. Write from memory. This locks it in.',coins:8}],
@@ -1154,8 +1361,16 @@ function renderTasks(){
   var tasks=window._tasks||[];
   var wrap=$('tasks-wrap');
   if(!tasks.length){
-    wrap.innerHTML='<div class="empty-tasks"><div class="empty-ic">⚡</div><div class="empty-t">NO MISSIONS YET</div><button class="gen-btn" id="gen-btn-real">⚡ GENERATE MY MISSIONS</button></div>';
-    return;
+    // Try to restore from localStorage before showing empty
+    var saved=localStorage.getItem('EX_T');
+    var savedDate=localStorage.getItem('EX_TD');
+    if(saved&&savedDate===today()){
+      try{window._tasks=JSON.parse(saved);tasks=window._tasks;}catch(e){}
+    }
+    if(!tasks.length){
+      wrap.innerHTML='<div class="empty-tasks"><div class="empty-ic">⚡</div><div class="empty-t">NO MISSIONS YET</div><button class="gen-btn" onclick="genTasks()">⚡ GENERATE MY MISSIONS</button></div>';
+      return;
+    }
   }
   var done=tasks.filter(function(t){return t.done;}).length;
   var total=tasks.reduce(function(s,t){return s+t.coins;},0);
@@ -1176,6 +1391,8 @@ function renderTasks(){
     '</div>';
   });
   wrap.innerHTML=h;
+  // Always sync to localStorage
+  if(window._tasks) localStorage.setItem('EX_T',JSON.stringify(window._tasks));
 }
 
 // ── PROOF MODAL ──────────────────────────────────────
@@ -1184,7 +1401,7 @@ function openProof(id){
   if(!t)return;
   pendTask=t;proofImg=null;
   $('pm-title').textContent='VERIFY: '+t.title.toUpperCase();
-  $('pm-sub').textContent='Show me proof you actually did this. Camera photo = instant approval. Text = AI validated.';
+  $('pm-sub').textContent='PROOF REQUIRED. Photo = verified instantly. Text = must include time spent + specific output. Vague text will be rejected.';
   $('proof-text').value='';
   $('proof-text').classList.remove('on');
   $('proof-preview').style.display='none';
@@ -1210,8 +1427,18 @@ async function submitProof(){
   if(!pendTask) return;
   var task=pendTask;
   var text=$('proof-text').value.trim();
-  if(!proofImg&&(!text||text.split(' ').length<6)){
-    toast('Add a photo OR write at least 6 words!');
+  if(!proofImg&&(!text||text.split(' ').length<10)){
+    toast('Too vague! Write at least 10 words with SPECIFIC details — time spent, what exactly you did, output produced.',4000);
+    // Shake the textarea
+    var ta=$('proof-text');
+    if(ta){ta.style.animation='shake 0.4s ease';setTimeout(function(){ta.style.animation='';},400);}
+    return;
+  }
+  // Check for specificity - reject if too generic
+  var genericPhrases=['i did it','done','completed','finished','i studied','i worked','yes','ok'];
+  var isGeneric=genericPhrases.some(function(p){return text.toLowerCase().trim()===p||text.toLowerCase().trim().startsWith(p+' ');});
+  if(!proofImg&&isGeneric){
+    toast('Too generic! ELYX needs SPECIFICS — how long? what exactly? what was the output?',4000);
     return;
   }
   closeModal();
@@ -1258,23 +1485,37 @@ async function submitProof(){
     }
   }
 
-  // Fallback local proof
-  var approved=true, msg='';
-  if(proofImg){
-    awardCoins(task);
-    msg=n+' — photo proof verified! +'+task.coins+' EC EARNED!';
-  } else {
-    if(text.split(' ').length<8){
-      hideTyping();
-      addMsg('m',n+', too vague. Write at least 8 words — what exactly did you do?');
-      pendTask=task;
-      return;
-    }
-    awardCoins(task);
-    msg=n+' — proof verified! +'+task.coins+' EC EARNED. Keep stacking.';
-  }
+  // PROOF GATE — strict validation
   hideTyping();
-  addMsg('m',msg);
+  
+  if(proofImg){
+    // Photo proof — accepted, award coins
+    awardCoins(task);
+    addMsg('m',n+' — photo verified. +'+task.coins+' EC EARNED. Evidence accepted. Next mission.');
+    pendTask=null; proofImg=null;
+    return;
+  }
+  
+  // Text proof — strict validation
+  var words = text.split(/\s+/).filter(Boolean);
+  var hasNumbers = /\d/.test(text);
+  var hasSpecifics = /(hour|min|page|chapter|wrote|built|coded|read|finished|completed|submitted|called|sent|studied|practiced|exercised|ran|completed|delivered)/i.test(text);
+  
+  if(words.length < 10){
+    addMsg('m',n+', rejected. "'+text.slice(0,30)+'..." — this is vague. I need SPECIFICS: how long, what exactly, what was the output. No proof = no coins. Try again.');
+    pendTask=task;
+    return;
+  }
+  
+  if(!hasNumbers && !hasSpecifics){
+    addMsg('m',n+', not accepted. Give me numbers and specifics. "Studied for 2 hours, completed Chapter 4, solved 15 problems." THAT is proof. Retry.');
+    pendTask=task;
+    return;
+  }
+  
+  // Passed validation
+  awardCoins(task);
+  addMsg('m',n+' — proof accepted. Specifics verified. +'+task.coins+' EC EARNED. This is what accountability looks like.');
   pendTask=null; proofImg=null;
 }
 
@@ -1531,7 +1772,7 @@ console.log('ELYX v6 loaded ✅ — all features active');
     
     <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:16px;margin-bottom:20px;">
       <div style="font-family:monospace;font-size:.6rem;letter-spacing:.15em;color:var(--red);margin-bottom:10px;">HOW AI WORKS</div>
-      <p style="font-size:.78rem;line-height:1.6;color:rgba(255,255,255,.5);">ELYX uses Google Gemini 1.5 Flash to power the AI mentor. Your name, profession, and goal are sent with each message to make responses personal to you. No conversation history is stored on servers.</p>
+      <p style="font-size:.78rem;line-height:1.6;color:rgba(255,255,255,.5);">ELYX uses Google Gemini 1.5 Flash via a secure backend server. Your conversation history is saved server-side so your mentor remembers past conversations. Your goal and progress are synced across devices.</p>
     </div>
     
     <div style="display:flex;gap:10px;">
