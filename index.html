@@ -9,22 +9,26 @@
 <meta charset="UTF-8"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
-<title>ELYX — Your Era Begins</title>
+<title>ELYX — AI Accountability Mentor</title>
+<meta name="description" content="ELYX is your personal AI accountability mentor. Daily missions, proof-based completion, and real consequences for missing your goals."/>
+<meta property="og:title" content="ELYX — AI Accountability Mentor"/>
+<meta property="og:description" content="Not a chatbot. An accountability system. Set your goal, get daily missions, submit proof, level up."/>
+<meta property="og:type" content="website"/>
+<meta name="theme-color" content="#ff2222"/>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{--red:#ff2222;--reddim:rgba(255,34,34,0.18);--bg:#04040e;--text:#e8e8ff;--dim:rgba(232,232,255,0.45);--border:rgba(255,34,34,0.18);}
 body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;height:100vh;overflow:hidden;}
-@keyframes pulse{0%,100%{text-shadow:0 0 40px var(--red),0 0 80px rgba(255,34,34,0.4);}50%{text-shadow:0 0 60px var(--red),0 0 120px rgba(255,34,34,0.6),0 0 200px rgba(255,34,34,0.2);}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(255,34,34,0.4);}50%{box-shadow:0 0 40px rgba(255,34,34,0.8);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes glow{0%,100%{box-shadow:0 0 10px rgba(255,34,34,0.3);}50%{box-shadow:0 0 20px rgba(255,34,34,0.5);}}
 canvas#stars{position:fixed;inset:0;z-index:0;pointer-events:none;}
 .screen{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.5s;}
 .screen.on{opacity:1;pointer-events:all;}
 
 /* BOOT */
 #s-boot{gap:0;}
-.boot-logo{font-family:'Share Tech Mono',monospace;font-size:clamp(2.5rem,8vw,4rem);color:var(--red);letter-spacing:.3em;text-shadow:0 0 40px var(--red),0 0 80px rgba(255,34,34,0.4),0 0 120px rgba(255,34,34,0.2);animation:pulse 2s ease-in-out infinite;}
+.boot-logo{font-family:'Share Tech Mono',monospace;font-size:clamp(2.5rem,8vw,4rem);color:var(--red);letter-spacing:.3em;text-shadow:0 0 40px var(--red),0 0 80px rgba(255,34,34,0.4),0 0 120px rgba(255,34,34,0.2);}
 .boot-tagline{font-family:'Share Tech Mono',monospace;font-size:.7rem;letter-spacing:.35em;color:var(--dim);margin:10px 0 36px;}
 .boot-bar-outer{width:260px;height:2px;background:rgba(255,34,34,0.1);border-radius:1px;margin-bottom:10px;}
 .boot-bar-inner{height:100%;width:0%;background:var(--red);box-shadow:0 0 12px var(--red);transition:width .4s ease;border-radius:1px;}
@@ -79,7 +83,7 @@ textarea.inp{resize:none;height:80px;font-size:.95rem;}
 
 /* CHAT */
 .chat-top{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:12px;}
-.chat-av{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--red);background:radial-gradient(circle,rgba(255,34,34,.2),rgba(255,34,34,.05));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;box-shadow:0 0 20px rgba(255,34,34,.5);animation:glow 2s ease-in-out infinite;}
+.chat-av{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--red);background:radial-gradient(circle,rgba(255,34,34,.2),rgba(255,34,34,.05));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;box-shadow:0 0 20px rgba(255,34,34,.5);box-shadow:0 0 12px rgba(255,34,34,.3);}
 .chat-mn{font-size:.88rem;font-weight:700;}
 .chat-ms{font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:.1em;color:var(--red);}
 .chat-msgs{min-height:calc(100vh - 270px);max-height:calc(100vh - 270px);overflow-y:auto;padding-bottom:6px;}
@@ -210,7 +214,7 @@ input[type=file]{display:none;}
 @keyframes msgIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
 /* CURSOR GLOW */
-#cursor-glow{position:fixed;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,34,34,.06),transparent 70%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);transition:left .1s,top .1s;}
+#cursor-glow{display:none;}
 
 /* BOOT HOOK */
 #boot-hook{animation:fadeUp .8s ease forwards;}
@@ -257,9 +261,8 @@ input[type=file]{display:none;}
     <div id="boot-p1" style="transition:opacity .6s;">
       <div class="boot-logo">ELYX</div>
       <div class="boot-tagline">YOUR ERA BEGINS</div>
-      <div style="font-family:monospace;font-size:.58rem;letter-spacing:.15em;color:rgba(255,34,34,.6);margin-top:8px;">NOT A CHATBOT. AN ACCOUNTABILITY SYSTEM.</div>
-      <div style="font-size:.72rem;color:rgba(255,255,255,.3);margin-top:10px;max-width:320px;margin-left:auto;margin-right:auto;line-height:1.6;">ChatGPT answers your questions. ELYX makes sure you actually do the work.</div>
-      <div style="margin-top:20px;font-size:.62rem;color:rgba(255,255,255,.25);">Trusted by 500+ operatives across India</div>
+      <div style="font-size:.82rem;color:rgba(255,255,255,.55);margin-top:12px;max-width:300px;margin-left:auto;margin-right:auto;line-height:1.7;">Set your goal → Get daily missions → Submit proof → Level up</div>
+      <div style="margin-top:14px;font-size:.7rem;color:rgba(255,255,255,.25);">Free · No download · Works on all devices</div>
     </div>
     
     <!-- Phase 2: Provocative statement (hidden initially) -->
@@ -333,7 +336,7 @@ input[type=file]{display:none;}
 <!-- DASHBOARD -->
 <div class="screen" id="s-dash">
   <div class="hud">
-    <div class="hud-logo">ELYX</div>
+    <div class="hud-logo" style="font-size:.85rem;letter-spacing:.15em;">ELYX</div>
     <div class="hud-center">
       <div class="hud-name" id="h-name">–</div>
       <div class="hud-lvl" id="h-lvl">LVL 0</div>
@@ -646,7 +649,7 @@ function toast(msg,ms){var t=$('toast');t.textContent=msg;t.style.display='block
   var c=$('stars'),ctx=c.getContext('2d'),W,H,pts=[];
   function rs(){W=c.width=innerWidth;H=c.height=innerHeight;}
   rs();addEventListener('resize',rs);
-  for(var i=0;i<140;i++)pts.push({x:Math.random()*9999,y:Math.random()*9999,r:.3+Math.random()*.9,a:Math.random()*6.28,s:.002+Math.random()*.003});
+  for(var i=0;i<60;i++)pts.push({x:Math.random()*9999,y:Math.random()*9999,r:.3+Math.random()*.9,a:Math.random()*6.28,s:.002+Math.random()*.003});
   function draw(){
     ctx.clearRect(0,0,W,H);
     pts.forEach(function(p){
@@ -1767,8 +1770,13 @@ console.log('ELYX v6 loaded ✅ — all features active');
     
     <p style="font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.8);margin-bottom:14px;">ELYX is not a chatbot. It is a personal accountability system that combines AI coaching, daily missions, and gamification to make sure you actually do the things you say you will do.</p>
     
-    <div style="padding:14px;background:rgba(255,34,34,.06);border-left:2px solid var(--red);border-radius:4px;margin-bottom:20px;">
-      <div style="font-family:monospace;font-size:.75rem;color:var(--red);font-style:italic;">"Most apps motivate you. ELYX holds you accountable. There is a difference — and you will feel it."</div>
+    <div style="padding:14px;background:rgba(255,34,34,.06);border-left:2px solid var(--red);border-radius:4px;margin-bottom:16px;">
+      <div style="font-size:.82rem;color:rgba(255,255,255,.8);font-style:italic;line-height:1.6;">"This is the first productivity app that did not bore me to death in 10 minutes."</div>
+      <div style="font-size:.68rem;color:rgba(255,255,255,.35);margin-top:6px;">— Zara, Freelance Designer</div>
+    </div>
+    <div style="padding:14px;background:rgba(255,34,34,.06);border-left:2px solid var(--red);border-radius:4px;margin-bottom:16px;">
+      <div style="font-size:.82rem;color:rgba(255,255,255,.8);font-style:italic;line-height:1.6;">"Daily missions check karna, streaks maintain karna — boards prep ke liye use kar rahi hoon."</div>
+      <div style="font-size:.68rem;color:rgba(255,255,255,.35);margin-top:6px;">— Aisha, 12th Student, Hyderabad</div>
     </div>
     
     <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:16px;margin-bottom:16px;">
@@ -1781,7 +1789,12 @@ console.log('ELYX v6 loaded ✅ — all features active');
       <p style="font-size:.78rem;line-height:1.6;color:rgba(255,255,255,.5);">ELYX uses Google Gemini 1.5 Flash via a secure backend server. Your conversation history is saved server-side so your mentor remembers past conversations. Your goal and progress are synced across devices.</p>
     </div>
     
+    <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:14px;margin-bottom:16px;">
+      <div style="font-family:monospace;font-size:.6rem;letter-spacing:.15em;color:var(--red);margin-bottom:8px;">CONTACT</div>
+      <p style="font-size:.78rem;color:rgba(255,255,255,.4);">Questions or feedback? Reach us at <span style="color:var(--red);">elyx.mentor@gmail.com</span></p>
+    </div>
     <div style="display:flex;gap:10px;">
+      <button onclick="window.open('https://tally.so/r/VL8yV6','_blank')" style="flex:1;cursor:pointer;padding:12px;background:transparent;border:1px solid rgba(255,34,34,.3);border-radius:8px;font-family:monospace;font-size:.62rem;letter-spacing:.12em;color:var(--red);">GIVE FEEDBACK</button>
       <button onclick="document.getElementById('about-modal').style.display='none'" style="flex:1;cursor:pointer;padding:12px;background:linear-gradient(135deg,rgba(255,34,34,.2),var(--red));border:none;border-radius:8px;font-family:monospace;font-size:.65rem;letter-spacing:.12em;color:#fff;">CLOSE</button>
     </div>
   </div>
